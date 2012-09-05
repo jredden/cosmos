@@ -1,0 +1,30 @@
+	#content {
+		margin-right:10%;
+		margin-left:10%;
+		margin-top:5%;
+		padding-bottom:10px;
+		background:#fff;
+		border:1px solid #000;
+		text-align:left;
+		min-width:500px;
+		}
+		
+	#content2 {
+		margin-right:2%;
+		margin-left:2%;
+		margin-top:1%;
+		padding-bottom:2px;
+		background:#87CEEB;
+		border:1px solid #000;
+		text-align:left;
+		min-width:300px;
+		}
+	
+	#red_star {fontsize: 16pt; color: red;}
+	#yellow_star {fontsize: 15pt; color: yellow;}
+	#orange_star {fontsize: 15pt; color: orange;}
+	#blue_star {fontsize: 15pt; color: blue;}
+	#lightblue_star {fontsize: 15pt; color: lightblue;}
+	#paleyellow_star {fontsize: 15pt; color: lightyellow;}
+	#white_star {fontsize: 15pt; color: white;}
+		

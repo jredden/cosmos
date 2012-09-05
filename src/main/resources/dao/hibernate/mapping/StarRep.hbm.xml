@@ -1,0 +1,158 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="cosmos.hibernate.StarRep" 
+    table="StarRep"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="StarRep"
+    </meta>
+
+    <composite-id>
+        <meta attribute="field-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="starId" 
+            column="star_id" 
+            type="java.lang.Short"
+            length="5"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="star_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="systemId" 
+            column="System_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="System_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="clusterId" 
+            column="cluster_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="cluster_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="distanceClustVirtCentre" 
+            column="distance_clust_virt_centre" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="distance_clust_virt_centre"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="luminosity" 
+            column="luminosity" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="luminosity"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="noPlanetsAllowed" 
+            column="no_planets_allowed" 
+            type="java.lang.String"
+            length="1"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="no_planets_allowed"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="angleInRadiansS" 
+            column="angle_in_radians_s" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="angle_in_radians_s"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="starColor" 
+            column="star_color" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="star_color"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="starType" 
+            column="star_type" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="star_type"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="datestamp" 
+            column="Datestamp" 
+            type="java.sql.Timestamp"
+            length="19"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="Datestamp"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="starSize" 
+            column="star_size" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="star_size"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

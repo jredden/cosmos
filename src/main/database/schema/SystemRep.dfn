@@ -1,0 +1,15 @@
+USE cosmos
+DROP TABLE IF EXISTS SystemRep;
+
+CREATE TABLE SystemRep(
+	System_id					CHAR(40) NOT NULL,
+	distance_to_galaxy_centre			REAL,
+	ucoordinate					REAL,
+	vcoordinate					REAL,
+	Datestamp					TIMESTAMP NOT NULL
+);
+
+CREATE UNIQUE INDEX systemid ON  SystemRep(System_id);
+
+
+

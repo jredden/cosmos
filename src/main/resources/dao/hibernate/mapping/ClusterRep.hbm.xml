@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="cosmos.hibernate.ClusterRep" 
+    table="ClusterRep"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="ClusterRep"
+    </meta>
+
+    <composite-id>
+        <meta attribute="field-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="systemId" 
+            column="System_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="System_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="distanceSysVirtCentre" 
+            column="distance_sys_virt_centre" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="distance_sys_virt_centre"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="planetsAllowed" 
+            column="planetsAllowed" 
+            type="java.lang.String"
+            length="1"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="planetsAllowed"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="clusterId" 
+            column="cluster_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="cluster_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="angleInRadians" 
+            column="angle_in_radians" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="angle_in_radians"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="clusterDescription" 
+            column="cluster_description" 
+            type="java.lang.String"
+            length="80"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="cluster_description"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="numberStarsInCluster" 
+            column="number_stars_in_cluster" 
+            type="java.lang.Short"
+            length="6"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="number_stars_in_cluster"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="datestamp" 
+            column="Datestamp" 
+            type="java.sql.Timestamp"
+            length="19"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="Datestamp"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

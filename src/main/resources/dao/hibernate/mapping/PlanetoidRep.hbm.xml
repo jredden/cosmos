@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="cosmos.hibernate.PlanetoidRep" 
+    table="PlanetoidRep"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="PlanetoidRep"
+    </meta>
+
+    <composite-id>
+        <meta attribute="field-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="systemId" 
+            column="System_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="System_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="clusterId" 
+            column="cluster_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="cluster_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="planetoidId" 
+            column="planetoid_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="planetoid_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="profile" 
+            column="profile" 
+            type="java.lang.String"
+            length="80"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="profile"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="itsStar" 
+            column="itsStar" 
+            type="java.lang.String"
+            length="80"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="itsStar"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="datestamp" 
+            column="Datestamp" 
+            type="java.sql.Timestamp"
+            length="19"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="Datestamp"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>

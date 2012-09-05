@@ -1,0 +1,18 @@
+USE cosmos
+DROP TABLE IF EXISTS Planetoid;
+
+CREATE TABLE Planetoid(
+	planetoid_id			CHAR(40) NOT NULL,
+	Radius				DOUBLE NOT NULL,
+	DistanceToPimary		DOUBLE NOT NULL,
+	Degree				DOUBLE NOT NULL,
+	Temperature			DOUBLE NOT NULL,
+	PercentWater			DOUBLE,
+	Datestamp			TIMESTAMP NOT NULL
+);
+
+CREATE INDEX planet_planetoidid ON  Planetoid(planetoid_id);
+
+
+
+

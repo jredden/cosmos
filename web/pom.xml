@@ -1,0 +1,44 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.zenred</groupId>	
+  <artifactId>cosmos-web</artifactId>
+  <name>Cosmos :: Web Application</name>
+  <packaging>war</packaging>
+	<version>0.0.2</version>
+  <description>Cosmos Web</description>
+	
+	<dependencies/>
+	<build>
+  <plugins>
+      <plugin>
+         <artifactId>maven-war-plugin</artifactId>
+         <configuration>
+	   <warSourceDirectory>../src/main/web</warSourceDirectory>
+          </configuration>       
+      </plugin>
+    </plugins>    
+
+	</build>
+	
+	<distributionManagement>
+		
+        <repository>
+        <id>morsel</id>
+        <name>local</name>
+	<url>scpexe://morsel.matrix.cc:/usr/local/resin-3.1.0/webapps/ROOT/cosmos</url>
+        <layout>default</layout>
+        </repository>
+
+
+	<site>
+	<id>cosmos.site</id>
+	<name>Cosmos Website</name>
+	<url>file:///home/system76/src/resin-pro-3.0.22/webapps/ROOT/cosmos</url>
+	</site>
+
+	</distributionManagement>
+	
+</project>
+		

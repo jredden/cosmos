@@ -1,0 +1,18 @@
+USE cosmos
+DROP TABLE IF EXISTS ClusterRep;
+
+
+CREATE TABLE ClusterRep(
+	System_id				CHAR(40) NOT NULL,
+	distance_sys_virt_centre		REAL,
+	planetsAllowed				CHAR(1),
+	cluster_id				CHAR(40) NOT NULL,
+	angle_in_radians			REAL,
+	cluster_description			VARCHAR(80),
+	number_stars_in_cluster			SMALLINT,
+	Datestamp				TIMESTAMP NOT NULL
+);
+
+CREATE INDEX clusterrep_systemid ON  ClusterRep(System_id);
+CREATE INDEX clusterrep_clusterid ON  ClusterRep(cluster_id);
+

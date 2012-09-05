@@ -1,0 +1,36 @@
+USE cosmos
+DROP TABLE IF EXISTS PlanetoidAtmosphere;
+
+/*
+# *   encoding sequence for planetary atmoshpheres
+# *                                          temp       temp
+# *                                          solid      gaseous
+# *
+# *            1 = methane       ch(4)       90.6       109.0
+# *            2 = sulfuric acid h[1]so(4)
+# *            3 = carbon dioxide co[1]      194.5      216.5
+# *            4 = nitrogen      n[1]        64.0       78.0
+# *            5 = ammonia       nh(3)       195.3     239.6
+# *            6 = nitrogen dioxide no[1]    261.8     294.2
+# *            7 = oxygen        o[1]         54.6     90.0
+# *            8 = water         h[1]o       273.0     373.0
+# *            9 = neon          ne           24.6      27.1
+# *            10 = hydrogen sulfide h[1]s   187.5     212.3
+# *            11 = sulfer dioxide so[1]     200.8     263.0
+# *            12 = chlorine     cl[1]       171.9     238.4
+# *            13 = argon        ar           83.8      87.4
+# *            14 = helium       he            5.0
+# *            15 = hydrochloric acid hcl
+# *            16 = carbon monoxide co        67.9      83.0
+*/
+
+CREATE TABLE PlanetoidAtmosphere(
+	planetoid_id			CHAR(40) NOT NULL,
+	chem_name			VARCHAR(64) NOT NULL,
+	percentage			DOUBLE NOT NULL,
+	datestamp			TIMESTAMP NOT NULL
+);
+CREATE INDEX atmosplanetoidid ON  PlanetoidAtmosphere(planetoid_id);
+
+
+

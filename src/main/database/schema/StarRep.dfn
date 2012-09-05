@@ -1,0 +1,23 @@
+USE cosmos
+DROP TABLE IF EXISTS StarRep;
+
+
+CREATE TABLE StarRep(
+	star_id					SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+	System_id				CHAR(40) NOT NULL,
+	cluster_id				CHAR(40) NOT NULL,
+	distance_clust_virt_centre	REAL,
+	luminosity				REAL,
+	no_planets_allowed			CHAR(1),
+	angle_in_radians_s			REAL,
+	star_color				VARCHAR(40),
+	star_type				VARCHAR(40),
+	Datestamp				TIMESTAMP NOT NULL,
+	star_size				REAL,
+	PRIMARY KEY  (`star_id`)
+);
+
+CREATE INDEX starrep_systemid ON  StarRep(System_id);
+CREATE INDEX starrep_clusterid ON  StarRep(cluster_id);
+
+

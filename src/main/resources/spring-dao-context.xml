@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<!-- ================================== SETTING =================================== -->
+
+	<!-- DataSource (can switch to jndi) -->
+	<!--<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/cosmos"/>-->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		lazy-init="false">
+		
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/cosmos" />
+		<property name="username" value="integrat" />
+		<property name="password" value="test99a" />
+		<property name="maxActive" value="10000"/>
+		<property name="maxWait" value="10000"/>
+		<property name="validationQuery" value="select 1"/>
+		<property name="timeBetweenEvictionRunsMillis" value="12000"/>
+		<property name="minEvictableIdleTimeMillis" value="18000"/>
+	    <property name="poolPreparedStatements" value="true"/>
+ 	</bean>
+
+	<!-- Hibernate Session Factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+		lazy-init="false">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<list>
+				<!-- Contains all named queries -->
+				<value>
+					dao/hibernate/mapping/named-queries.hbm.xml
+				</value>
+
+				<!-- Domain models -->
+				<value>dao/hibernate/mapping/ClusterRep.hbm.xml</value>
+				<value>dao/hibernate/mapping/Planetoid.hbm.xml</value>
+				<value>
+					dao/hibernate/mapping/PlanetoidAtmosphere.hbm.xml
+				</value>
+				<value>
+					dao/hibernate/mapping/PlanetoidRep.hbm.xml
+				</value>
+				<value>dao/hibernate/mapping/StarRep.hbm.xml</value>
+				<value>dao/hibernate/mapping/SystemRep.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=false
+				hibernate.connection.release_mode=auto
+			</value>
+		</property>
+	</bean>
+
+
+	<!-- ==================================== DAO ===================================== -->
+	<bean id="starsAvecPlanetsFundDAO" lazy-init="false"
+		class="com.zenred.data_access.StarsAvecPlanetsFundDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="starsFundDAO" lazy-init="false"
+		class="com.zenred.data_access.StarsFundDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="clusterRepDAO" lazy-init="false"
+		class="com.zenred.data_access.ClusterRepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="starRepDAO" lazy-init="false"
+		class="com.zenred.data_access.StarRepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="systemRepDAO" lazy-init="false"
+		class="com.zenred.data_access.SystemRepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="planetoidDAO" lazy-init="false"
+		class="com.zenred.data_access.PlanetoidDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="planetoidRepDAO" lazy-init="false"
+		class="com.zenred.data_access.PlanetoidRepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="planetoidAtmosphereRepDAO" lazy-init="false"
+		class="com.zenred.data_access.PlanetoidAtmosphereRepDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
+</beans>

@@ -1,0 +1,117 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+         http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           "
+	default-dependency-check="none">
+	
+	<bean id="genPlanets" class="com.zenred.cosmos.GenPlanets"/>
+	<bean id="starsFundDAO" class="com.zenred.data_access.StarsFundDAO"/>
+	<bean id="marshallClustersAndStarsAndPlanetsInOneSystem " 
+		class="com.zenred.data_access.MarshallClustersAndStarsAndPlanetsInOneSystem"/>
+	<bean id="marshallStars" class="com.zenred.data_access.MarshallStars"/>	
+	<bean id="marshallSystems" class="com.zenred.data_access.MarshallSystems"/>	
+	<bean id="marshalPlanetAndPlanetoids" class="com.zenred.service.MarshalPlanetAndPlanetoids">
+		<property name="marshallStars" ref="marshallStars"></property>
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"></property>
+	</bean>
+	
+	<bean id="marshalClusterDetails" class="com.zenred.service.MarshalClusterDetails">
+		<property name="marshallStars" ref="marshallStars"/>
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
+	
+	<bean id="generatePlanets" class="com.zenred.service.GeneratePlanets">
+		<property name="marshallStars" ref="marshallStars"/>
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+		<property name="genPlanets" ref="genPlanets"/>
+	</bean>
+		
+	<bean id="generateOneSystem" class="com.zenred.service.GenerateOneSystem">
+		<property name="marshallSystems" ref="marshallSystems"/>
+		<property name="generatePlanets" ref="generatePlanets"/>
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
+		
+	<bean id="springappController"
+		class="com.zenred.servlet.SpringappController" />
+	<bean id="springappController2"
+		class="com.zenred.servlet.SpringappController2" />
+	<bean id="springappControllerSystemDetail"
+		class="com.zenred.servlet.SpringappControllerSystemDetail" />
+	<bean id="springappControllerSystemDetail2"
+		class="com.zenred.servlet.SpringappControllerSystemDetail2" />
+	<bean id="clustersController" class="com.zenred.cosmos.controller.json.ClustersController">
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
+			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
+	<bean id="starsController" class="com.zenred.cosmos.controller.json.StarsController">
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
+			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
+	<bean id="clusterDetailController" class="com.zenred.cosmos.controller.json.ClusterDetailController">
+		<property name="marshalClusterDetails" ref="marshalClusterDetails"/>
+	</bean>	
+	<bean id="starDetailController" class="com.zenred.cosmos.controller.json.StarDetailController">
+		<property name="marshalClusterDetails" ref="marshalClusterDetails"/>
+	</bean>	
+	<bean id="planetDetailController" class="com.zenred.cosmos.controller.PlanetDetailController">
+	</bean>	
+	<bean id="planetDetailBuilderController" class="com.zenred.cosmos.controller.json.PlanetDetailBuilderController">
+		<property name="marshalPlanetAndPlanetoids" ref="marshalPlanetAndPlanetoids"/>
+	</bean>	
+	<bean id="createSystemController" class="com.zenred.cosmos.controller.json.CreateSystemController">
+		<property name="generateOneSystem" ref="generateOneSystem"/>
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+		
+	</bean>
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/hello.htm">springappController2</prop>
+				<prop key="/index.htm">springappController2</prop>
+				<prop key="/systems.htm">springappController2</prop>
+				<prop key="/solar.htm">springappController</prop>
+				<prop key="/moresystems.htm">springappController2</prop>
+				<prop key="/fish.htm">springappController2</prop>
+				<prop key="/systems_detail.htm">springappControllerSystemDetail</prop>
+				<prop key="/systems_detail_cluster.htm">springappControllerSystemDetail2</prop>
+				<prop key="/cluster.htm">clustersController</prop>
+				<prop key="/star.htm">starsController</prop>
+				<prop key="/cluster_detail.htm">clusterDetailController</prop>
+				<prop key="/star_detail.htm">starDetailController</prop>
+				<prop key="/generate_system.htm">createSystemController</prop>
+				<prop key="/planet_detail.htm">planetDetailController</prop>
+				<prop key="/planet_detail_builder.htm">planetDetailBuilderController</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="viewResolverPHP"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/web/" />
+		<property name="suffix" value=".php" />
+		<property name="order"><value>2</value></property>
+	</bean>
+
+	<bean id="viewResolverJSP"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order"><value>1</value></property>
+	</bean>
+
+	<bean id="loggingAspect" class="com.zenred.cosmos.aop.LoggingAspect" />
+	<aop:aspectj-autoproxy />
+
+
+</beans>
+

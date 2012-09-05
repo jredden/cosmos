@@ -1,0 +1,19 @@
+USE cosmos
+DROP TABLE IF EXISTS PlanetoidRep;
+
+
+CREATE TABLE PlanetoidRep(
+	System_id			CHAR(40) NOT NULL,
+	cluster_id			CHAR(40) NOT NULL,
+	planetoid_id		CHAR(40) NOT NULL,
+	itsStar				VARCHAR(80),
+	profile				VARCHAR(80),
+	Datestamp			TIMESTAMP NOT NULL
+);
+
+CREATE INDEX planetoidrepid ON  PlanetoidRep(planetoid_id);
+CREATE INDEX plaentoidrep_clusterid ON  PlanetoidRep(cluster_id);
+CREATE INDEX plaentoidrep_systemid ON  PlanetoidRep(System_id);
+
+
+

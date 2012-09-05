@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+    
+<hibernate-mapping>
+<!-- 
+    Created by the Middlegen Hibernate plugin 2.1
+
+    http://boss.bekk.no/boss/middlegen/
+    http://www.hibernate.org/
+-->
+
+<class 
+    name="cosmos.hibernate.SystemRep" 
+    table="SystemRep"
+>
+    <meta attribute="class-description" inherit="false">
+       @hibernate.class
+        table="SystemRep"
+    </meta>
+
+    <composite-id>
+        <meta attribute="field-description" inherit="false">
+           @hibernate.id
+            generator-class="assigned"
+        </meta>
+        <key-property 
+            name="systemId" 
+            column="System_id" 
+            type="java.lang.String"
+            length="40"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="System_id"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="distanceToGalaxyCentre" 
+            column="distance_to_galaxy_centre" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="distance_to_galaxy_centre"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="ucoordinate" 
+            column="ucoordinate" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="ucoordinate"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="vcoordinate" 
+            column="vcoordinate" 
+            type="java.lang.Double"
+            length="22"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="vcoordinate"
+            </meta> 
+        </key-property>
+        <key-property 
+            name="datestamp" 
+            column="Datestamp" 
+            type="java.sql.Timestamp"
+            length="19"
+        >
+            <meta attribute="field-description">
+               @hibernate.property
+                column="Datestamp"
+            </meta> 
+        </key-property>
+    </composite-id>    
+
+
+    <!-- Associations -->
+    <!-- derived association(s) for compound key -->
+    <!-- end of derived association(s) -->
+  
+
+</class>
+</hibernate-mapping>
