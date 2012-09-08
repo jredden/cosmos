@@ -68,8 +68,8 @@ var scalingConstants = (function(){
 	var mainY = 160;
 	var mainX = 149;
 	var marginY = 20;
-	var sectorConstantX = 100000;
-	var sectorConstantY = 100000;
+	var sectorConstantX = 100000-10;
+	var sectorConstantY = 100000-10;
 	var xdimOffset = 2;
 	var ydimOffset = 1;
 

@@ -39,7 +39,9 @@
 		<property name="generatePlanets" ref="generatePlanets"/>
 		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
 	</bean>	
-		
+	
+	<bean id="nillController"
+		class="com.zenred.servlet.NillController"/>	
 	<bean id="springappController"
 		class="com.zenred.servlet.SpringappController" />
 	<bean id="springappController2"
@@ -82,7 +84,7 @@
 				<prop key="/systems.htm">springappController2</prop>
 				<prop key="/solar.htm">springappController</prop>
 				<prop key="/moresystems.htm">springappController2</prop>
-				<prop key="/fish.htm">springappController2</prop>
+				<prop key="/fish.htm">nillController</prop>
 				<prop key="/systems_detail.htm">springappControllerSystemDetail</prop>
 				<prop key="/systems_detail_cluster.htm">springappControllerSystemDetail2</prop>
 				<prop key="/cluster.htm">clustersController</prop>
