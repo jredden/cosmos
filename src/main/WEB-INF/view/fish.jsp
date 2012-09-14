@@ -18,7 +18,8 @@
   <button id="getpw">Get Paragraph Width</button>
   <button id="getdw">Get Document Width</button>
   <button id="getww">Get Window Width</button>
-  
+  <button id="hideit">Hide</button>
+  <button id="showit">Show</button>
 
   <div>&nbsp;</div>
   <p>
@@ -51,6 +52,14 @@
 	$("#getww").click(function () { 
   		showWidth("window", $(window).width()); 
 	});
+	$("#hideit").click(function () { 
+  		$('#u100-v100').hide();
+ 		$('#u101-v101').hide();
+	});
+	$("#showit").click(function () { 
+  		$('#u100-v100').show();
+  		$('#u101-v101').show();
+	});
 	
 	function draw(jg, xdim, ydim){
 		jg.setColor("#000080"); 
@@ -61,9 +70,15 @@
 </script>
 
 <script>
+var dims = new Array();
+dims[0] = 'u100-v100';
+dims[1] = 'u101-v101';
+
 $(document).ready(function() {
-var jg100 = new jsGraphics("u100-v100");
-var jg101 = new jsGraphics("u101-v101");
+$('<div id="' + dims[0] +'"></div>').appendTo('body');
+$('<div id="' + dims[1] +'"></div>').appendTo('body');
+var jg100 = new jsGraphics(dims[0]);
+var jg101 = new jsGraphics(dims[1]);
 var x1 = $(document).width();
 var y1 = $(document).height();
 var x2 = x1;
@@ -77,10 +92,6 @@ draw(jg101, x2, y2);
 });
 </script>
 
-<div id="u100-v100">
-</div>
-<div id="u101-v101">
-</div>
 
 
 </body>
