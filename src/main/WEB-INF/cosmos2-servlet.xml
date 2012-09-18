@@ -46,6 +46,8 @@
 		class="com.zenred.servlet.SpringappController" />
 	<bean id="springappController2"
 		class="com.zenred.servlet.SpringappController2" />
+	<bean id="springappController3"
+		class="com.zenred.servlet.SpringappController3" />
 	<bean id="springappControllerSystemDetail"
 		class="com.zenred.servlet.SpringappControllerSystemDetail" />
 	<bean id="springappControllerSystemDetail2"
@@ -82,6 +84,7 @@
 				<prop key="/hello.htm">springappController2</prop>
 				<prop key="/index.htm">springappController2</prop>
 				<prop key="/systems.htm">springappController2</prop>
+				<prop key="/systems3.htm">springappController3</prop>
 				<prop key="/solar.htm">springappController</prop>
 				<prop key="/moresystems.htm">springappController2</prop>
 				<prop key="/fish.htm">nillController</prop>

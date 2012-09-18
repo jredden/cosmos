@@ -7,7 +7,7 @@
   p { width:150px; border:1px red solid; }
   div { color:red; font-weight:bold; }
   </style>
-  <script src="http://www.cosmos.com/js/jquery-1.6.min.js" type="text/javascript"></script>
+  <script src="http://www.cosmos.com/js/jquery-1.8.1.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://www.cosmos.com/js/wz_jsgraphics3.js"></script>
 
 </head>
