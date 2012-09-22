@@ -20,6 +20,7 @@ var systemPlusModule = (function () {
 	
 	var systems = [];
 	var clusters = [];
+	var stars = [];
 	
 	return {
 	
@@ -32,11 +33,27 @@ var systemPlusModule = (function () {
     	},
     	
     	numberSystems: function(){
-    		return systems.length();
+    		return systems.length;
     	},
     	
     	addCluster: function(key, cluster) {
-    		cluster[key] = cluster;
+    		clusters[key] = cluster;
+    	},
+    	
+    	numberClusters: function(){
+    		return clusters.length;
+    	},
+    	
+    	addStar: function(key, star){
+    		stars[key] = star;
+    	},
+    	
+    	getStar: function(key){
+    		return stars[key];
+    	},
+    	
+    	numberStars: function(){
+    		return stars.length;
     	}
 	};
 }());
@@ -57,11 +74,36 @@ var systemPlusModule = (function () {
 <script>
 	systemPlusModule.addCluster("${systemPlusSomeDetails._systemId}",{
 								distVirtCentre: ${clusterRepList._distanceSysVirtCentre},
-								angle: ${clusterRepList._angleInRadians}
+								angle: ${clusterRepList._angleInRadians},
+								planetsAllowed: "${clusterRepList._planetsAllowed}",
+								clusterId: "${clusterRepList._clusterId}",
+								description: "${clusterRepList._clusterDescription}",
+								numberStars: ${clusterRepList._numberStarsInCluster}
 								});								
 </script>	
 	</c:forEach>
+	<c:forEach var="starRepList" items="${systemPlusSomeDetails.starRepList}" >
+<script>
+	systemPlusModule.addStar("${systemPlusSomeDetails._systemId}",{
+		starId: ${starRepList.starId},
+		clusterId: "${starRepList.clusterId}", 
+		distClusterVirtCentre: ${starRepList.distanceClustVirtCentre},
+		luminosity: ${starRepList.luminosity},
+		noPlanets: "${starRepList.noPlanetsAllowed}",
+		angle: ${starRepList.angleInRadiansS},
+		starColor: "${starRepList.starColor}",
+		starType: "${starRepList.starType}",
+		starSize: "${starRepList.starSize}"
+	});
+	console.log("star:" + systemPlusModule.getStar());
+</script>		
+	</c:forEach>
+	
 </c:forEach>
-
+<script>
+	console.log("number Systems:" + systemPlusModule.numberSystems());
+	console.log("number Clusters:" + systemPlusModule.numberClusters());
+	console.log("number Stars:" + systemPlusModule.numberStars());
+</script>
 </body>
 </html>
