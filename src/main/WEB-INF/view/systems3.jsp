@@ -36,6 +36,10 @@ var systemPlusModule = (function () {
     		return systems.shift();
     	},
     	
+    	getSystems: function(index){
+    		return systems[index];
+    	},
+    	
     	numberSystems: function(){
     		return systems.length;
     	},
@@ -83,6 +87,8 @@ var pageSpace = (function () {
 	var current_v;
 	var current_height;
 	var current_width;
+	var numberStarsystems_x;
+	var numberStarsystems_y;
 	
 	// public
 	
@@ -122,18 +128,34 @@ var pageSpace = (function () {
 		heightWidth: function(height, width){
 			current_height = height;
 			current_width = width;
+		},
+		numberStarsSystemsX: function(){
+//			console.log("XX:"+scalingConstants.starSystemPageSpaceX());
+			numberStarsystems_x = current_width / scalingConstants.starSystemPageSpaceX();
+		},
+		numberStarsSystemsY: function(){
+			numberStarsystems_y = current_width / scalingConstants.starSystemPageSpaceY();
+		},
+		getNumberStarSystemsX: function(){
+			return parseInt(numberStarsystems_x);
+		},
+		getNumberStarSystemsY: function(){
+			return parseInt(numberStarsystems_y);
 		}
+		
 	};
 	
 }());
 
 var scalingConstants = (function(){
+	// private
 	var mainY = 160;
 	var mainX = 149;
 	var marginY = 20;
 	var xdimOffset = 2;
 	var ydimOffset = 1;
 
+	
 	function getmainY () {
 		return mainY;
 	}
@@ -149,15 +171,47 @@ var scalingConstants = (function(){
 	function getydimOffset() {
 		return ydimOffset;
 	}
+	// public
 	return {
 		starSystemPageSpaceX: function getX(){
-			return getmainX + getxdimOffset;
+			return getmainX() + getxdimOffset();
 		},
 		starSystemPageSpaceY: function getY(){
-			return getmainY + getydimOffset + getmarginY;
+			return getmainY() + getydimOffset() + getmarginY();
 		}
 	};
 }());
+
+var drawSystems = (function(){
+	// private
+	function isSystemOnPage(systemObject){
+		var uDelta = pageSpace.currentU() + pageSpace.getNumberStarSystemsX();
+		var vDelta = pageSpace.currentV() + pageSpace.getNumberStarSystemsY();
+//		console.log("uDelta vDelta:" + pageSpace.currentU() + "::" + pageSpace.currentV() + pageSpace.numberStarsSystemsX() + "::" + pageSpace.numberStarsSystemsY());
+		if(systemObject.ucoord >= pageSpace.currentU() && systemObject.ucoord <= uDelta 
+			&&
+			systemObject.vcoord >= pageSpace.currentV() && systemObject.vcoord <= vDelta){
+				console.log("vcoord, ucoord in page:" + systemObject.vcoord + "::" + systemObject.ucoord);
+				return true;
+			}
+		else{
+				console.log("vcoord, ucoord not in page:" + systemObject.vcoord+ "::" + systemObject.ucoord);
+				return false;
+		}
+	}
+	
+	// public
+	return {
+		scanSystems: function scan(){
+			for (var index = 0; index < systemPlusModule.numberSystems(); index++ ){
+				var systemObject = systemPlusModule.getSystems(index);
+				var isItInPage = isSystemOnPage(systemObject);
+			}
+		}
+	};
+
+}());
+
 </script> 
 
 <c:forEach var="systemPlusSomeDetails" items="${systems_list}" >
@@ -202,7 +256,6 @@ var scalingConstants = (function(){
 	
 </c:forEach>
 <script>
-	console.log("number Systems:" + systemPlusModule.numberSystems());
 	console.log("number Clusters:" + systemPlusModule.numberClusters());
 	console.log("number Stars:" + systemPlusModule.numberStars());
 	console.log("smallest u:" + pageSpace.smallestU());
@@ -210,7 +263,11 @@ var scalingConstants = (function(){
 	
 	$(document).ready(function() {
 		pageSpace.heightWidth($(document).height(), $(document).width());
-		
+		pageSpace.numberStarsSystemsX();
+		pageSpace.numberStarsSystemsY();
+		console.log("number star systems x:" + pageSpace.getNumberStarSystemsX());
+		console.log("number star systems y:" + pageSpace.getNumberStarSystemsY());
+		drawSystems.scanSystems();
 	});
 	
 </script>
