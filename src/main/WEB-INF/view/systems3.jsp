@@ -5,13 +5,19 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8">
 <style type="text/css"> @import "http://www.cosmos.com/css/cosmos.css";</style>
 </head>
-<script type="text/javascript" src="http://www.cosmos.com/js/wz_jsgraphics.js"></script>
+<script type="text/javascript" src="http://www.cosmos.com/js/wz_jsgraphics3.js"></script>
 <script src="http://www.cosmos.com/js/jquery-1.6.min.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
 <body>
 
 <div id="site">
 <h1>Cosmos Star Systems</h1>
+
+  <button id="pozV">Positive Shift V Dimension</button>
+  <button id="negV">Negative Shift V Dimension</button>
+  <button id="pozU">Positive Shift U Dimension</button>
+  <button id="negU">Negative Shift U Dimension</button>
+
 
 <script>
 
@@ -90,9 +96,26 @@ var pageSpace = (function () {
 	var numberStarsystems_x;
 	var numberStarsystems_y;
 	
+	var graphics = new Object();
+	var numGraphics = 0;
+	
 	// public
 	
 	return {
+		addGraphic: function(dims){
+			$('<div id="' + dims +'"></div>').appendTo('body');
+			graphics[dims] = new jsGraphics(dims);
+			++numGraphics;
+			$(dims).hide();
+		},
+		graphicsInvisible: function(){
+			for(var dims in graphics) {
+				$(dims).hide();
+			}
+		},
+		getGraphic: function(dims){
+			return graphics[dims];
+		},
 		testSmallestU: function(u_dim){
 			min_u = Math.min(u_dim, min_u);
 			current_u = min_u;
@@ -141,6 +164,9 @@ var pageSpace = (function () {
 		},
 		getNumberStarSystemsY: function(){
 			return parseInt(numberStarsystems_y);
+		},
+		getNumberGraphics: function(){
+			return parseInt(numGraphics);
 		}
 		
 	};
@@ -184,6 +210,7 @@ var scalingConstants = (function(){
 
 var drawSystems = (function(){
 	// private
+	var flipFlop = 0;
 	function isSystemOnPage(systemObject){
 		var uDelta = pageSpace.currentU() + pageSpace.getNumberStarSystemsX();
 		var vDelta = pageSpace.currentV() + pageSpace.getNumberStarSystemsY();
@@ -200,12 +227,31 @@ var drawSystems = (function(){
 		}
 	}
 	
+	function drawSystem(dims){
+		var jsGraphics = pageSpace.getGraphic(dims);
+		flipFlop^=1;
+		if(flipFlop == 1){
+			jsGraphics.setColor("#000080"); 
+		}
+		else{
+			jsGraphics.setColor("#0000CD"); 
+		}
+	}
+	
 	// public
 	return {
+		drawOneSystem: function draw1(dim){
+			drawSystem(dims);
+		},
 		scanSystems: function scan(){
+			pageSpace.graphicsInvisible();
+			flipFlop = 0;
 			for (var index = 0; index < systemPlusModule.numberSystems(); index++ ){
 				var systemObject = systemPlusModule.getSystems(index);
 				var isItInPage = isSystemOnPage(systemObject);
+				if(isItInPage){
+					drawSystem(systemObject.systemId);
+				}
 			}
 		}
 	};
@@ -223,7 +269,8 @@ var drawSystems = (function(){
 								galacticCentre: ${systemPlusSomeDetails._distanceToGalaxyCentre}
 								});
 	pageSpace.testSmallestU(${systemPlusSomeDetails._ucoordinate});
-	pageSpace.testSmallestV(${systemPlusSomeDetails._vcoordinate});								
+	pageSpace.testSmallestV(${systemPlusSomeDetails._vcoordinate});	
+	pageSpace.addGraphic("${systemPlusSomeDetails._systemId}");							
 </script>
 	<c:forEach var="clusterRepList" items="${systemPlusSomeDetails.clusterRepList}" >
 <script>
@@ -268,8 +315,29 @@ var drawSystems = (function(){
 		console.log("number star systems x:" + pageSpace.getNumberStarSystemsX());
 		console.log("number star systems y:" + pageSpace.getNumberStarSystemsY());
 		drawSystems.scanSystems();
+		console.log("number graphic contexts:" + pageSpace.getNumberGraphics());
 	});
+
+    $("#pozV").click(function () { 
+       pageSpace.incrementCurrentV();
+       drawSystems.scanSystems();
+    });
+    $("#negV").click(function () { 
+       pageSpace.decrementCurrentV();
+       drawSystems.scanSystems();
+    });
+    $("#pozU").click(function () { 
+       pageSpace.incrementCurrentU();
+       drawSystems.scanSystems();
+    });
+    $("#negU").click(function () { 
+       pageSpace.decrementCurrentU();
+       drawSystems.scanSystems();
+    });
 	
 </script>
+
+  
+</div>  <!-- site -->
 </body>
 </html>
