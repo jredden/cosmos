@@ -157,7 +157,7 @@ var pageSpace = (function () {
 			numberStarsystems_x = current_width / scalingConstants.starSystemPageSpaceX();
 		},
 		numberStarsSystemsY: function(){
-			numberStarsystems_y = current_width / scalingConstants.starSystemPageSpaceY();
+			numberStarsystems_y = current_height / scalingConstants.starSystemPageSpaceY();
 		},
 		getNumberStarSystemsX: function(){
 			return parseInt(numberStarsystems_x);
@@ -180,7 +180,10 @@ var scalingConstants = (function(){
 	var marginY = 20;
 	var xdimOffset = 2;
 	var ydimOffset = 1;
-
+	var subScale = 10;
+	var yConstant = 150;
+	var xConstant = 40;
+	
 	
 	function getmainY () {
 		return mainY;
@@ -197,20 +200,49 @@ var scalingConstants = (function(){
 	function getydimOffset() {
 		return ydimOffset;
 	}
+	function getsubscale(){
+		return subScale;
+	}
+	function getyconstant(){
+		return yConstant;
+	}
+	function getxconstant(){
+		return xConstant;
+	}
+	
 	// public
+	
 	return {
 		starSystemPageSpaceX: function getX(){
 			return getmainX() + getxdimOffset();
 		},
 		starSystemPageSpaceY: function getY(){
 			return getmainY() + getydimOffset() + getmarginY();
+		},
+		getSubScale: function subScale(){
+			return getsubscale();
+		},
+		getSubMainY: function subMainY(){
+			return getmainY() - getmarginY() - getydimOffset();
+		},
+		getSubMainX: function mainX(){
+			return getmainX();
+		},
+		getYConstant: function yconst(){
+			return getyconstant();
+		},
+		getXConstant: function xconst(){
+			return getxconstant();
 		}
 	};
 }());
 
 var drawSystems = (function(){
+
 	// private
+	
 	var flipFlop = 0;
+	
 	function isSystemOnPage(systemObject){
 		var uDelta = pageSpace.currentU() + pageSpace.getNumberStarSystemsX();
 		var vDelta = pageSpace.currentV() + pageSpace.getNumberStarSystemsY();
@@ -227,8 +259,8 @@ var drawSystems = (function(){
 		}
 	}
 	
-	function drawSystem(dims){
-		var jsGraphics = pageSpace.getGraphic(dims);
+	function drawSystem(dims, ucoord, vcoord){
+		var jsGraphics = pageSpace.getGraphic(dims.systemId);
 		flipFlop^=1;
 		if(flipFlop == 1){
 			jsGraphics.setColor("#000080"); 
@@ -236,12 +268,26 @@ var drawSystems = (function(){
 		else{
 			jsGraphics.setColor("#0000CD"); 
 		}
+		var currentU = parseInt(pageSpace.currentU());
+		var currentV = parseInt(pageSpace.currentV());
+		var udelta = ucoord - currentU;
+		var vdelta = vcoord - currentV;
+		var xdim = udelta * scalingConstants.starSystemPageSpaceX() + scalingConstants.getXConstant();
+		var ydim = vdelta * scalingConstants.starSystemPageSpaceY() + scalingConstants.getYConstant();
+		console.log("xdim:" + xdim + " ydim:" + ydim + " udelta:" + udelta + " vdelta:" + vdelta + " systemId:" + dims.systemId);
+		jsGraphics.fillRect(xdim, ydim, scalingConstants.getSubMainX(), scalingConstants.getSubScale());
+		var yy = ydim + scalingConstants.getSubScale();
+		jsGraphics.fillRect(xdim, yy, scalingConstants.getSubMainX(), scalingConstants.getSubMainY());
+		jsGraphics.paint();
+		
+		$(dims.systemId).show();
 	}
 	
 	// public
+	
 	return {
-		drawOneSystem: function draw1(dim){
-			drawSystem(dims);
+		drawOneSystem: function draw1(systemObject){
+			drawSystem(systemObject.systemId, systemObject.ucoord, systemObject.vcoord);
 		},
 		scanSystems: function scan(){
 			pageSpace.graphicsInvisible();
@@ -250,7 +296,7 @@ var drawSystems = (function(){
 				var systemObject = systemPlusModule.getSystems(index);
 				var isItInPage = isSystemOnPage(systemObject);
 				if(isItInPage){
-					drawSystem(systemObject.systemId);
+					drawSystem(systemObject, systemObject.ucoord, systemObject.vcoord);
 				}
 			}
 		}
