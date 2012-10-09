@@ -51,8 +51,16 @@ var systemPlusModule = (function () {
     	},
     	
     	addCluster: function(key, cluster) {
-    		var a_key = key;
-    		clusters[a_key] = cluster;
+    		if (clusters.hasOwnProperty(key)) {
+    			var clusterArray = clusters[key];
+    			clusterArray.push(cluster);
+    		}
+    		else{
+    			var clusterArray = new Array();
+    			clusterArray.push(cluster);
+    			clusters[key] = clusterArray;
+    		
+    		}
     		++numClusters;
     	},
     	
@@ -67,8 +75,15 @@ var systemPlusModule = (function () {
     	},
     	
     	addStar: function(key, star){
-    		var a_key = key;
-    		stars[a_key] = star;
+    		if (stars.hasOwnProperty(key)) {
+    			var starArray = stars[key];
+    			starArray.push(star);
+    		}
+    		else{
+    			var starArray = new Array();
+    			starArray.push(star);
+    			stars[key] = starArray;
+    		}
     		++numStars;
     	},
     	
@@ -111,6 +126,7 @@ var pageSpace = (function () {
 		graphicsInvisible: function(){
 			for(var dims in graphics) {
 				$(dims).hide();
+				graphics[dims].clear();
 			}
 		},
 		getGraphic: function(dims){
@@ -217,7 +233,7 @@ var scalingConstants = (function(){
 			return getmainX() + getxdimOffset();
 		},
 		starSystemPageSpaceY: function getY(){
-			return getmainY() + getydimOffset() + getmarginY();
+			return getmainY() + getydimOffset();
 		},
 		getSubScale: function subScale(){
 			return getsubscale();
@@ -227,6 +243,9 @@ var scalingConstants = (function(){
 		},
 		getSubMainX: function mainX(){
 			return getmainX();
+		},
+		getMarginY: function marginY(){
+			return getmarginY();
 		},
 		getYConstant: function yconst(){
 			return getyconstant();
@@ -278,8 +297,23 @@ var drawSystems = (function(){
 		jsGraphics.fillRect(xdim, ydim, scalingConstants.getSubMainX(), scalingConstants.getSubScale());
 		var yy = ydim + scalingConstants.getSubScale();
 		jsGraphics.fillRect(xdim, yy, scalingConstants.getSubMainX(), scalingConstants.getSubMainY());
-		jsGraphics.paint();
+		jsGraphics.setColor("#ADD8E6");
+		jsGraphics.drawString('<a href="./systems_detail_cluster.htm?systemId=U'+ucoord+'V'+vcoord+'">'+""+ucoord+":"+vcoord+"</a>", xdim, yy);
 		
+		var yyy = ydim + scalingConstants.getSubMainY();
+		jsGraphics.setColor("midnightblue");
+		jsGraphics.fillRect(xdim, yyy, scalingConstants.getSubMainX(), scalingConstants.getMarginY());
+		
+		var starArray = systemPlusModule.getStar(dims.systemId);
+		var starXDim = xdim;
+		for (scounter in starArray){
+			var scolor = starArray[scounter].starColor;
+			jsGraphics.setColor(scolor);
+			jsGraphics.fillArc(starXDim, yyy, starArray[scounter].starSize, starArray[scounter].starSize,0,360);
+			starXDim += starArray[scounter].starSize;
+		}
+		
+		jsGraphics.paint();
 		$(dims.systemId).show();
 	}
 	
@@ -326,7 +360,9 @@ var drawSystems = (function(){
 								planetsAllowed: "${clusterRepList._planetsAllowed}",
 								clusterId: "${clusterRepList._clusterId}",
 								description: "${clusterRepList._clusterDescription}",
-								numberStars: ${clusterRepList._numberStarsInCluster}
+								numberStars: ${clusterRepList._numberStarsInCluster},
+								scaledX: ${clusterRepList.scaledX},
+								scaledY: ${clusterRepList.scaledY}
 								});								
 </script>	
 	</c:forEach>
@@ -343,7 +379,7 @@ var drawSystems = (function(){
 		starType: "${starRepList.starType}",
 		starSize: "${starRepList.starSize}"
 	});
-	console.log("star:" + systemPlusModule.getStar("${systemPlusSomeDetails._systemId}").starColor);
+	console.log("star:" + systemPlusModule.getStar("${systemPlusSomeDetails._systemId}")[0].starColor);
 </script>		
 	</c:forEach>
 	

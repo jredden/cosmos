@@ -62,7 +62,7 @@
 	});
 	
 	function draw(jg, xdim, ydim){
-		jg.setColor("#000080"); 
+		jg.setColor("orange"); 
 		jg.fillRect(xdim, ydim, 149, 10);
 		jg.paint();
 	}
