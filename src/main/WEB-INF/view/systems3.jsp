@@ -308,9 +308,10 @@ var drawSystems = (function(){
 		var starXDim = xdim;
 		for (scounter in starArray){
 			var scolor = starArray[scounter].starColor;
-			jsGraphics.setColor(scolor);
-			jsGraphics.fillArc(starXDim, yyy, starArray[scounter].starSize, starArray[scounter].starSize,0,360);
-			starXDim += starArray[scounter].starSize;
+			var starDim = starAttributes.getStarColor(1, scolor);
+			jsGraphics.setColor(starDim.color());
+			jsGraphics.fillArc(starXDim, yyy, starDim.arcSize(), starDim.arcSize(),0,360);
+			starXDim += starDim.arcSize();
 		}
 		
 		jsGraphics.paint();
@@ -339,7 +340,7 @@ var drawSystems = (function(){
 }());
 
 </script> 
-
+<div id="region">
 <c:forEach var="systemPlusSomeDetails" items="${systems_list}" >
 <script>
 	systemPlusModule.addSystem({
@@ -391,6 +392,34 @@ var drawSystems = (function(){
 	console.log("smallest v:" + pageSpace.smallestV());
 	
 	$(document).ready(function() {
+		$(document).dblclick(function(event){
+			console.log("pageX:"+event.pageX +" pageY:"+event.pageY);
+			var currentU = parseInt(pageSpace.currentU());
+			var currentV = parseInt(pageSpace.currentV());
+			var pageX = event.pageX;
+			var pageY = event.pageY;
+			var ucoord = currentU + pageX / (scalingConstants.starSystemPageSpaceX());
+			var vcoord = currentV + pageY / (scalingConstants.starSystemPageSpaceY());
+			console.log("newU:"+ ucoord +" newV:"+ vcoord + " currentU:" + currentU + " currentV:" + currentV + " scaleX:" + scalingConstants.starSystemPageSpaceX() + " scaleY:" + scalingConstants.starSystemPageSpaceY() );
+		});
+		$("#pozV").click(function () { 
+       		pageSpace.incrementCurrentV();
+       		drawSystems.scanSystems();
+	    });
+    	$("#negV").click(function () { 
+       		pageSpace.decrementCurrentV();
+       		drawSystems.scanSystems();
+    	});
+    	$("#pozU").click(function () { 
+       		pageSpace.incrementCurrentU();
+       		drawSystems.scanSystems();
+    	});
+    	$("#negU").click(function () { 
+       		pageSpace.decrementCurrentU();
+       		drawSystems.scanSystems();
+    	});    	
+    	
+	
 		pageSpace.heightWidth($(document).height(), $(document).width());
 		pageSpace.numberStarsSystemsX();
 		pageSpace.numberStarsSystemsY();
@@ -398,28 +427,14 @@ var drawSystems = (function(){
 		console.log("number star systems y:" + pageSpace.getNumberStarSystemsY());
 		drawSystems.scanSystems();
 		console.log("number graphic contexts:" + pageSpace.getNumberGraphics());
+		
 	});
 
-    $("#pozV").click(function () { 
-       pageSpace.incrementCurrentV();
-       drawSystems.scanSystems();
-    });
-    $("#negV").click(function () { 
-       pageSpace.decrementCurrentV();
-       drawSystems.scanSystems();
-    });
-    $("#pozU").click(function () { 
-       pageSpace.incrementCurrentU();
-       drawSystems.scanSystems();
-    });
-    $("#negU").click(function () { 
-       pageSpace.decrementCurrentU();
-       drawSystems.scanSystems();
-    });
+
 	
 </script>
 
-  
+</div> <!-- region -->  
 </div>  <!-- site -->
 </body>
 </html>
