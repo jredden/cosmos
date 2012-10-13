@@ -169,7 +169,6 @@ var pageSpace = (function () {
 			current_width = width;
 		},
 		numberStarsSystemsX: function(){
-//			console.log("XX:"+scalingConstants.starSystemPageSpaceX());
 			numberStarsystems_x = current_width / scalingConstants.starSystemPageSpaceX();
 		},
 		numberStarsSystemsY: function(){
@@ -265,7 +264,6 @@ var drawSystems = (function(){
 	function isSystemOnPage(systemObject){
 		var uDelta = pageSpace.currentU() + pageSpace.getNumberStarSystemsX();
 		var vDelta = pageSpace.currentV() + pageSpace.getNumberStarSystemsY();
-//		console.log("uDelta vDelta:" + pageSpace.currentU() + "::" + pageSpace.currentV() + pageSpace.numberStarsSystemsX() + "::" + pageSpace.numberStarsSystemsY());
 		if(systemObject.ucoord >= pageSpace.currentU() && systemObject.ucoord <= uDelta 
 			&&
 			systemObject.vcoord >= pageSpace.currentV() && systemObject.vcoord <= vDelta){
@@ -293,10 +291,10 @@ var drawSystems = (function(){
 		var vdelta = vcoord - currentV;
 		var xdim = udelta * scalingConstants.starSystemPageSpaceX() + scalingConstants.getXConstant();
 		var ydim = vdelta * scalingConstants.starSystemPageSpaceY() + scalingConstants.getYConstant();
-		console.log("xdim:" + xdim + " ydim:" + ydim + " udelta:" + udelta + " vdelta:" + vdelta + " systemId:" + dims.systemId);
 		jsGraphics.fillRect(xdim, ydim, scalingConstants.getSubMainX(), scalingConstants.getSubScale());
 		var yy = ydim + scalingConstants.getSubScale();
 		jsGraphics.fillRect(xdim, yy, scalingConstants.getSubMainX(), scalingConstants.getSubMainY());
+		console.log("xdim:" + xdim + " ydim:" + ydim + " udelta:" + udelta + " vdelta:" + vdelta + " systemId:" + dims.systemId + " SubMainX:" + scalingConstants.getSubMainX() + " getSubScale:" + scalingConstants.getSubScale() + " yy: " + yy + " getSubMainY:" + scalingConstants.getSubMainY());
 		jsGraphics.setColor("#ADD8E6");
 		jsGraphics.drawString('<a href="./systems_detail_cluster.htm?systemId=U'+ucoord+'V'+vcoord+'">'+""+ucoord+":"+vcoord+"</a>", xdim, yy);
 		
@@ -393,13 +391,16 @@ var drawSystems = (function(){
 	
 	$(document).ready(function() {
 		$(document).dblclick(function(event){
+		
 			console.log("pageX:"+event.pageX +" pageY:"+event.pageY);
+			
 			var currentU = parseInt(pageSpace.currentU());
 			var currentV = parseInt(pageSpace.currentV());
 			var pageX = event.pageX;
 			var pageY = event.pageY;
-			var ucoord = currentU + pageX / (scalingConstants.starSystemPageSpaceX());
-			var vcoord = currentV + pageY / (scalingConstants.starSystemPageSpaceY());
+			var ucoord = Math.floor(currentU + ((pageX - scalingConstants.getXConstant()) / scalingConstants.starSystemPageSpaceX()));
+			var vcoord = Math.floor(currentV + ((pageY - scalingConstants.getYConstant()) / scalingConstants.starSystemPageSpaceX()));
+			
 			console.log("newU:"+ ucoord +" newV:"+ vcoord + " currentU:" + currentU + " currentV:" + currentV + " scaleX:" + scalingConstants.starSystemPageSpaceX() + " scaleY:" + scalingConstants.starSystemPageSpaceY() );
 		});
 		$("#pozV").click(function () { 
