@@ -402,6 +402,13 @@ var drawSystems = (function(){
 			var vcoord = Math.floor(currentV + ((pageY - scalingConstants.getYConstant()) / scalingConstants.starSystemPageSpaceX()));
 			
 			console.log("newU:"+ ucoord +" newV:"+ vcoord + " currentU:" + currentU + " currentV:" + currentV + " scaleX:" + scalingConstants.starSystemPageSpaceX() + " scaleY:" + scalingConstants.starSystemPageSpaceY() );
+			alert('ucoord:'+ucoord + ': vcoord:' + vcoord);
+			$.getJSON("/generate_system.htm?udim="+ucoord+"&vdim="+vcoord+"&systemId=U"+ucoord+"V"+vcoord,
+			function(json){           // callback
+
+//				drawSystem(null, ucoord, vcoord);
+			}
+			);		
 		});
 		$("#pozV").click(function () { 
        		pageSpace.incrementCurrentV();

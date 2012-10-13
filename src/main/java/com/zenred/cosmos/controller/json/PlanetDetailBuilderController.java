@@ -25,7 +25,6 @@ public class PlanetDetailBuilderController implements Controller {
 		this.marshalPlanetAndPlanetoids = marshalPlanetAndPlanetoids;
 	}
 
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		

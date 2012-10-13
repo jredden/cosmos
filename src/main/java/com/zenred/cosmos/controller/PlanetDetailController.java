@@ -8,7 +8,6 @@ import org.springframework.web.servlet.mvc.Controller;
 
 public class PlanetDetailController implements Controller {
 
-	@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
