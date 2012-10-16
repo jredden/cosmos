@@ -1,6 +1,5 @@
 package com.zenred.visualization;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;

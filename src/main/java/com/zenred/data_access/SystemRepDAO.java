@@ -5,19 +5,15 @@
 
 package com.zenred.data_access;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-import com.sun.org.apache.regexp.internal.recompile;
 import com.zenred.cosmos.SystemRepIF;
 
 import cosmos.hibernate.SystemRep;
@@ -31,11 +27,18 @@ public class SystemRepDAO
     
 	private HibernateTemplate hibernateTemplate;
 	
+	@SuppressWarnings("unchecked")
 	public List<SystemRep> findAll() {
 		return this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep" );
 	}
 	
+	public SystemRep findOne(String udim, String vdim) {
+		Object[] params = {new Double(udim), new Double(vdim)};
+		return (SystemRep) this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep WHERE ucoordinate = ? AND vcoordinate = ?", params ).get(0);
+	}
 	
+	
+	@SuppressWarnings("unchecked")
 	public String findSystemRep(String udim, String vdim) {
 		Session session = hibernateTemplate.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();

@@ -2,13 +2,9 @@ package com.zenred.data_access;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.zenred.data_access.MarshallSystems;
-import cosmos.hibernate.SystemRep;
 
 public class SystemRepTest0 {
 	

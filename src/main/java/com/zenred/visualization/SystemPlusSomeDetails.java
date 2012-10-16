@@ -2,11 +2,14 @@ package com.zenred.visualization;
 
 import java.util.List;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 import cosmos.hibernate.ClusterRep;
 import cosmos.hibernate.StarRep;
-
+@XStreamAlias("someDetails")
 public class SystemPlusSomeDetails {
 	
+	private String theMessage;
 	private String _systemId;
 	private String _distanceToGalaxyCentre;
 	private String _ucoordinate;
@@ -85,5 +88,11 @@ public class SystemPlusSomeDetails {
 	 */
 	public void setStarRepList(List<StarRep> starRepList) {
 		this.starRepList = starRepList;
+	}
+	public String getTheMessage() {
+		return theMessage;
+	}
+	public void setTheMessage(String theMessage) {
+		this.theMessage = theMessage;
 	}
 }

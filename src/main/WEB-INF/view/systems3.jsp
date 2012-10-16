@@ -403,10 +403,27 @@ var drawSystems = (function(){
 			
 			console.log("newU:"+ ucoord +" newV:"+ vcoord + " currentU:" + currentU + " currentV:" + currentV + " scaleX:" + scalingConstants.starSystemPageSpaceX() + " scaleY:" + scalingConstants.starSystemPageSpaceY() );
 			alert('ucoord:'+ucoord + ': vcoord:' + vcoord);
-			$.getJSON("/generate_system.htm?udim="+ucoord+"&vdim="+vcoord+"&systemId=U"+ucoord+"V"+vcoord,
+			$.getJSON("/generate_system2.htm?udim="+ucoord+"&vdim="+vcoord+"&systemId=U"+ucoord+"V"+vcoord,
 			function(json){           // callback
-
-//				drawSystem(null, ucoord, vcoord);
+				console.log("json0:" + json.someDetails.theMessage);
+				console.log("json1:" + json.someDetails._systemId);
+				console.log("json2:" + json.someDetails._distanceToGalaxyCentre);
+				console.log("json3:" + json.someDetails._ucoordinate);
+				console.log("json4:" + json.someDetails._vcoordinate);
+				console.log("json5:" + json.someDetails.clusterRepList);
+				console.log("json6:" + json.someDetails.starRepList);
+				
+				systemPlusModule.addSystem({
+							ucoord: json.someDetails._ucoordinate,
+							vcoord: json.someDetails._vcoordinate,
+							systemId: json.someDetails._systemId,
+							galacticCentre: json.someDetails._distanceToGalaxyCentre
+							});
+				
+				var systemObject = systemPlusModule.getSystems(systemPlusModule.numberSystems()-1);
+				// last system just added
+				pageSpace.addGraphic(json.someDetails._systemId);
+				drawSystems.drawOneSystem(systemObject);
 			}
 			);		
 		});

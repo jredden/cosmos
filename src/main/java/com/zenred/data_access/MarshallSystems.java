@@ -25,6 +25,11 @@ public class MarshallSystems extends AbstractDataAccess {
 		return systemRepId;
 	}
 	
+	public SystemRep getOneSystemRep(String udim, String vdim) {
+		SystemRepDAO systemRepDao = (SystemRepDAO) ctx.getBean("systemRepDAO");
+		return systemRepDao.findOne(udim, vdim);
+	}
+	
 	public void writeSystemRep(SystemRepIF systemRepIF){
 		SystemRepDAO systemRepDao = (SystemRepDAO) ctx.getBean("systemRepDAO");
 		systemRepDao.writeSystemRep(systemRepIF);
