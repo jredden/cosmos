@@ -419,6 +419,16 @@ var drawSystems = (function(){
 							systemId: json.someDetails._systemId,
 							galacticCentre: json.someDetails._distanceToGalaxyCentre
 							});
+				$(json.someDetails.clusterRepList).each(function() {
+					$(this.list).each(function(){
+						console.log("cluster:" + this.string);
+					});
+				});
+				$(json.someDetails.starRepList).each(function() {
+					$(this.list).each(function(){
+						console.log("star:" + this.string);
+					});
+				});
 				
 				var systemObject = systemPlusModule.getSystems(systemPlusModule.numberSystems()-1);
 				// last system just added

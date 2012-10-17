@@ -2,11 +2,11 @@ package com.zenred.visualization;
 
 import java.util.List;
 
-import com.thoughtworks.xstream.annotations.XStreamAlias;
+
 
 import cosmos.hibernate.ClusterRep;
 import cosmos.hibernate.StarRep;
-@XStreamAlias("someDetails")
+
 public class SystemPlusSomeDetails {
 	
 	private String theMessage;

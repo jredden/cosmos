@@ -17,6 +17,7 @@ import com.zenred.visualization.BasicMessageResponse;
 import com.zenred.visualization.ClusterResponse;
 import com.zenred.visualization.StarsResponse;
 import com.zenred.visualization.SystemPlusSomeDetails;
+import com.zenred.visualization.SystemSimpleArray;
 
 import cosmos.hibernate.ClusterRep;
 import cosmos.hibernate.StarRep;
@@ -53,7 +54,8 @@ public class CreateSystemController2 implements Controller {
 
 		}
 		ModelAndView modelAndView = new ModelAndView(new SystemDetailView());
-		modelAndView.addObject(BasicMessageView.JSON_ROOT, systemPlusSomeDetails);
+		
+		modelAndView.addObject(SystemDetailView.JSON_ROOT,SystemSimpleArray.genSimpleArray(systemPlusSomeDetails));
 		return modelAndView;
 	}
 
