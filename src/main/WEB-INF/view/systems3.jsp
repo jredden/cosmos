@@ -320,7 +320,7 @@ var drawSystems = (function(){
 	
 	return {
 		drawOneSystem: function draw1(systemObject){
-			drawSystem(systemObject.systemId, systemObject.ucoord, systemObject.vcoord);
+			drawSystem(systemObject, systemObject.ucoord, systemObject.vcoord);
 		},
 		scanSystems: function scan(){
 			pageSpace.graphicsInvisible();
