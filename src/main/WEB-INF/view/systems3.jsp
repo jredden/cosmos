@@ -392,6 +392,24 @@ var drawSystems = (function(){
 	$(document).ready(function() {
 		$(document).dblclick(function(event){
 		
+			const ANGLE_IN_RADIANS = 0;
+			const SYSTEM_ID = 1;
+			const CLUSTER_DESCRIPTION = 2;
+			const DISTANCE_VIRTUAL_CENTRE = 3;
+			const NUMBER_STARS_IN_CLUSTER = 4;
+			const PLANETS_ALLOWED = 5;
+			
+			const STAR_ID = 0;
+			const PARENT_SYSTEM_ID = 1;
+			const CLUSTER_ID = 2;
+			const DISTANCE_TO_CLUSTER_VIRT_CENTRE = 3;
+			const LUMINOSITY_ID = 4;
+			const NO_PLANETS_ALLOWED = 5;
+			const STAR_ANGLE_IN_RADIANS = 6;
+			const STAR_COLOR = 7;
+			const STAR_TYPE = 8;
+			const STAR_SIZE = 9;
+		
 			console.log("pageX:"+event.pageX +" pageY:"+event.pageY);
 			
 			var currentU = parseInt(pageSpace.currentU());
@@ -422,11 +440,33 @@ var drawSystems = (function(){
 				$(json.someDetails.clusterRepList).each(function() {
 					$(this.list).each(function(){
 						console.log("cluster:" + this.string);
+						var clusterArray = (""+this.string).split(',');
+						systemPlusModule.addCluster(json.someDetails._systemId,{
+							distVirtCentre: clusterArray[DISTANCE_VIRTUAL_CENTRE],
+							angle: clusterArray[ANGLE_IN_RADIANS],
+							planetsAllowed: clusterArray[PLANETS_ALLOWED],
+							clusterId: clusterArray[SYSTEM_ID],
+							description: clusterArray[CLUSTER_DESCRIPTION],
+							numberStars: clusterArray[NUMBER_STARS_IN_CLUSTER],
+							});			
 					});
 				});
 				$(json.someDetails.starRepList).each(function() {
 					$(this.list).each(function(){
 						console.log("star:" + this.string);
+						var starArray = (""+this.string).split(',');
+							systemPlusModule.addStar(json.someDetails._systemId,{
+								starId: starArray[STAR_ID],
+								clusterId: starArray[CLUSTER_ID], 
+								distClusterVirtCentre: starArray[DISTANCE_TO_CLUSTER_VIRT_CENTRE],
+								luminosity: starArray[LUMINOSITY_ID],
+								noPlanets: starArray[NO_PLANETS_ALLOWED],
+								angle: starArray[STAR_ANGLE_IN_RADIANS],
+								starColor: starArray[STAR_COLOR],
+								starType: starArray[STAR_TYPE],
+								starSize: starArray[STAR_SIZE]
+				});
+						
 					});
 				});
 				

@@ -86,7 +86,7 @@ public class SystemSimpleArray {
 			aCluster.add(ANGLE_IN_RADIANS, clusterRep.getAngleInRadians());
 			aCluster.add(SYSTEM_ID, clusterRep.get_systemId());
 			aCluster.add(CLUSTER_DESCRIPTION, clusterRep.get_clusterDescription());
-			aCluster.add(DISTANCE_VIRTUAL_CENTRE, clusterRep.get_numberStarsInCluster());
+			aCluster.add(DISTANCE_VIRTUAL_CENTRE, clusterRep.get_distanceSysVirtCentre());
 			aCluster.add(NUMBER_STARS_IN_CLUSTER, clusterRep.get_numberStarsInCluster());
 			aCluster.add(PLANETS_ALLOWED, clusterRep.get_planetsAllowed());
 			systemsSimpleArray.clusterRepList.add(aCluster);
