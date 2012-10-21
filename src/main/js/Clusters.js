@@ -7,8 +7,13 @@ var clusterAttributes = (function(){
 	// public
 	
 	return {
-		drawOneCluster: function draw(jsGraphic, distance, scale, angle){
-			
+		drawOneCluster: function draw(jsGraphic, distance, scale, angle, index){
+			var distY = distance * Math.sin(angle);
+			var distX = distance * Math.cos(angle);
+			var scaledY = distY * scale;
+			var scaledX = distX * scale;
+			jsGraphic.setColor(clusterColors[idex]);
+			jsGraphic.fillArc(scaledX, scaledY, 10,10,0,360);
 		}
 	};
 })();

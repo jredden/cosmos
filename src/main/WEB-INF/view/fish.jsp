@@ -9,6 +9,7 @@
   </style>
   <script src="http://www.cosmos.com/js/jquery-1.8.1.min.js" type="text/javascript"></script>
   <script type="text/javascript" src="http://www.cosmos.com/js/wz_jsgraphics3.js"></script>
+  <script src="http://www.cosmos.com/js/Clusters.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -89,6 +90,28 @@ y1 /= 2;
 y2 /= 3;
 draw(jg100, x1, y1);
 draw(jg101, x2, y2);
+
+
+var angles = [
+	0.0,
+	Math.PI/6.0,
+	Math.PI/4.0,
+	Math.PI/3.0,
+	Math.PI/2.0,
+	2.0*Math.PI/3.0,
+	3.0*Math.PI/4.0,
+	5.0*Math.PI/6.0,
+	
+	Math.PI,
+	7.0*Math.PI/6.0,
+	5.0*Math.PI/4.0,
+	4.0*Math.PI/3.0,
+	3.0*Math.PI/2.0,
+	5.0*Math.PI/3.0,
+	7.0*Math.PI/4.0,
+	11.0*Math.PI/6.0
+];
+
 });
 </script>
 
