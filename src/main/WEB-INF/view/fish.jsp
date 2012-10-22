@@ -27,6 +27,26 @@
     Sample paragraph to test height and width
   </p>
 <script>
+var angles = [
+	0.0,
+	Math.PI/6.0,
+
+	Math.PI/4.0,
+	Math.PI/3.0,
+	Math.PI/2.0,
+	2.0*Math.PI/3.0,
+	3.0*Math.PI/4.0,
+	5.0*Math.PI/6.0,
+	
+	Math.PI,
+	7.0*Math.PI/6.0,
+	5.0*Math.PI/4.0,
+	4.0*Math.PI/3.0,
+	3.0*Math.PI/2.0,
+	5.0*Math.PI/3.0,
+	7.0*Math.PI/4.0,
+	11.0*Math.PI/6.0
+];
     function showHeight(ele, h) {
       $("div").text("The height for the " + ele + 
                     " is " + h + "px.");
@@ -74,6 +94,7 @@
 var dims = new Array();
 dims[0] = 'u100-v100';
 dims[1] = 'u101-v101';
+dims[2] = 'clust0';
 
 $(document).ready(function() {
 $('<div id="' + dims[0] +'"></div>').appendTo('body');
@@ -92,25 +113,18 @@ draw(jg100, x1, y1);
 draw(jg101, x2, y2);
 
 
-var angles = [
-	0.0,
-	Math.PI/6.0,
-	Math.PI/4.0,
-	Math.PI/3.0,
-	Math.PI/2.0,
-	2.0*Math.PI/3.0,
-	3.0*Math.PI/4.0,
-	5.0*Math.PI/6.0,
+
+
+$('<div id="' + dims[2] +'"></div>').appendTo('body');
+var jg102 = new jsGraphics(dims[2]);
+for (var idex = 0; idex < angles.length; idex++){
+	var distance = 2.834285714285714E11 * Math.random();
+	var nindex = idex % 4;
+	scale = 200;
+	size = 20;
+	clusterAttributes.drawOneCluster(jg102, $(document).width() / 10, $(document).height() / 10, distance, scale, size, angles[idex], nindex);
 	
-	Math.PI,
-	7.0*Math.PI/6.0,
-	5.0*Math.PI/4.0,
-	4.0*Math.PI/3.0,
-	3.0*Math.PI/2.0,
-	5.0*Math.PI/3.0,
-	7.0*Math.PI/4.0,
-	11.0*Math.PI/6.0
-];
+}
 
 });
 </script>
