@@ -117,16 +117,21 @@ draw(jg101, x2, y2);
 
 $('<div id="' + dims[2] +'"></div>').appendTo('body');
 var jg102 = new jsGraphics(dims[2]);
+var distArray = new Array();
+distArray[0] = 28342857142;
 for (var idex = 0; idex < angles.length; idex++){
 	var distance = 28342857142 * Math.random();
 	var nindex = idex % 4;
-	scale = 50;
-	size = 15;
-	clusterAttributes.drawOneCluster(jg102, $(document).width() / 2, $(document).height() / 2, distance, scale, size, angles[idex], nindex, 28342857142);
+	scale = 10;
+	size = 5;
+	var clusterApi = new clusterDrawAPI();
+	clusterApi.cons(jg102, $(document).width() / 2, $(document).height() / 2, distance, scale, size, angles[idex]);
+	clusterAttributes.drawOneCluster(clusterApi, nindex, clusterAttributes.largest(distArray));
 	
 }
 
 });
+
 </script>
 
 
