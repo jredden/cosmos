@@ -8,6 +8,7 @@
 <script type="text/javascript" src="http://www.cosmos.com/js/wz_jsgraphics3.js"></script>
 <script src="http://www.cosmos.com/js/jquery-1.6.min.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
+<script src="http://www.cosmos.com/js/Clusters.js" type="text/javascript"></script>
 <body>
 
 <div id="site">
@@ -68,6 +69,15 @@ var systemPlusModule = (function () {
     	    if (clusters.hasOwnProperty(key)) {
  		   		return clusters[key];
     		}
+    	},
+    	getClusterDistances: function(key){
+    		var distances = new Array();
+    	    if (clusters.hasOwnProperty(key)) {
+ 		   		for(var idex = 0; idex < clusters[key].length; idex++){
+ 		   			distances.push(clusters[key][idex].distVirtCentre);
+ 		   		}
+    		}
+    		return distances;
     	},
 
     	numberClusters: function(){
@@ -198,6 +208,9 @@ var scalingConstants = (function(){
 	var subScale = 10;
 	var yConstant = 150;
 	var xConstant = 40;
+	var clusterScale = 10;
+	var clusterSize = 5;
+	
 	
 	
 	function getmainY () {
@@ -223,6 +236,12 @@ var scalingConstants = (function(){
 	}
 	function getxconstant(){
 		return xConstant;
+	}
+	function getclustscale(){
+		return clusterScale;
+	}
+	function getclustsize(){
+		return clusterSize;
 	}
 	
 	// public
@@ -251,6 +270,12 @@ var scalingConstants = (function(){
 		},
 		getXConstant: function xconst(){
 			return getxconstant();
+		},
+		getClusterScale: function scale(){
+			return getclustscale();
+		},
+		getClusterSize: function size(){
+			return getclustsize();
 		}
 	};
 }());
@@ -311,6 +336,14 @@ var drawSystems = (function(){
 			jsGraphics.fillArc(starXDim, yyy, starDim.arcSize(), starDim.arcSize(),0,360);
 			starXDim += starDim.arcSize();
 		}
+			
+		var clusterArray = systemPlusModule.getCluster(dims.systemId);
+		var clusterApi = new clusterDrawAPI();
+		for (ccounter in clusterArray){
+			clusterApi.cons(jsGraphics, xdim, ydim, clusterArray[ccounter].distVirtCentre, scalingConstants.getClusterScale(), scalingConstants.getClusterSize(), clusterArray[ccounter].angle);
+			clusterAttributes.drawOneCluster(clusterApi, ccounter, clusterAttributes.largest(systemPlusModule.getClusterDistances(dims.systemId)));
+		}
+		
 		
 		jsGraphics.paint();
 		$(dims.systemId).show();

@@ -97,8 +97,8 @@ var clusterAttributes = (function(){
 			var scaledX2;
 			scaledX2 = distX == 0 ? 1 : maxScale/distX;
 			console.log("cluster.distY:" + distY + " cluster.distX:" + distX + " cluster.distance:" + clusterApi.getDistance() + " cluster.scaledX2:" + scaledX2 + " cluster.scaledY2:" + scaledY2);
-			scaledY2 = limitY(scale, scaledY2);
-			scaledX2 = limitX(scale, scaledX2);
+			scaledY2 = limitY(clusterApi.getScale(), scaledY2);
+			scaledX2 = limitX(clusterApi.getScale(), scaledX2);
 			
 			scaledY2 *= (clusterApi.getScale()/2);
 			scaledX2 *= (clusterApi.getScale()/2);
