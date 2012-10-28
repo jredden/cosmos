@@ -42,6 +42,7 @@ public class CreateSystemController2 implements Controller {
 		SystemPlusSomeDetails systemPlusSomeDetails = null;
 
 		if(result){
+			systemPlusSomeDetails = new SystemPlusSomeDetails();
 			systemPlusSomeDetails.setTheMessage(udim+":"+vdim+" already exists");
 		}
 		else{

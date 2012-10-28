@@ -210,9 +210,9 @@ var scalingConstants = (function(){
 	var xConstant = 40;
 	var clusterScale = 10;
 	var clusterSize = 5;
-	
-	
-	
+	var clusterScaleX = 75;
+	var clusterScaleY = 75;
+		
 	function getmainY () {
 		return mainY;
 	}
@@ -242,6 +242,12 @@ var scalingConstants = (function(){
 	}
 	function getclustsize(){
 		return clusterSize;
+	}
+	function getclusterscaleX(){
+		return clusterScaleX;
+	}
+	function getclusterscaleY(){
+		return clusterScaleY;
 	}
 	
 	// public
@@ -276,6 +282,12 @@ var scalingConstants = (function(){
 		},
 		getClusterSize: function size(){
 			return getclustsize();
+		},
+		getClusterScaleX: function cscalex(){
+			return getclusterscaleX();
+		},
+		getClusterScaleY: function cscaley(){
+			return getclusterscaleY();
 		}
 	};
 }());
@@ -340,7 +352,7 @@ var drawSystems = (function(){
 		var clusterArray = systemPlusModule.getCluster(dims.systemId);
 		var clusterApi = new clusterDrawAPI();
 		for (ccounter in clusterArray){
-			clusterApi.cons(jsGraphics, xdim, ydim, clusterArray[ccounter].distVirtCentre, scalingConstants.getClusterScale(), scalingConstants.getClusterSize(), clusterArray[ccounter].angle);
+			clusterApi.cons(jsGraphics, xdim+scalingConstants.getClusterScaleX(), ydim+scalingConstants.getClusterScaleY(), clusterArray[ccounter].distVirtCentre, scalingConstants.getClusterScale(), scalingConstants.getClusterSize(), clusterArray[ccounter].angle);
 			clusterAttributes.drawOneCluster(clusterApi, ccounter, clusterAttributes.largest(systemPlusModule.getClusterDistances(dims.systemId)));
 		}
 		
@@ -425,12 +437,12 @@ var drawSystems = (function(){
 	$(document).ready(function() {
 		$(document).dblclick(function(event){
 		
-			const ANGLE_IN_RADIANS = 0;
-			const SYSTEM_ID = 1;
-			const CLUSTER_DESCRIPTION = 2;
-			const DISTANCE_VIRTUAL_CENTRE = 3;
-			const NUMBER_STARS_IN_CLUSTER = 4;
-			const PLANETS_ALLOWED = 5;
+			const SYSTEM_ID = 0;
+			const CLUSTER_DESCRIPTION = 1;
+			const DISTANCE_VIRTUAL_CENTRE = 2;
+			const NUMBER_STARS_IN_CLUSTER = 3;
+			const PLANETS_ALLOWED = 4;
+			const ANGLE_IN_RADIANS = 5;
 			
 			const STAR_ID = 0;
 			const PARENT_SYSTEM_ID = 1;
@@ -464,6 +476,11 @@ var drawSystems = (function(){
 				console.log("json5:" + json.someDetails.clusterRepList);
 				console.log("json6:" + json.someDetails.starRepList);
 				
+				// cannot re-create a system already 
+				if(json.someDetails.theMessage.indexOf("already exists") != -1){
+					alert(json.someDetails.theMessage);
+					return;
+				}
 				systemPlusModule.addSystem({
 							ucoord: json.someDetails._ucoordinate,
 							vcoord: json.someDetails._vcoordinate,
@@ -476,7 +493,7 @@ var drawSystems = (function(){
 						var clusterArray = (""+this.string).split(',');
 						systemPlusModule.addCluster(json.someDetails._systemId,{
 							distVirtCentre: clusterArray[DISTANCE_VIRTUAL_CENTRE],
-							angle: clusterArray[ANGLE_IN_RADIANS],
+							angle: this.double,
 							planetsAllowed: clusterArray[PLANETS_ALLOWED],
 							clusterId: clusterArray[SYSTEM_ID],
 							description: clusterArray[CLUSTER_DESCRIPTION],
