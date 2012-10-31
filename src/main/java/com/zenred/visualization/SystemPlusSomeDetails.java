@@ -6,8 +6,23 @@ import java.util.List;
 
 import cosmos.hibernate.ClusterRep;
 import cosmos.hibernate.StarRep;
+import cosmos.hibernate.SystemRep;
 
 public class SystemPlusSomeDetails {
+	
+	public SystemPlusSomeDetails() {}
+	
+	public SystemPlusSomeDetails(SystemRep systemRep,
+			List<ClusterRep> clusterRepList, List<StarRep> starRepList) {
+		this._systemId = systemRep.getSystemId();
+		this._distanceToGalaxyCentre = new Double(
+				systemRep.getDistanceToGalaxyCentre()).toString();
+		this._ucoordinate = new Double(systemRep.getUcoordinate()).toString();
+		this._vcoordinate = new Double(systemRep.getVcoordinate()).toString();
+		this.clusterRepList = clusterRepList;
+		this.starRepList = starRepList;
+		this.theMessage = "cons";
+	}
 	
 	private String theMessage;
 	private String _systemId;

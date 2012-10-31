@@ -42,6 +42,8 @@
 	
 	<bean id="nillController"
 		class="com.zenred.servlet.NillController"/>	
+	<bean id="turnUVToNextController"
+		class="com.zenred.servlet.TurnUVToNextController"/>	
 	<bean id="springappController"
 		class="com.zenred.servlet.SpringappController" />
 	<bean id="springappController2"
@@ -53,6 +55,10 @@
 	<bean id="springappControllerSystemDetail2"
 		class="com.zenred.servlet.SpringappControllerSystemDetail2" />
 	<bean id="clustersController" class="com.zenred.cosmos.controller.json.ClustersController">
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
+			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
+	<bean id="oneClusterController" class="com.zenred.cosmos.controller.json.OneClusterController">
 		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
 			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
 	</bean>	
@@ -93,7 +99,9 @@
 				<prop key="/fish.htm">nillController</prop>
 				<prop key="/systems_detail.htm">springappControllerSystemDetail</prop>
 				<prop key="/systems_detail_cluster.htm">springappControllerSystemDetail2</prop>
+				<prop key="/systems_detail_cluster2.htm">turnUVToNextController</prop>
 				<prop key="/cluster.htm">clustersController</prop>
+				<prop key="/oneCluster.htm">oneClusterController</prop>
 				<prop key="/star.htm">starsController</prop>
 				<prop key="/cluster_detail.htm">clusterDetailController</prop>
 				<prop key="/star_detail.htm">starDetailController</prop>

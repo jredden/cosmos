@@ -96,3 +96,14 @@
 		color:gold;
 	}
 	button { font-size:12px; margin:2px; }
+	
+	#container { color:darkblue; font-weight:bold; }
+	#starcontent {
+	float: left;
+	width: 40%;
+	}
+	#cluster {
+	float: right;
+	width: 60%;
+	}
+	
