@@ -333,7 +333,7 @@ var drawSystems = (function(){
 		jsGraphics.fillRect(xdim, yy, scalingConstants.getSubMainX(), scalingConstants.getSubMainY());
 		console.log("xdim:" + xdim + " ydim:" + ydim + " udelta:" + udelta + " vdelta:" + vdelta + " systemId:" + dims.systemId + " SubMainX:" + scalingConstants.getSubMainX() + " getSubScale:" + scalingConstants.getSubScale() + " yy: " + yy + " getSubMainY:" + scalingConstants.getSubMainY());
 		jsGraphics.setColor("#ADD8E6");
-		jsGraphics.drawString('<a href="./systems_detail_cluster.htm?systemId=U'+ucoord+'V'+vcoord+'">'+""+ucoord+":"+vcoord+"</a>", xdim, yy);
+		jsGraphics.drawString('<a href="./systems_detail_cluster.htm2?systemId=U'+ucoord+'V'+vcoord+'">'+""+ucoord+":"+vcoord+"</a>", xdim, yy);
 		
 		var yyy = ydim + scalingConstants.getSubMainY();
 		jsGraphics.setColor("midnightblue");

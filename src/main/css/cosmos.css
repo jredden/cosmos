@@ -101,9 +101,12 @@
 	#starcontent {
 	float: left;
 	width: 40%;
+	height: 80%;
 	}
 	#cluster {
 	float: right;
 	width: 60%;
+	height: 80%;
+	background:blue;
 	}
 	

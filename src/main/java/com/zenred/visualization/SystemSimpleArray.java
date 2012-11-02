@@ -72,6 +72,9 @@ public class SystemSimpleArray {
 		SystemSimpleArray systemsSimpleArray = new SystemSimpleArray();
 		
 		systemsSimpleArray.theMessage = systemPlusSomeDetails.getTheMessage();
+		if(systemsSimpleArray.theMessage.endsWith("already exists")){
+			return systemsSimpleArray;
+		}
 		systemsSimpleArray._distanceToGalaxyCentre = systemPlusSomeDetails.get_distanceToGalaxyCentre();
 		systemsSimpleArray._ucoordinate = systemPlusSomeDetails.get_ucoordinate();
 		systemsSimpleArray._vcoordinate = systemPlusSomeDetails.get_vcoordinate();
