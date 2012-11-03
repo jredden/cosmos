@@ -114,8 +114,8 @@ var clusterAttributes = (function(){
 		largest: function biggestDistance(distanceArray){
 			var biggie = 0;
 			for(var idex = 0; idex < distanceArray.length; idex++){
-				if(distanceArray[idex] > biggie){
-					biggie = distanceArray[idex];
+				if(Math.abs(distanceArray[idex]) > biggie){
+					biggie = Math.abs(distanceArray[idex]);
 				}
 			}
 			return biggie;

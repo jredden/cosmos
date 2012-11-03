@@ -12,6 +12,7 @@
 
 
 <div id="container">
+<h1>Cosmos Clusters</h1>
 <div id="cluster">
 
 <script>
@@ -38,9 +39,12 @@
 					var idex = 0; 
 					var jsGraphicsCluster = new jsGraphics("cluster"); 
 					var distArray = new Array();
+					console.log("geomety:" + $("#cluster").width() + "::" + $("#cluster").height());
 					$(this.list).each(function(){
 						console.log("cluster:" + this.string);
-						console.log("geomety:" + $("#cluster").width() + "::" + $("#cluster").height());
+						if(this.string == undefined){
+							return false;	// garbage in the array
+						}
 						var clusterArray = (""+this.string).split(',');
 						
 						var distVirtCentre = clusterArray[decodeSystem.distanceVirtualCentre()];
@@ -52,10 +56,10 @@
 						var numberStars = clusterArray[decodeSystem.numberStarsInCluster()];
 						
 						var nindex = idex % 4;
-						scale = 100;
+						scale = 50;
 						size = 25;
 						var clusterApi = new clusterDrawAPI();
-						clusterApi.cons(jsGraphicsCluster, $("#cluster").width() / 2, $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
+						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 2, $("#cluster").position().top + $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
 						clusterAttributes.drawOneCluster(clusterApi, nindex, clusterAttributes.largest(distArray));
 						++idex;		
 					});
@@ -69,6 +73,8 @@
 </script>
 
 </div> 	 <!-- cluster -->
+<div id="starcontent">
+</div>	 <!-- starcontent -->
 </div>   <!-- container -->
 </body>
 </html>
