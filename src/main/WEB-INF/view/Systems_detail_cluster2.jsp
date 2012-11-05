@@ -41,14 +41,24 @@
 					var distArray = new Array();
 					console.log("geomety:" + $("#cluster").width() + "::" + $("#cluster").height());
 					$(this.list).each(function(){
-						console.log("cluster:" + this.string);
 						if(this.string == undefined){
 							return false;	// garbage in the array
 						}
 						var clusterArray = (""+this.string).split(',');
+						var distVirtCentre = clusterArray[decodeSystem.distanceVirtualCentre()];
+						distArray[idex] = distVirtCentre;  // look for greatest delta first
+						++idex;
+					});
+					idex = 0;
+					$(this.list).each(function(){
+						
+						if(this.string == undefined){
+							return false;	// garbage in the array
+						}
+						var clusterArray = (""+this.string).split(',');
+						console.log("cluster:" + this.string + "::" + clusterArray[decodeSystem.systemId()]);
 						
 						var distVirtCentre = clusterArray[decodeSystem.distanceVirtualCentre()];
-						distArray[idex] = distVirtCentre;
 						var angle =  this.double;
 						var planetsAllowed = clusterArray[decodeSystem.planetsAllowed()];
 						var clusterId = clusterArray[decodeSystem.systemId()];
@@ -56,11 +66,11 @@
 						var numberStars = clusterArray[decodeSystem.numberStarsInCluster()];
 						
 						var nindex = idex % 4;
-						scale = 50;
+						scale = 40;
 						size = 25;
 						var clusterApi = new clusterDrawAPI();
 						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 2, $("#cluster").position().top + $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
-						clusterAttributes.drawOneCluster(clusterApi, nindex, clusterAttributes.largest(distArray));
+						clusterAttributes.addAnchor(clusterApi, nindex, clusterAttributes.largest(distArray), clusterId);
 						++idex;		
 					});
 				});

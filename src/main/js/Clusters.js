@@ -75,6 +75,9 @@ var clusterAttributes = (function(){
 	
 	var clusterColors = ["#DAA520","#BA55D3","#FF6347","#7FFF00","#70DBDB"];
 	
+	var scaledy2;
+	var scaledx2
+
 	function limitX(scale, scaledX){
 		var answer = scaledX < -scale/2 ? -scale/2 : scaledX;
 		return answer > scale/2 ? scale/2 : answer;
@@ -87,6 +90,18 @@ var clusterAttributes = (function(){
 	// public
 	
 	return {
+		setScaledY2: function(sy2){
+			scaledy2 = sy2;
+		},
+		getScaledY2: function(){
+			return scaledy2;
+		},
+		setScaledX2: function(sx2){
+			scaledx2 = sx2;
+		},
+		getScaledX2: function(){
+			return scaledx2;
+		},
 		drawOneCluster: function draw(clusterApi, index, maxScale){
 			
 			var distY = clusterApi.getDistance() * Math.sin(clusterApi.getAngle());
@@ -102,7 +117,7 @@ var clusterAttributes = (function(){
 			
 			scaledY2 *= (clusterApi.getScale()/2);
 			scaledX2 *= (clusterApi.getScale()/2);
-			console.log("scaledX:"+scaledX2+" scaledY:"+scaledY2);
+			console.log("scaledX:"+scaledX2+" scaledY:"+scaledY2 + "originX:"+clusterApi.getOriginX()+ "originY:"+clusterApi.getOriginY());
 			scaledY2 += clusterApi.getOriginY();
 			scaledX2 += clusterApi.getOriginX();
 			
@@ -110,15 +125,30 @@ var clusterAttributes = (function(){
 			clusterApi.getJsGraphic().fillArc(scaledX2, scaledY2, clusterApi.getSize(), clusterApi.getSize(),0,360);
 			clusterApi.getJsGraphic().paint();
 			console.log("clusterX:"+scaledX2+" clusterY:"+scaledY2);
+			this.setScaledY2(scaledY2);
+			this.setScaledX2(scaledX2);
 		},
 		largest: function biggestDistance(distanceArray){
 			var biggie = 0;
 			for(var idex = 0; idex < distanceArray.length; idex++){
+				console.log("distanceArray"+idex+":"+distanceArray[idex]);
 				if(Math.abs(distanceArray[idex]) > biggie){
 					biggie = Math.abs(distanceArray[idex]);
 				}
 			}
+			console.log("biggie:"+biggie);
 			return biggie;
+		},
+		addAnchor: function addanchor(clusterApi, index, maxScale, clusterId){
+			this.drawOneCluster(clusterApi, index, maxScale);
+			clusterApi.getJsGraphic().setColor(clusterColors[index]);
+			clusterApi.getJsGraphic().setFont("arial","15px",Font.ITALIC_BOLD);
+			clusterApi.getJsGraphic().drawString("<a href=/cluster_detail.htm?cluster="  + clusterId + "_" +index+">" + clusterId +"</a>",this.getScaledX2(),this.getScaledY2()+25);
+			clusterApi.getJsGraphic().paint();
 		}
+		
 	};
 })();
+
+
+
