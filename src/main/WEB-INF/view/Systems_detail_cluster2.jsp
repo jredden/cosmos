@@ -70,7 +70,16 @@
 						size = 25;
 						var clusterApi = new clusterDrawAPI();
 						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 2, $("#cluster").position().top + $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
-						clusterAttributes.addAnchor(clusterApi, nindex, clusterAttributes.largest(distArray), clusterId);
+						clusterAttributes.addName(clusterApi, nindex, clusterAttributes.largest(distArray), clusterId, idex);
+						var cid = clusterId+'_'+idex;
+						$('<div id="' + cid +'"></div>').appendTo('#starcontent');
+						$("#"+cid) 
+							.append('<input type="button" value=' + cid +'>')
+							.click(function(){ 
+								alert(cid + ' was clicked!');
+								return false;
+							}); 
+						$(cid).show();
 						++idex;		
 					});
 				});

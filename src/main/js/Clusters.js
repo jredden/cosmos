@@ -139,11 +139,11 @@ var clusterAttributes = (function(){
 			console.log("biggie:"+biggie);
 			return biggie;
 		},
-		addAnchor: function addanchor(clusterApi, index, maxScale, clusterId){
-			this.drawOneCluster(clusterApi, index, maxScale);
+		addName: function addanchor(clusterApi, index, maxScale, clusterId, count){
+			this.drawOneCluster(clusterApi, index, maxScale, count);
 			clusterApi.getJsGraphic().setColor(clusterColors[index]);
 			clusterApi.getJsGraphic().setFont("arial","15px",Font.ITALIC_BOLD);
-			clusterApi.getJsGraphic().drawString("<a href=/cluster_detail.htm?cluster="  + clusterId + "_" +index+">" + clusterId +"</a>",this.getScaledX2(),this.getScaledY2()+25);
+			clusterApi.getJsGraphic().drawString(""  + clusterId + "_" + count,this.getScaledX2(),this.getScaledY2()+25);
 			clusterApi.getJsGraphic().paint();
 		}
 		
