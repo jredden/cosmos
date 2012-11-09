@@ -145,6 +145,9 @@ var clusterAttributes = (function(){
 			clusterApi.getJsGraphic().setFont("arial","15px",Font.ITALIC_BOLD);
 			clusterApi.getJsGraphic().drawString(""  + clusterId + "_" + count,this.getScaledX2(),this.getScaledY2()+25);
 			clusterApi.getJsGraphic().paint();
+		},
+		getClusterColor: function getclustercolor(index){
+			return clusterColors[index];
 		}
 		
 	};

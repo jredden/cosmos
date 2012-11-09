@@ -1,4 +1,7 @@
+
 var starAttributes = (function(){
+	// private 
+	
 	var starColor = {};
 	function starDim(color, arcSize){
 		this.color=function(){return color;}
@@ -76,3 +79,83 @@ var starAttributes = (function(){
 		}
 	}
 })();
+
+var OneStar = (function(){
+	// private 
+	
+	var starId;
+	var parentSystemId;
+	var clusterId;
+	var distanceToClusterVirtCentre;
+	var luminosity;
+	var noPlanetsAllowed;
+	var starAngleInRadians;
+	var starColor;
+	var starType;
+	var starSize;
+	
+	// public
+	
+	return {
+		setStarId: function setstarid(starid){
+			starId = starid;
+		},
+		getStarId: function getstarid(){
+			return starId;
+		},
+		setParentSystemId: function setparentsystemid(parentsystemid){
+			parentSystemId = parentsystemid;
+		},
+		getParentSystemId: function getparentsystemid(){
+			return parentSystemId;
+		},
+		setClusterId: function setclusterid(clusterid){
+			clusterId = clusterid;
+		},
+		getClusterId: function getclusterid(){
+			return clusterid;
+		},
+		setDistanceToClusterVirtCentre: function setdistancetoclustervirtcentre (distancetoclustervirtcentre){
+			DistanceToClusterVirtCentre = distancetoclustervirtcentre;
+		},
+		getDistanceToClusterVirtCentre: function getdistancetoclustervirtcentre(){
+			return DistanceToClusterVirtCentre;
+		},
+		setLuminosity: function setluminosity(lumens){
+			luminosity = lumens;
+		},
+		getLuminosity: function getluminosity(){
+			return luminosity;
+		},
+		setNoPlanetsAllowed: function setnoplanetsallowed(noplanetsallowed){
+			noPlanetsAllowed = noplanetsallowed;
+		},
+		getNoPlanetsAllowed: function getnoplanetsallowed(){
+			return noPlanetsAllowed;
+		},
+		setStarAngleInRadians: function setstarangleinradians(starangleinradians){
+			starAngleInRadians = starangleinradians;
+		},
+		getStarAngleInRadians: function getstarangleinradians(){
+			return starangleinradians;
+		},
+		setStarColor: function setstarcolor(starcolor){
+			starColor = starcolor;
+		},
+		getStarColor: function getstarcolor(){
+			return starcolor;
+		},
+		setStarType: function setstartype(startype){
+			starType = startype;
+		},
+		getStarType: function getstartype(){
+			return startype;
+		},
+		setStarSize: function setstarsize(starsize){
+			starSize = starsize;
+		},
+		getStarSize: function getstarsize(){
+			return starSize;
+		}
+	};
+});

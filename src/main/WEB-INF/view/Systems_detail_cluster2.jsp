@@ -71,12 +71,20 @@
 						var clusterApi = new clusterDrawAPI();
 						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 2, $("#cluster").position().top + $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
 						clusterAttributes.addName(clusterApi, nindex, clusterAttributes.largest(distArray), clusterId, idex);
+						var clusterColor = clusterAttributes.getClusterColor(nindex);
 						var cid = clusterId+'_'+idex;
+						DisplayClusterStars.addGraphic(cid);
 						$('<div id="' + cid +'"></div>').appendTo('#starcontent');
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
-								alert(cid + ' was clicked!');
+								var a_cluster = '';
+            					a_cluster += '<div id="ccopy0"> Cluster Description: '+ description + '</div>';
+            					a_cluster += '<div id="ccopy0"> Kilometric Distance to Centre of the Sector: ' + distVirtCentre + '</div>';
+            					a_cluster += '<div id="ccopy0"> Angle From Sector Centre: ' + angle + '</div>' ;
+            					a_cluster += '<div id="ccopy0"> Are Planets Allowed: ' + planetsAllowed + '</div>';
+            					a_cluster += '<div id="ccopy0"> Number of Stars in this Cluster: ' + numberStars + '</div><br/><br/>';
+								$(a_cluster).appendTo("#"+cid);
 								return false;
 							}); 
 						$(cid).show();
@@ -88,6 +96,35 @@
 		
 		
 	});
+
+	var DisplayClusterStars = (function () {
+		// private
+	
+		// refactor, violates D.R.Y. principle
+	
+		var graphics = new Object();
+		var numGraphics = 0;
+	
+		return {
+			addGraphic: function(dims){
+				if(graphics[dims] == undefined){
+					$('<div id="' + dims +'"></div>').appendTo('body');
+					graphics[dims] = new jsGraphics(dims);
+					++numGraphics;
+					$(dims).hide();
+				}
+			},
+			graphicsInvisible: function(){
+				for(var dims in graphics) {
+					$(dims).hide();
+					graphics[dims].clear();
+				}
+			},
+			getGraphic: function(dims){
+				return graphics[dims];
+			}
+		}
+	}());
 
 </script>
 

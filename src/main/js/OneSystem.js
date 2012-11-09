@@ -71,6 +71,10 @@ var decodeSystem = (function(){
 		},
 		starSize: function starsize(){
 			return STAR_SIZE;
+		},
+		starsInCluster: function starsincluster(clusterId, starList){
+			var starsInCluster = new Array();
+			
 		}
 	};
 	
