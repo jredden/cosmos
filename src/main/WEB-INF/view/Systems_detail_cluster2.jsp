@@ -78,13 +78,40 @@
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
-								var a_cluster = '';
-            					a_cluster += '<div id="ccopy0"> Cluster Description: '+ description + '</div>';
-            					a_cluster += '<div id="ccopy0"> Kilometric Distance to Centre of the Sector: ' + distVirtCentre + '</div>';
-            					a_cluster += '<div id="ccopy0"> Angle From Sector Centre: ' + angle + '</div>' ;
-            					a_cluster += '<div id="ccopy0"> Are Planets Allowed: ' + planetsAllowed + '</div>';
-            					a_cluster += '<div id="ccopy0"> Number of Stars in this Cluster: ' + numberStars + '</div><br/><br/>';
-								$(a_cluster).appendTo("#"+cid);
+								$(json.someDetails.starRepList).each(function() {
+									var starArray = (""+this.string).split(',');
+									var arrayOfStars = new Array();
+									if(cid == starArray[decodeSystem.clusterId()]){
+										DisplayClusterStars.graphicsInvisible();
+									
+										var oneStar = new OneStar();
+										oneStar.setStarId(starArray[decodeSystem.starId()]);
+										oneStar.setParentSystemId(starArray[decodeSystem.parentSystemId()]);
+										oneStar.setClusterId(starArray[decodeSystem.clusterId()]);
+										oneStar.setDistanceToClusterVirtCentre(starArray[decodeSystem.distanceToClusterVirtCentre()]);
+										oneStar.setLuminosity(starArray[decodeSystem.luminosityId()]);
+										oneStar.setNoPlanetsAllowed(starArray[decodeSystem.noPlanetsAllowed()]);
+										oneStar.setStarAngleInRadians(starArray[decodeSystem.starAngleInRadians()]);
+										oneStar.setStarColor(starArray[decodeSystem.starColor()]);
+										oneStar.setStarType(starArray[decodeSystem.starType()]);
+										oneStar.setStarSize(starArray[decodeSystem.starSize()]);
+										arrayOfStars.push(oneStar);
+										
+										var a_cluster = '';
+		            					a_cluster += '<div id="ccopy0"> Cluster Description: '+ description + '</div>';
+		            					a_cluster += '<div id="ccopy0"> Kilometric Distance to Centre of the Sector: ' + distVirtCentre + '</div>';
+		            					a_cluster += '<div id="ccopy0"> Angle From Sector Centre: ' + angle + '</div>' ;
+		            					a_cluster += '<div id="ccopy0"> Are Planets Allowed: ' + planetsAllowed + '</div>';
+		            					a_cluster += '<div id="ccopy0"> Number of Stars in this Cluster: ' + numberStars + '</div>';
+										DrawStars.drawStarsInCluster(arrayOfStars, 
+											DisplayClusterStars.getGraphic(cid), 
+											a_cluster,
+											$("#cluster").position().left + $("#starcontent").width() / 2, 
+											$("#cluster").position().top + $("#starcontent").height() / 2,
+											10);
+
+									}
+								});
 								return false;
 							}); 
 						$(cid).show();
@@ -105,6 +132,8 @@
 		var graphics = new Object();
 		var numGraphics = 0;
 	
+		// public 
+		
 		return {
 			addGraphic: function(dims){
 				if(graphics[dims] == undefined){

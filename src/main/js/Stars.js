@@ -159,3 +159,11 @@ var OneStar = (function(){
 		}
 	};
 });
+
+var DrawStars = (function () {
+	return{
+		drawStarsInCluster: function draw(starArray, jsGraphic, starsClusterDetails, originX, originY){
+		}
+	}
+}());
+
