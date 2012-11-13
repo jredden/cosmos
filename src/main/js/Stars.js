@@ -113,7 +113,7 @@ var OneStar = (function(){
 			clusterId = clusterid;
 		},
 		getClusterId: function getclusterid(){
-			return clusterid;
+			return clusterId;
 		},
 		setDistanceToClusterVirtCentre: function setdistancetoclustervirtcentre (distancetoclustervirtcentre){
 			DistanceToClusterVirtCentre = distancetoclustervirtcentre;
@@ -137,19 +137,19 @@ var OneStar = (function(){
 			starAngleInRadians = starangleinradians;
 		},
 		getStarAngleInRadians: function getstarangleinradians(){
-			return starangleinradians;
+			return starAngleInRadians;
 		},
 		setStarColor: function setstarcolor(starcolor){
 			starColor = starcolor;
 		},
 		getStarColor: function getstarcolor(){
-			return starcolor;
+			return starColor;
 		},
 		setStarType: function setstartype(startype){
 			starType = startype;
 		},
 		getStarType: function getstartype(){
-			return startype;
+			return starType;
 		},
 		setStarSize: function setstarsize(starsize){
 			starSize = starsize;
@@ -162,8 +162,69 @@ var OneStar = (function(){
 
 var DrawStars = (function () {
 	return{
-		drawStarsInCluster: function draw(starArray, jsGraphic, starsClusterDetails, originX, originY){
+		drawStarsInCluster: function draw(starArray, jsGraphic, starsClusterDetails, originX, originY, scale){
+			var curOriginX = originX;
+			var curOriginY = originY;
+			
+			jsGraphic.drawString(starsClusterDetails, curOriginX, curOriginY);
+			for (var index = 0; index < starArray.length; index++ ){
+				curOriginX += StarScalingConstants.copySize();
+				curOriginY += StarScalingConstants.copyBorder();
+				
+				var stardim = starAttributes.getStarColor(StarScalingConstants.clusterScale(), starArray[index].getStarColor());
+				jsGraphic.setColor(stardim.color());
+				jsGraphic.fillArc(curOriginX, curOriginY, stardim.arcSize(), stardim.arcSize(), 0, 360);
+				curOriginY += stardim.arcSize()*2;
+				curOriginY += StarScalingConstants.copyBorder();
+				
+				var a_star = '';
+				a_star+= '<div id="ccopy1"> Star Color: '+starArray[index].getStarColor() + '</div>';
+				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopyBorder();
+				a_star+= '<div id="ccopy1"> Star Luminosity: '+starArray[index].getStarColor() + '</div>';
+				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopyBorder();
+				a_star+= '<div id="ccopy1"> Star Angle In Degrees to Cluster Centre: '+ starArray[index].getStarColor() + '</div>';
+				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopyBorder();
+				a_star+= '<div id="ccopy1"> Star Size in Solar Units: '+starArray[index].getStarColor() + '</div>';
+				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopyBorder();
+				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarColor() + '</div>';
+				jsGraphic.drawString(a_star, curOriginX, curOriginY);
+				curOriginY += StarScalingConstants.copyBorder();
+			}
+			jsGraphic.paint();
 		}
 	}
 }());
+
+var StarScalingConstants = (function(){
+	// private
+	const COPY_SIZE = 15;
+	const COPY_BORDER = 5;
+	const STAR_SCALE_IN_CLUSTER = 10;
+	const STAR_COPY_SIZE = 12;
+	const STAR_COPY_BORDER = 3;
+	
+	// public
+	return {
+		copySize: function (){
+			return COPY_SIZE;
+		},
+		copyBorder: function (){
+			return COPY_BORDER;
+		},
+		clusterScale: function(){
+			return STAR_SCALE_IN_CLUSTER;
+		},
+		starCopySize: function(){
+			return STAR_COPY_SIZE;
+		},
+		starCopyBorder: function(){
+			return STAR_COPY_BORDER;
+		}
+	}
+	
+}());	
 

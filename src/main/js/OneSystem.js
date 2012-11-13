@@ -11,15 +11,15 @@ var decodeSystem = (function(){
 	const ANGLE_IN_RADIANS = 5;
 	
 	const STAR_ID = 0;
-	const PARENT_SYSTEM_ID = 1;
-	const CLUSTER_ID = 2;
-	const DISTANCE_TO_CLUSTER_VIRT_CENTRE = 3;
-	const LUMINOSITY_ID = 4;
-	const NO_PLANETS_ALLOWED = 5;
-	const STAR_ANGLE_IN_RADIANS = 6;
-	const STAR_COLOR = 7;
-	const STAR_TYPE = 8;
-	const STAR_SIZE = 9;
+	const PARENT_SYSTEM_ID = 0;
+	const CLUSTER_ID = 1;
+	const DISTANCE_TO_CLUSTER_VIRT_CENTRE = 2;
+	const LUMINOSITY_ID = 3;
+	const NO_PLANETS_ALLOWED = 4;
+	const STAR_ANGLE_IN_RADIANS = 5;
+	const STAR_COLOR = 6;
+	const STAR_TYPE = 7;
+	const STAR_SIZE = 8;
 	
 	// public
 	

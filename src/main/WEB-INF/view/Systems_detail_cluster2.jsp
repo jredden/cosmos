@@ -34,7 +34,7 @@
 				console.log("json4:" + json.someDetails._vcoordinate);
 				console.log("json5:" + json.someDetails.clusterRepList);
 				console.log("json6:" + json.someDetails.starRepList);
-				
+				var starRepList = json.someDetails.starRepList;
 				$(json.someDetails.clusterRepList).each(function() {
 					var idex = 0; 
 					var jsGraphicsCluster = new jsGraphics("cluster"); 
@@ -78,8 +78,13 @@
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
-								$(json.someDetails.starRepList).each(function() {
-									var starArray = (""+this.string).split(',');
+								$(starRepList).each(function() {
+									var reflector = new Reflector(this.list[0].string);
+									console.log("starRepList:"+reflector.getProperties());
+									if(this.list[0].string == undefined){
+										return false;	// garbage in the array
+									}
+									var starArray = (""+this.list[0].string).split(',');
 									var arrayOfStars = new Array();
 									if(cid == starArray[decodeSystem.clusterId()]){
 										DisplayClusterStars.graphicsInvisible();
@@ -155,6 +160,18 @@
 		}
 	}());
 
+
+var Reflector = function(obj) {
+  this.getProperties = function() {
+    var properties = [];
+    for (var prop in obj) {
+      if (typeof obj[prop] != 'function') {
+        properties.push(prop);
+      }
+    }
+    return properties;
+  };
+}
 </script>
 
 </div> 	 <!-- cluster -->
