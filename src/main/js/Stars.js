@@ -168,27 +168,27 @@ var DrawStars = (function () {
 			
 			jsGraphic.drawString(starsClusterDetails, curOriginX, curOriginY);
 			for (var index = 0; index < starArray.length; index++ ){
-				curOriginX += StarScalingConstants.copySize();
-				curOriginY += StarScalingConstants.copyBorder();
+				curOriginY += (StarScalingConstants.copySize());
+				curOriginY += (StarScalingConstants.copyBorder()*25);
 				
 				var stardim = starAttributes.getStarColor(StarScalingConstants.clusterScale(), starArray[index].getStarColor());
 				jsGraphic.setColor(stardim.color());
 				jsGraphic.fillArc(curOriginX, curOriginY, stardim.arcSize(), stardim.arcSize(), 0, 360);
-				curOriginY += stardim.arcSize()*2;
+				curOriginY += stardim.arcSize();
 				curOriginY += StarScalingConstants.copyBorder();
 				
 				var a_star = '';
 				a_star+= '<div id="ccopy1"> Star Color: '+starArray[index].getStarColor() + '</div>';
-				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Luminosity: '+starArray[index].getStarColor() + '</div>';
-				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Angle In Degrees to Cluster Centre: '+ starArray[index].getStarColor() + '</div>';
-				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Size in Solar Units: '+starArray[index].getStarColor() + '</div>';
-				curOriginX += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarColor() + '</div>';
 				jsGraphic.drawString(a_star, curOriginX, curOriginY);
@@ -204,8 +204,8 @@ var StarScalingConstants = (function(){
 	const COPY_SIZE = 15;
 	const COPY_BORDER = 5;
 	const STAR_SCALE_IN_CLUSTER = 10;
-	const STAR_COPY_SIZE = 12;
-	const STAR_COPY_BORDER = 3;
+	const STAR_COPY_SIZE = 15;
+	const STAR_COPY_BORDER = 5;
 	
 	// public
 	return {

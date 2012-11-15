@@ -78,15 +78,17 @@
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
-								$(starRepList).each(function() {
-									var reflector = new Reflector(this.list[0].string);
-									console.log("starRepList:"+reflector.getProperties());
-									if(this.list[0].string == undefined){
-										return false;	// garbage in the array
-									}
-									var starArray = (""+this.list[0].string).split(',');
+								var starCount = 0;
+								if(starRepList == undefined || starRepList.list == undefined){
+									return false;	// garbage in the array
+								}
+								
+								for(;starCount < starRepList.list.length;starCount++) {
+									var reflector = new Reflector(starRepList.list);
+									console.log("starRepList:"+starRepList.list[starCount]+"::"+reflector.getProperties());
+									var starArray = (""+starRepList.list[starCount].string).split(',');
+									console.log("starArray.length:"+starArray.length);
 									var arrayOfStars = new Array();
-									if(cid == starArray[decodeSystem.clusterId()]){
 										DisplayClusterStars.graphicsInvisible();
 									
 										var oneStar = new OneStar();
@@ -111,12 +113,11 @@
 										DrawStars.drawStarsInCluster(arrayOfStars, 
 											DisplayClusterStars.getGraphic(cid), 
 											a_cluster,
-											$("#cluster").position().left + $("#starcontent").width() / 2, 
-											$("#cluster").position().top + $("#starcontent").height() / 2,
+											$("#starcontent").position().left + $("#starcontent").width() / 4, 
+											$("#starcontent").position().top + $("#starcontent").height() / 5,
 											10);
 
-									}
-								});
+								};
 								return false;
 							}); 
 						$(cid).show();
