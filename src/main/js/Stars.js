@@ -162,14 +162,13 @@ var OneStar = (function(){
 
 var DrawStars = (function () {
 	return{
-		drawStarsInCluster: function draw(starArray, jsGraphic, starsClusterDetails, originX, originY, scale){
+		drawStarsInCluster: function draw(starArray, jsGraphic, originX, originY, scale){
 			var curOriginX = originX;
 			var curOriginY = originY;
 			
-			jsGraphic.drawString(starsClusterDetails, curOriginX, curOriginY);
 			for (var index = 0; index < starArray.length; index++ ){
 				curOriginY += (StarScalingConstants.copySize());
-				curOriginY += (StarScalingConstants.copyBorder()*25);
+				curOriginY += (StarScalingConstants.copyBorder()*30);
 				
 				var stardim = starAttributes.getStarColor(StarScalingConstants.clusterScale(), starArray[index].getStarColor());
 				jsGraphic.setColor(stardim.color());
@@ -181,16 +180,19 @@ var DrawStars = (function () {
 				a_star+= '<div id="ccopy1"> Star Color: '+starArray[index].getStarColor() + '</div>';
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
-				a_star+= '<div id="ccopy1"> Star Luminosity: '+starArray[index].getStarColor() + '</div>';
+				a_star+= '<div id="ccopy1"> Star Luminosity: '+starArray[index].getLuminosity() + '</div>';
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
-				a_star+= '<div id="ccopy1"> Star Angle In Degrees to Cluster Centre: '+ starArray[index].getStarColor() + '</div>';
+				a_star+= '<div id="ccopy1"> Star Angle In Degrees to Cluster Centre: '+ starArray[index].getStarAngleInRadians() + '</div>';
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
-				a_star+= '<div id="ccopy1"> Star Size in Solar Units: '+starArray[index].getStarColor() + '</div>';
+				a_star+= '<div id="ccopy1"> Star Distance in Kilometers to Cluster Centre: '+ starArray[index].getDistanceToClusterVirtCentre() + '</div>';
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
-				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarColor() + '</div>';
+				a_star+= '<div id="ccopy1"> Star Size in Solar Units: '+starArray[index].getStarSize() + '</div>';
+				curOriginY += StarScalingConstants.starCopySize();
+				curOriginY += StarScalingConstants.starCopyBorder();
+				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarType() + '</div>';
 				jsGraphic.drawString(a_star, curOriginX, curOriginY);
 				curOriginY += StarScalingConstants.copyBorder();
 			}

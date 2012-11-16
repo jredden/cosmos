@@ -109,20 +109,22 @@
 	float: left;
 	width: 40%;
 	height: 80%;
-	background:silver;
+	background:midnightblue;
 	}
 	#cluster {
 	float: right;
 	width: 60%;
 	height: 80%;
-	background:lightblue;
+	background:midnightblue;
 	}
 	
 	#ccopy0{
-	font-size:15px; 
+	font-size:20px; 
 	margin:5px;
+	font-weight:bold;
 	}
 	#ccopy1{
-	font-size:15px; 
+	font-size:20px; 
 	margin:5px;
+	font-weight:bold;
 	}

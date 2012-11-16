@@ -153,5 +153,14 @@ var clusterAttributes = (function(){
 	};
 })();
 
-
+var DrawClusterDetails = (function () {
+	return {
+		draw: function(jsGraphic, starsClusterDetails, originX, originY, index){
+			jsGraphic.setColor(clusterAttributes.getClusterColor(index));
+			jsGraphic.drawString(starsClusterDetails, originX, originY);
+			jsGraphic.paint();
+		}
+	}
+	
+})();
 

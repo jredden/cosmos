@@ -35,6 +35,7 @@
 				console.log("json5:" + json.someDetails.clusterRepList);
 				console.log("json6:" + json.someDetails.starRepList);
 				var starRepList = json.someDetails.starRepList;
+				var clusterCopyCount = 0;
 				$(json.someDetails.clusterRepList).each(function() {
 					var idex = 0; 
 					var jsGraphicsCluster = new jsGraphics("cluster"); 
@@ -69,12 +70,29 @@
 						scale = 40;
 						size = 25;
 						var clusterApi = new clusterDrawAPI();
-						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 2, $("#cluster").position().top + $("#cluster").height() / 2, distVirtCentre, scale, size, angle);
+						clusterApi.cons(jsGraphicsCluster, $("#cluster").position().left + $("#cluster").width() / 10, $("#cluster").position().top + $("#cluster").height() / 5, distVirtCentre, scale, size, angle);
 						clusterAttributes.addName(clusterApi, nindex, clusterAttributes.largest(distArray), clusterId, idex);
 						var clusterColor = clusterAttributes.getClusterColor(nindex);
 						var cid = clusterId+'_'+idex;
 						DisplayClusterStars.addGraphic(cid);
 						$('<div id="' + cid +'"></div>').appendTo('#starcontent');
+						var clusterDimX = $("#starcontent").position().left + $("#starcontent").width() / 20;
+						var clusterDimY = $("#starcontent").position().top + $("#starcontent").height() / 5;
+						clusterDimY += clusterCopyCount;
+						clusterCopyCount += 125;
+						var a_cluster = '';
+		            		a_cluster += '<div id="ccopy0"> Cluster Description: '+ description + '</div>';
+		            		a_cluster += '<div id="ccopy0"> Kilometric Distance to Centre of the Sector: ' + distVirtCentre + '</div>';
+		            		a_cluster += '<div id="ccopy0"> Angle From Sector Centre: ' + angle + '</div>' ;
+		            		a_cluster += '<div id="ccopy0"> Are Planets Allowed: ' + planetsAllowed + '</div>';
+		            		a_cluster += '<div id="ccopy0"> Number of Stars in this Cluster: ' + numberStars + '</div>';
+						DrawClusterDetails.draw(
+							DisplayClusterStars.getGraphic(cid),
+							a_cluster,
+							clusterDimX, 
+							clusterDimY,
+							nindex
+							);
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
@@ -82,42 +100,33 @@
 								if(starRepList == undefined || starRepList.list == undefined){
 									return false;	// garbage in the array
 								}
-								
+								var arrayOfStars = new Array();
+								DisplayClusterStars.graphicsInvisible();
 								for(;starCount < starRepList.list.length;starCount++) {
 									var reflector = new Reflector(starRepList.list);
 									console.log("starRepList:"+starRepList.list[starCount]+"::"+reflector.getProperties());
 									var starArray = (""+starRepList.list[starCount].string).split(',');
 									console.log("starArray.length:"+starArray.length);
-									var arrayOfStars = new Array();
-										DisplayClusterStars.graphicsInvisible();
-									
-										var oneStar = new OneStar();
-										oneStar.setStarId(starArray[decodeSystem.starId()]);
-										oneStar.setParentSystemId(starArray[decodeSystem.parentSystemId()]);
-										oneStar.setClusterId(starArray[decodeSystem.clusterId()]);
-										oneStar.setDistanceToClusterVirtCentre(starArray[decodeSystem.distanceToClusterVirtCentre()]);
-										oneStar.setLuminosity(starArray[decodeSystem.luminosityId()]);
-										oneStar.setNoPlanetsAllowed(starArray[decodeSystem.noPlanetsAllowed()]);
-										oneStar.setStarAngleInRadians(starArray[decodeSystem.starAngleInRadians()]);
-										oneStar.setStarColor(starArray[decodeSystem.starColor()]);
-										oneStar.setStarType(starArray[decodeSystem.starType()]);
-										oneStar.setStarSize(starArray[decodeSystem.starSize()]);
-										arrayOfStars.push(oneStar);
-										
-										var a_cluster = '';
-		            					a_cluster += '<div id="ccopy0"> Cluster Description: '+ description + '</div>';
-		            					a_cluster += '<div id="ccopy0"> Kilometric Distance to Centre of the Sector: ' + distVirtCentre + '</div>';
-		            					a_cluster += '<div id="ccopy0"> Angle From Sector Centre: ' + angle + '</div>' ;
-		            					a_cluster += '<div id="ccopy0"> Are Planets Allowed: ' + planetsAllowed + '</div>';
-		            					a_cluster += '<div id="ccopy0"> Number of Stars in this Cluster: ' + numberStars + '</div>';
-										DrawStars.drawStarsInCluster(arrayOfStars, 
-											DisplayClusterStars.getGraphic(cid), 
-											a_cluster,
-											$("#starcontent").position().left + $("#starcontent").width() / 4, 
-											$("#starcontent").position().top + $("#starcontent").height() / 5,
-											10);
 
+									var oneStar = new OneStar();
+									oneStar.setStarId(starArray[decodeSystem.starId()]);
+									oneStar.setParentSystemId(starArray[decodeSystem.parentSystemId()]);
+									oneStar.setClusterId(starArray[decodeSystem.clusterId()]);
+									oneStar.setDistanceToClusterVirtCentre(starArray[decodeSystem.distanceToClusterVirtCentre()]);
+									oneStar.setLuminosity(starArray[decodeSystem.luminosityId()]);
+									oneStar.setNoPlanetsAllowed(starArray[decodeSystem.noPlanetsAllowed()]);
+									oneStar.setStarAngleInRadians(starArray[decodeSystem.starAngleInRadians()]);
+									oneStar.setStarColor(starArray[decodeSystem.starColor()]);
+									oneStar.setStarType(starArray[decodeSystem.starType()]);
+									oneStar.setStarSize(starArray[decodeSystem.starSize()]);
+									arrayOfStars.push(oneStar);
 								};
+								DrawStars.drawStarsInCluster(arrayOfStars, 
+								DisplayClusterStars.getGraphic(cid), 
+								$("#starcontent").position().left + $("#starcontent").width() / 4, 
+								$("#starcontent").position().top + $("#starcontent").height() / 5,
+								10);
+								
 								return false;
 							}); 
 						$(cid).show();
