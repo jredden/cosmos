@@ -97,12 +97,22 @@
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
 								var starCount = 0;
+								var starListLength = 0;
 								if(starRepList == undefined || starRepList.list == undefined){
-									return false;	// garbage in the array
+									$.getJSON("/starsInCluster.htm?clusterId="+cid,
+									function(json_result){
+										starRepList = json_result.list.stars;
+										var reflector = new Reflector(json_result.list.stars);
+										console.log("json_result:"+reflector.getProperties());
+										starListLength = json_result.list.stars.length;
+									});
+								}
+								else{
+									starListLength = starRepList.list.length;
 								}
 								var arrayOfStars = new Array();
 								DisplayClusterStars.graphicsInvisible();
-								for(;starCount < starRepList.list.length;starCount++) {
+								for(;starCount < starListLength;starCount++) {
 									var reflector = new Reflector(starRepList.list);
 									console.log("starRepList:"+starRepList.list[starCount]+"::"+reflector.getProperties());
 									var starArray = (""+starRepList.list[starCount].string).split(',');

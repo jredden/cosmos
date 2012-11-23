@@ -66,6 +66,10 @@
 		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
 			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
 	</bean>	
+	<bean id="starsInClusterController" class="com.zenred.cosmos.controller.json.StarsInClusterController">
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
+			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
+	</bean>	
 	<bean id="clusterDetailController" class="com.zenred.cosmos.controller.json.ClusterDetailController">
 		<property name="marshalClusterDetails" ref="marshalClusterDetails"/>
 	</bean>	
@@ -103,6 +107,7 @@
 				<prop key="/cluster.htm">clustersController</prop>
 				<prop key="/oneCluster.htm">oneClusterController</prop>
 				<prop key="/star.htm">starsController</prop>
+				<prop key="/starsInCluster.htm">starsInClusterController</prop>
 				<prop key="/cluster_detail.htm">clusterDetailController</prop>
 				<prop key="/star_detail.htm">starDetailController</prop>
 				<prop key="/generate_system.htm">createSystemController</prop>

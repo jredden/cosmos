@@ -75,9 +75,6 @@ public class SystemSimpleArray {
 				.size(); index++) {
 			ClusterRep clusterRep = systemPlusSomeDetails.getClusterRepList()
 					.get(index);
-			if (index > 1) {
-				continue;  // broken
-			} else {
 				List<Object> aCluster = new ArrayList<Object>();
 				aCluster.add(ANGLE_IN_RADIANS, clusterRep.getAngleInRadians());
 				aCluster.add(SYSTEM_ID, clusterRep.get_systemId());
@@ -89,7 +86,7 @@ public class SystemSimpleArray {
 						clusterRep.get_numberStarsInCluster());
 				aCluster.add(PLANETS_ALLOWED, clusterRep.get_planetsAllowed());
 				systemsSimpleArray.clusterRepList.add(aCluster);
-			}
+			
 		}
 
 		for (int index = 0; index < systemPlusSomeDetails.getStarRepList()
