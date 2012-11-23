@@ -51,6 +51,8 @@
 						++idex;
 					});
 					idex = 0;
+					DisplayClusterStars.graphicsInvisible();
+					
 					$(this.list).each(function(){
 						
 						if(this.string == undefined){
@@ -93,57 +95,58 @@
 							clusterDimY,
 							nindex
 							);
+						var arrayOfStars = new Array();
 						$("#"+cid) 
 							.append('<input type="button" value=' + cid +'>')
 							.click(function(){ 
 								var starCount = 0;
 								var starListLength = 0;
-								if(starRepList == undefined || starRepList.list == undefined){
-									$.getJSON("/starsInCluster.htm?clusterId="+cid,
-									function(json_result){
-										starRepList = json_result.list.stars;
-										var reflector = new Reflector(json_result.list.stars);
-										console.log("json_result:"+reflector.getProperties());
-										starListLength = json_result.list.stars.length;
-									});
-								}
-								else{
-									starListLength = starRepList.list.length;
-								}
-								var arrayOfStars = new Array();
-								DisplayClusterStars.graphicsInvisible();
-								for(;starCount < starListLength;starCount++) {
-									var reflector = new Reflector(starRepList.list);
-									console.log("starRepList:"+starRepList.list[starCount]+"::"+reflector.getProperties());
-									var starArray = (""+starRepList.list[starCount].string).split(',');
-									console.log("starArray.length:"+starArray.length);
-
-									var oneStar = new OneStar();
-									oneStar.setStarId(starArray[decodeSystem.starId()]);
-									oneStar.setParentSystemId(starArray[decodeSystem.parentSystemId()]);
-									oneStar.setClusterId(starArray[decodeSystem.clusterId()]);
-									oneStar.setDistanceToClusterVirtCentre(starArray[decodeSystem.distanceToClusterVirtCentre()]);
-									oneStar.setLuminosity(starArray[decodeSystem.luminosityId()]);
-									oneStar.setNoPlanetsAllowed(starArray[decodeSystem.noPlanetsAllowed()]);
-									oneStar.setStarAngleInRadians(starArray[decodeSystem.starAngleInRadians()]);
-									oneStar.setStarColor(starArray[decodeSystem.starColor()]);
-									oneStar.setStarType(starArray[decodeSystem.starType()]);
-									oneStar.setStarSize(starArray[decodeSystem.starSize()]);
-									arrayOfStars.push(oneStar);
-								};
-								DrawStars.drawStarsInCluster(arrayOfStars, 
-								DisplayClusterStars.getGraphic(cid), 
-								$("#starcontent").position().left + $("#starcontent").width() / 4, 
-								$("#starcontent").position().top + $("#starcontent").height() / 5,
-								10);
 								
+								
+								$.getJSON("/starsInCluster.htm?clusterId="+cid,
+								function(json_result){
+									starRepList = json_result.list.stars;
+									var reflector = new Reflector(json_result.list);
+									// console.log("json_result:"+reflector.getProperties());
+									if(json_result.list.stars == undefined){
+										var message = "No stars in "+cid;
+										alert(message);
+									}
+									else{
+										$(json_result.list.stars).each(function(){
+											var oneStar = new OneStar();
+											var reflector = new Reflector(this);
+											console.log("stars:"+reflector.getProperties());
+											oneStar.setClusterId(cid);
+											oneStar.setDistanceToClusterVirtCentre(this.distanceClustVirtCentre);
+											oneStar.setLuminosity(this.luminosity);
+											oneStar.setNoPlanetsAllowed(this.noPlanetsAllowed);
+											oneStar.setStarAngleInRadians(this.angleInDegreesS);
+											oneStar.setStarColor(this.starColor);
+											oneStar.setStarType(this.starType);
+											oneStar.setStarSize(this.starSize);
+											oneStar.setStarId(this.starId);
+											arrayOfStars.push(oneStar);
+												
+										});
+									}
+									DrawStars.drawStarsInCluster(arrayOfStars, 
+									DisplayClusterStars.getGraphic(cid), 
+									$("#thestars").position().left + $("#thestars").width() / 4, 
+									$("#thestars").position().top + $("#thestars").height() / 200,
+									10);
+									$(cid).show();
+								});
+								DisplayClusterStars.graphicsInvisible();
+								$("#starcontent").show();
+								arrayOfStars = new Array();	
 								return false;
 							}); 
-						$(cid).show();
-						++idex;		
+						++idex;	
+						
 					});
+					
 				});
-		
 		});
 		
 		
@@ -173,6 +176,8 @@
 					$(dims).hide();
 					graphics[dims].clear();
 				}
+				
+				
 			},
 			getGraphic: function(dims){
 				return graphics[dims];
@@ -196,6 +201,8 @@ var Reflector = function(obj) {
 
 </div> 	 <!-- cluster -->
 <div id="starcontent">
+<div id="thestars">
+</div>	 <!-- thestars -->
 </div>	 <!-- starcontent -->
 </div>   <!-- container -->
 </body>

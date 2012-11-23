@@ -38,6 +38,7 @@ public class StarsInClusterController implements Controller {
 			starResponse.setStarColor(starRep.getStarColor());
 			starResponse.setStarSize(starRep.getStarSize());
 			starResponse.setStarType(starRep.getStarType());
+			starResponse.setStar_id(starRep.getStarId());
 			listStarResponse.add(starResponse);
 		}
 		ModelAndView modelAndView = new ModelAndView(new StarsView());
