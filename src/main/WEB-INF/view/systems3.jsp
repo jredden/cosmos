@@ -9,6 +9,7 @@
 <script src="http://www.cosmos.com/js/jquery-1.6.min.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Clusters.js" type="text/javascript"></script>
+<script src="http://www.cosmos.com/js/RequestVariables.js" type="text/javascript"></script>
 <body>
 <div id="container">
 <div id="site">
@@ -192,6 +193,12 @@ var pageSpace = (function () {
 		},
 		getNumberGraphics: function(){
 			return parseInt(numGraphics);
+		},
+		setU: function(u_val){
+			current_u = u_val;
+		},
+		setV: function(v_val){
+			current_v = v_val;
 		}
 		
 	};
@@ -436,6 +443,17 @@ var drawSystems = (function(){
 	console.log("smallest v:" + pageSpace.smallestV());
 	
 	$(document).ready(function() {
+	
+				
+		var lastU = $.getUrlVar('startu');
+		var lastV = $.getUrlVar('startv');
+		if(lastU != undefined){
+			pageSpace.setU(lastU);
+		}
+		if(lastV != undefined){
+			pageSpace.setV(lastV);
+		}
+	
 		$(document).dblclick(function(event){
 		
 			const SYSTEM_ID = 0;
@@ -457,7 +475,6 @@ var drawSystems = (function(){
 			const STAR_SIZE = 9;
 		
 			console.log("pageX:"+event.pageX +" pageY:"+event.pageY);
-			
 			var currentU = parseInt(pageSpace.currentU());
 			var currentV = parseInt(pageSpace.currentV());
 			var pageX = event.pageX;
