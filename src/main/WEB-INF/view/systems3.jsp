@@ -10,7 +10,7 @@
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Clusters.js" type="text/javascript"></script>
 <body>
-
+<div id="container">
 <div id="site">
 <h1>Cosmos Star Systems</h1>
 
@@ -383,6 +383,7 @@ var drawSystems = (function(){
 }());
 
 </script> 
+</div>  <!-- site -->
 <div id="region">
 <c:forEach var="systemPlusSomeDetails" items="${systems_list}" >
 <script>
@@ -560,6 +561,6 @@ var drawSystems = (function(){
 </script>
 
 </div> <!-- region -->  
-</div>  <!-- site -->
+</div>  <!-- container -->
 </body>
 </html>

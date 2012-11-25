@@ -125,7 +125,7 @@
 											oneStar.setStarColor(this.starColor);
 											oneStar.setStarType(this.starType);
 											oneStar.setStarSize(this.starSize);
-											oneStar.setStarId(this.starId);
+											oneStar.setStarId(this.star_id);
 											arrayOfStars.push(oneStar);
 												
 										});
@@ -134,7 +134,8 @@
 									DisplayClusterStars.getGraphic(cid), 
 									$("#thestars").position().left + $("#thestars").width() / 4, 
 									$("#thestars").position().top + $("#thestars").height() / 200,
-									10);
+									7,
+									true);
 									$(cid).show();
 								});
 								DisplayClusterStars.graphicsInvisible();

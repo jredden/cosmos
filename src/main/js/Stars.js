@@ -162,19 +162,19 @@ var OneStar = (function(){
 
 var DrawStars = (function () {
 	return{
-		drawStarsInCluster: function draw(starArray, jsGraphic, originX, originY, scale){
+		drawStarsInCluster: function draw(starArray, jsGraphic, originX, originY, scale, genLink){
 			var curOriginX = originX;
 			var curOriginY = originY;
-			
+			curOriginY += (StarScalingConstants.copyBorder()*10);
 			for (var index = 0; index < starArray.length; index++ ){
 				curOriginY += (StarScalingConstants.copySize());
-				curOriginY += (StarScalingConstants.copyBorder()*30);
+				
 				
 				var stardim = starAttributes.getStarColor(StarScalingConstants.clusterScale(), starArray[index].getStarColor());
 				jsGraphic.setColor(stardim.color());
 				jsGraphic.fillArc(curOriginX, curOriginY, stardim.arcSize(), stardim.arcSize(), 0, 360);
-				curOriginY += stardim.arcSize();
-				curOriginY += StarScalingConstants.copyBorder();
+				curOriginY += (stardim.arcSize()*.45);
+				// curOriginY += StarScalingConstants.copyBorder();
 				
 				var a_star = '';
 				a_star+= '<div id="ccopy1"> Star Color: '+starArray[index].getStarColor() + '</div>';
@@ -192,9 +192,16 @@ var DrawStars = (function () {
 				a_star+= '<div id="ccopy1"> Star Size in Solar Units: '+starArray[index].getStarSize() + '</div>';
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
-				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarType() + '</div>';
+				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarType() + 
+				'<a href=/star_detail.htm?cluster='  + starArray[index].getClusterId() 
+					+'&starNumber='+starArray[index].getStarId()
+					+'&starColor='+starArray[index].getStarColor()
+					+'>'
+					+ 'Cluster Star ' + index +'</a>'+
+				'</div>';
 				jsGraphic.drawString(a_star, curOriginX, curOriginY);
 				curOriginY += StarScalingConstants.copyBorder();
+				curOriginY += (StarScalingConstants.copyBorder()*35);
 			}
 			jsGraphic.paint();
 		}

@@ -74,7 +74,7 @@ var jg = new jsGraphics(cnv);
 
 <body>
 <c:out value="${param.cluster}"/>
-<div id="site">
+<div id="star">
 <br/>
 <span>
 <a href="<c:url value="./systems_detail_cluster.htm?systemId=${systemId}"></c:url>">
@@ -142,6 +142,6 @@ var p_count = 0;
 <div>&nbsp;</div>
 <div>&nbsp;</div>
 <div>&nbsp;</div>
-</div>
+</div> <!-- star -->
 </body>
 </html>
