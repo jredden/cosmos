@@ -29,7 +29,7 @@ public class SystemRepDAO
 	
 	@SuppressWarnings("unchecked")
 	public List<SystemRep> findAll() {
-		return this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep" );
+		return this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep order by ucoordinate, vcoordinate" );
 	}
 	
 	public SystemRep findOne(String udim, String vdim) {

@@ -9,10 +9,15 @@
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Clusters.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/OneSystem.js" type="text/javascript"></script>
+<script src="http://www.cosmos.com/js/RequestVariables.js" type="text/javascript"></script>
 
 
 <div id="container">
+
 <h1>Cosmos Clusters</h1>
+
+<button id="returnSystems">Return to Star Systems</button>
+
 <div id="cluster">
 
 <script>
@@ -198,6 +203,14 @@ var Reflector = function(obj) {
     return properties;
   };
 }
+
+$("#returnSystems").click(function () { 
+ 	var lastU = $.getUrlVar('startu');
+	var lastV = $.getUrlVar('startv');
+ 	var url = "http://www.cosmos.com/systems3.htm?startu="+lastU+"&startv="+lastV;    
+	$(location).attr('href',url);
+});
+
 </script>
 
 </div> 	 <!-- cluster -->
