@@ -162,7 +162,7 @@ var OneStar = (function(){
 
 var DrawStars = (function () {
 	return{
-		drawStarsInCluster: function draw(starArray, jsGraphic, originX, originY, scale, genLink){
+		drawStarsInCluster: function draw(starArray, jsGraphic, originX, originY, scale, startu, startv){
 			var curOriginX = originX;
 			var curOriginY = originY;
 			curOriginY += (StarScalingConstants.copyBorder()*10);
@@ -193,9 +193,11 @@ var DrawStars = (function () {
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarType() + 
-				'<a href=/star_detail.htm?cluster='  + starArray[index].getClusterId() 
+				'<a href=/star_detail2.htm?cluster='  + starArray[index].getClusterId() 
 					+'&starNumber='+starArray[index].getStarId()
 					+'&starColor='+starArray[index].getStarColor()
+					+'&startu='+startu
+					+'&startv='+startv
 					+'>'
 					+ 'Cluster Star ' + index +'</a>'+
 				'</div>';

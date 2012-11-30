@@ -140,7 +140,9 @@
 									$("#thestars").position().left + $("#thestars").width() / 4, 
 									$("#thestars").position().top + $("#thestars").height() / 200,
 									7,
-									true);
+									$.getUrlVar('startu'),
+									$.getUrlVar('startv')
+									);
 									$(cid).show();
 								});
 								DisplayClusterStars.graphicsInvisible();

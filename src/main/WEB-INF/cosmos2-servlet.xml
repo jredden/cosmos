@@ -76,6 +76,9 @@
 	<bean id="starDetailController" class="com.zenred.cosmos.controller.json.StarDetailController">
 		<property name="marshalClusterDetails" ref="marshalClusterDetails"/>
 	</bean>	
+	<bean id="starDetailController2" class="com.zenred.cosmos.controller.json.StarDetailController2">
+		<property name="marshalClusterDetails" ref="marshalClusterDetails"/>
+	</bean>	
 	<bean id="planetDetailController" class="com.zenred.cosmos.controller.PlanetDetailController">
 	</bean>	
 	<bean id="planetDetailBuilderController" class="com.zenred.cosmos.controller.json.PlanetDetailBuilderController">
@@ -107,9 +110,11 @@
 				<prop key="/cluster.htm">clustersController</prop>
 				<prop key="/oneCluster.htm">oneClusterController</prop>
 				<prop key="/star.htm">starsController</prop>
+				<prop key="/star2.htm">starsController</prop>
 				<prop key="/starsInCluster.htm">starsInClusterController</prop>
 				<prop key="/cluster_detail.htm">clusterDetailController</prop>
 				<prop key="/star_detail.htm">starDetailController</prop>
+				<prop key="/star_detail2.htm">starDetailController2</prop>
 				<prop key="/generate_system.htm">createSystemController</prop>
 				<prop key="/generate_system2.htm">createSystemController2</prop>
 				<prop key="/planet_detail.htm">planetDetailController</prop>

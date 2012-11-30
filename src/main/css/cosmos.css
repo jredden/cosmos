@@ -15,7 +15,7 @@
 		width:100%
 		height:100%
 		border:1px solid #000;
-		background:#B0C4DE;
+		background:darkblue;
 	}
 	#region {
 		float: left;
@@ -151,4 +151,10 @@
 	font-size:20px; 
 	margin:5px;
 	font-weight:bold;
+	}
+	#starSystemCopy{
+	font-size:20px; 
+	margin:5px;
+	font-weight:bold;
+	color:#87CEEB;
 	}
