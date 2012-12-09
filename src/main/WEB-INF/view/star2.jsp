@@ -97,7 +97,7 @@ var p_count = 0;
 </script>
 <c:out value="${starColor}"/>
 <c:forEach var="pr" items="${root}" > 
-  <div id="starSystemCopy"><span><a href=/planet_detail.htm?planet=${pr.planetoidId}&cluster=${param.cluster}&starColor=${starColor}&starNumber=${param.starNumber} id="planet">Planetoid Id:</span><span>${pr.planetoidId}</a></span></div>
+  <div id="starSystemCopy"><span><a href=/planet_detail2.htm?planet=${pr.planetoidId}&cluster=${param.cluster}&starColor=${starColor}&starNumber=${param.starNumber} id="planet">Planetoid Id:</span><span>${pr.planetoidId}</a></span></div>
   <br/>
   <div id="starSystemCopy"><span>Distance to Primary:</span><span>${pr.distanceToPimary}</span></div>
   <div id="starSystemCopy"><span>Position:</span><span>${pr.degree}</span></div>
