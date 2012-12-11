@@ -10,21 +10,28 @@
 <script src="http://www.cosmos.com/js/jquery-1.3.2.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Stars.js" type="text/javascript"></script>
 <script src="http://www.cosmos.com/js/Atmosphere.js" type="text/javascript"></script>
+<script src="http://www.cosmos.com/js/RequestVariables.js" type="text/javascript"></script>
 <body>
 
 
 
-<div id="site">
-<c:out value="${param.starColor}"/>
-<c:set var="cluster" value="${param.cluster}" />
-<span ><a href="<c:url value="./star_detail.htm?cluster=${cluster}&starColor=${param.starColor}&starNumber=${param.starNumber}"></c:url>" id="planet">
-return to star detail</a></span>
+<div id="container">
 
-<h1>${requestScope.planetName} Planet ${requestScope.planetNumber}</h1>
+<h1><script>$.getUrlVar('planetName')</script> Planet <script>$.getUrlVar('planetNumber')</script></h1>
+
+<button id="returnSystems">Return to Cosmos Clusters</button>
+
+<div id="planets">
 
 <script type="text/javascript">
 
-$(document).ready(function() {		
+$(document).ready(function() {	
+	returnParams.setSystemId($.getUrlVar('systemId'));
+	returnParams.setStartU($.getUrlVar('startu'));	
+	returnParams.setStartV($.getUrlVar('startv'));	
+	returnParams.setCluster($.getUrlVar('cluster'));	
+	returnParams.setStarNumber($.getUrlVar('starNumber'));	
+	returnParams.setStarColor($.getUrlVar('starColor'));	
 	$('#planet').hide();
 	loadPlanet();
 	$('#planet').show('slow');
@@ -113,6 +120,70 @@ function randomFromTo(from, to){
        return Math.floor(Math.random() * (to - from + 1) + from);
 }
 
+var returnParams = (function () {
+	// private
+	var startu;
+	var startv;
+	var cluster;
+	var starNumber;
+	var starColor;
+	var systemId;
+	
+	return{
+		setSystemId: function(s_systemId){
+			systemId = s_systemId;
+		},
+		setStartU: function(s_startu){
+			startu = s_startu;
+		},
+		setStartV: function(s_startv){
+			startv = s_startv;
+		},
+		setCluster: function(s_cluster){
+			cluster = s_cluster;
+		},
+		setStarNumber: function(s_starNumber){
+			starNumber = s_starNumber;
+		},
+		setStarColor: function(s_starColor){
+			starColor = s_starColor;
+		},
+		getSystemId: function(){
+			return systemId;
+		},
+		getStartU: function(){
+			return startu;
+		},
+		getStartV: function(){
+			return startv;
+		},
+		getCluster: function(){
+			return cluster;
+		},
+		getStarNumber: function(){
+			return starNumber;
+		},
+		getStarColor: function(){
+			return starColor;
+		}
+	}
+	
+}());
+
+$("#returnSystems").click(function () { 
+ 	var lastU = $.getUrlVar('startu');
+	var lastV = $.getUrlVar('startv');
+ 	var url = "http://www.cosmos.com/systems_detail_cluster2.htm?"
+ 		+"startu="+returnParams.getStartU()
+ 		+"&startv="+returnParams.getStartV()
+ 		+"&cluster="+returnParams.getCluster()
+ 		+"&starNumber="+returnParams.getStarNumber()
+		+"&starColor="+returnParams.getStarColor()
+		+"&systemId="+returnParams.getSystemId()
+ 		;    
+	$(location).attr('href',url);
+});
+
 </script>
 
 <div id="planet">
@@ -121,6 +192,7 @@ function randomFromTo(from, to){
 <div id="atmosphere">
 </div>
 
-</div>   
+</div> 	 <!-- planets -->  
+</div>   <!-- container --> 
 </body>
 </html>

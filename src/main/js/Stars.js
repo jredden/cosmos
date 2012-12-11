@@ -193,7 +193,8 @@ var DrawStars = (function () {
 				curOriginY += StarScalingConstants.starCopySize();
 				curOriginY += StarScalingConstants.starCopyBorder();
 				a_star+= '<div id="ccopy1"> Star Type: '+starArray[index].getStarType() + 
-				'<a href=/star_detail2.htm?cluster='  + starArray[index].getClusterId() 
+				'<a href=/star_detail2.htm?cluster='  
+					+ starArray[index].getClusterId() 
 					+'&starNumber='+starArray[index].getStarId()
 					+'&starColor='+starArray[index].getStarColor()
 					+'&startu='+startu

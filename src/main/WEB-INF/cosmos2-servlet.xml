@@ -120,7 +120,7 @@
 				<prop key="/generate_system.htm">createSystemController</prop>
 				<prop key="/generate_system2.htm">createSystemController2</prop>
 				<prop key="/planet_detail.htm">planetDetailController</prop>
-				<prop key="/planet_detail2.htm">planetDetailController</prop>
+				<prop key="/planet_detail2.htm">planetDetailController2</prop>
 				<prop key="/planet_detail_builder.htm">planetDetailBuilderController</prop>
 			</props>
 		</property>
