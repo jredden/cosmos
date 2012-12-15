@@ -25,7 +25,7 @@ public class ClusterRep extends BaseClusterRep {
 				_angleInRadians, _clusterDescription, _numberStarsInCluster,
 				_datestamp);
 	}
-	
+	@Deprecated
 	private int scaleForView(double dim){
 /*		
 		if(dim < 5 && dim > 0){
@@ -42,34 +42,35 @@ public class ClusterRep extends BaseClusterRep {
 		return (int)dim;
 	}
 	
-	
+	@Deprecated
 	public int scaledX(){
 		double scaledDelta = super.getDistanceSysVirtCentre().doubleValue()/scalar_value;
 		double d_x = scaledDelta * Math.cos(super.getAngleInRadians().doubleValue());
 		return scaleForView(d_x);
 	}
-	
+	@Deprecated
 	public int scaledY(){
 		double scaledDelta = super.getDistanceSysVirtCentre().doubleValue()/scalar_value;
 		double d_y = scaledDelta * Math.sin(super.getAngleInRadians().doubleValue());
 		return scaleForView(d_y);
 	}
+	@Deprecated
 	public int scaledX2(){
 		double scaledDelta = super.getDistanceSysVirtCentre().doubleValue()/scalar_value_large;
 		double d_x = scaledDelta * Math.cos(super.getAngleInRadians().doubleValue());
 		return (int)d_x;
 	}
-	
+	@Deprecated
 	public int scaledY2(){
 		double scaledDelta = super.getDistanceSysVirtCentre().doubleValue()/scalar_value_large;
 		double d_y = scaledDelta * Math.sin(super.getAngleInRadians().doubleValue());
 		return (int)d_y;
 	}
-
+	@Deprecated
 	public int getScaledX(){
 		return scaledX();
 	}
-	
+	@Deprecated
 	public int getScaledY(){
 		return scaledY();
 	}

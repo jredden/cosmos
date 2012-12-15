@@ -1,21 +1,16 @@
 package com.zenred.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
-
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.zenred.data_access.MarshallClustersAndStarsAndPlanetsInOneSystem;
@@ -27,8 +22,7 @@ import cosmos.hibernate.Planetoid;
 import cosmos.hibernate.PlanetoidAtmosphereRep;
 import cosmos.hibernate.PlanetoidRep;
 import cosmos.hibernate.StarRep;
-import cosmos.hibernate.SystemRep;
-
+@Deprecated
 public class SpringappControllerSystemDetail extends MultiActionController {
 	
 	private static final Logger logger = Logger.getLogger(SpringappControllerSystemDetail.class);

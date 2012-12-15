@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 
 import com.zenred.config.Config;
 import com.zenred.config.ConfigIF;
-
+@Deprecated
 public class Log extends Object
     implements LogAPI {
     

@@ -6,6 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
+/**
+ * 
+ * @author jredden
+ * supports "systems3.htm" cascade
+ *
+ */
 public class PlanetDetailController2 implements Controller {
 
 	public ModelAndView handleRequest(HttpServletRequest request,

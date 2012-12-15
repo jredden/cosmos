@@ -17,7 +17,7 @@ import com.zenred.visualization.StarsResponse;
 
 import cosmos.hibernate.ClusterRep;
 import cosmos.hibernate.StarRep;
-
+@Deprecated
 public class CreateSystemController implements Controller {
 	
 	private GenerateOneSystem generateOneSystem;

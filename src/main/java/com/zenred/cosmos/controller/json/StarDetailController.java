@@ -13,7 +13,7 @@ import com.zenred.service.MarshalClusterDetails;
 import com.zenred.visualization.PlanetoidResponse;
 
 import cosmos.hibernate.Planetoid;
-
+@Deprecated
 public class StarDetailController implements Controller {
 	
 	private MarshalClusterDetails marshalClusterDetails;

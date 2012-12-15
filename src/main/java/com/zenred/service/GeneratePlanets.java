@@ -15,7 +15,6 @@ import com.zenred.data_access.Planetoid;
 import com.zenred.data_access.PlanetoidRepIF;
 import com.zenred.data_access.Planetoid_Atmosphere;
 import com.zenred.data_access.Planetoidrep;
-import com.zenred.data_access.StarRepDAO;
 
 import cosmos.hibernate.PlanetoidRep;
 import cosmos.hibernate.StarRep;
