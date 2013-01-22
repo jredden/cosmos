@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import org.apache.log4j.Logger;

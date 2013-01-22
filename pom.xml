@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<!-- start -->
 	<modelVersion>4.0.0</modelVersion>
@@ -14,6 +13,14 @@
 	<organization>
 		<name>Zenred</name>
 	</organization>
+
+	<repositories>
+		<repository>
+			<id>JBossRepo</id>
+			<url>http://repository.jboss.com/maven2/</url>
+		</repository>
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -249,17 +256,33 @@
 			<version>1.0</version>
 			<scope>test</scope>
 		</dependency>
-	<dependency>
-		<groupId>com.thoughtworks.xstream</groupId>
-		<artifactId>xstream</artifactId>
-		<version>1.4.3</version>
-	</dependency>
-	<dependency>
-		<groupId>org.codehaus</groupId>
-		<artifactId>jettison</artifactId>
-		<version>1.0.1</version>
-	</dependency>
-		
+		<dependency>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus</groupId>
+			<artifactId>jettison</artifactId>
+			<version>1.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<version>5.4.0.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<version>5.4.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -298,9 +321,9 @@
 				<artifactId>maven-jxr-plugin</artifactId>
 			</plugin>
 			<plugin>
-		    	<groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-compiler-plugin</artifactId>
-		    	<version>2.3.2</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 			</plugin>
 		</plugins>
 	</reporting>
