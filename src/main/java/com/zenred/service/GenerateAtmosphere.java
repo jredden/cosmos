@@ -23,7 +23,7 @@ public class GenerateAtmosphere {
 	private RuleBase ruleBase;
 	private Reader source;
 
-	public Atmosphere genAtmosphere(double star_luminosity,
+	public AtmosphereDTO genAtmosphere(double star_luminosity,
 			double distance_primary_au_s, double planet_radius,
 			String star_color_type) {
 
@@ -45,7 +45,7 @@ public class GenerateAtmosphere {
 			String _fail = "Unable to compile \"" + ruleFile + "\".";
 		}
 
-		Atmosphere atmosphere = new Atmosphere();
+		AtmosphereDTO atmosphere = new AtmosphereDTO();
 		return atmosphere;
 	}
 
