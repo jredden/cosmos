@@ -1,0 +1,29 @@
+//created on: Jan 27, 2013
+package com.zenred.cosmos.service
+
+//list any import classes here.
+
+
+
+//declare any global variables here
+
+
+
+
+rule "StarColorFistPass"
+
+    when
+        //conditions
+    then
+        //actions
+
+end
+
+rule "Your Second Rule"
+    //include attributes such as "salience" here...
+    when
+        //conditions
+    then
+        //actions
+
+end
