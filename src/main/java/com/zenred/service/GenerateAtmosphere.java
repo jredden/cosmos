@@ -22,10 +22,21 @@ public class GenerateAtmosphere {
 	private String ruleFile;
 	private RuleBase ruleBase;
 	private Reader source;
+	private Double starLuminosity;
+	private Double distancePrimaryInAUs;
+	private Double planetRadius;
+	private String colorType;
+	
+	private AtmosphereDTO atmosphereDTO;
 
 	public AtmosphereDTO genAtmosphere(double star_luminosity,
 			double distance_primary_au_s, double planet_radius,
 			String star_color_type) {
+		
+		this.starLuminosity = star_luminosity;
+		this.distancePrimaryInAUs = distance_primary_au_s;
+		this.planetRadius = planet_radius;
+		this.colorType = star_color_type;
 
 		if (ruleBase == null) {
 			source = new InputStreamReader(
@@ -45,8 +56,8 @@ public class GenerateAtmosphere {
 			String _fail = "Unable to compile \"" + ruleFile + "\".";
 		}
 
-		AtmosphereDTO atmosphere = new AtmosphereDTO();
-		return atmosphere;
+		atmosphereDTO = new AtmosphereDTO();
+		return atmosphereDTO;
 	}
 
 	public void setRuleFile(String ruleFile) {

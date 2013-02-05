@@ -64,6 +64,31 @@ var starAttributes = (function(){
 		starColor["yelo.subgi"]=new starDim("yellow",11*scale);
 		starColor["yelo.mains"]=new starDim("yellow",10*scale);
 		starColor["yelo.dwarf"]=new starDim("yellow",8*scale);
+		
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		starColor["purpred.dwarf"]=new starDim("#800517",7*scale);
+		
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		starColor["brown.dwarf"]=new starDim("brown",6*scale);
+		
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		starColor["darkbrown.subdwarf"]= new starDim("#61380B", 5*scale);
+		
 	}
 	
 	return {

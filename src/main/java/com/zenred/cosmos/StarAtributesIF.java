@@ -188,10 +188,14 @@ public interface StarAtributesIF {
     /*    */
     /* starcolor   */
     /*    */
+    public static final String BLUE_SG_II = "blue.sg.ii";
+    public static final String LTBL_SG_II = "ltbl.sg.ii";
+    public static final String WHIT_SG_II = "whit.sg.ii";
     
-    public static final String [] starcolor={"blue.sg.ii",
-                                       "ltbl.sg.ii",
-                                       "whit.sg.ii",
+    public static final String [] starcolor={
+    	BLUE_SG_II,
+    	LTBL_SG_II,
+    	WHIT_SG_II,
                                        "pyel.sg.ii",
                                        "yelo.sg.ii",
                                        "orng.sg.ii",
