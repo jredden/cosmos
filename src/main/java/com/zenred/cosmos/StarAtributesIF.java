@@ -191,53 +191,96 @@ public interface StarAtributesIF {
     public static final String BLUE_SG_II = "blue.sg.ii";
     public static final String LTBL_SG_II = "ltbl.sg.ii";
     public static final String WHIT_SG_II = "whit.sg.ii";
+    public static final String PYEL_SG_II = "pyel.sg.ii";
+    public static final String YELO_SG_II = "yelo.sg.ii";
+    public static final String ORNG_SG_II = "orng.sg.ii";
+    public static final String RED_SG_II = "red_.sg.ii";
+    public static final String BLUE_SG_I = "blue.sg.i ";
+    public static final String LTBL_SG_I = "ltbl.sg.i ";
+    public static final String WHIT_SG_I = "whit.sg.i ";
+    public static final String PYEL_SG_I = "pyel.sg.i ";
+    public static final String YELO_SG_I = "yelo.sg.i ";
+    public static final String ORNG_SG_I = "orng.sg.i ";
+    public static final String RED__SG_I = "red_.sg.i ";
+    public static final String BLUE_GI_II = "blue.gi.ii";
+    public static final String LTBL_GI_II = "ltbl.gi.ii";
+    public static final String WHIT_GI_II = "whit.gi.ii";
+    public static final String PYEL_GI_II = "pyel.gi.ii";
+    public static final String YELO_GI_II = "yelo.gi.ii";
+    public static final String ORNG_GI_II = "orng.gi.ii";
+    public static final String RED__GI_II = "red_.gi.ii";
+    public static final String BLUE_GI_I = "blue.gi.i ";
+    public static final String LTBL_GI_I = "ltbl.gi.i ";
+    public static final String WHIT_GI_I = "whit.gi.i ";
+    public static final String PYEL_GI_I = "pyel.gi.i ";
+    public static final String YELO_GI_I = "yelo.gi.i ";
+    public static final String ORNG_GI_I = "orng.gi.i ";
+    public static final String RED__GI_I = "red_.gi.i ";
+    public static final String BLUE_SUBGI = "blue.subgi";
+    public static final String LTBL_SUBGI = "ltbl.subgi";
+    public static final String WHIT_SUBGI = "whit.subgi";
+    public static final String PYEL_SUBGI = "pyel.subgi";
+    public static final String YELO_SUBGI = "yelo.subgi";
+    public static final String ORNG_SUBGI = "orng.subgi";
+    public static final String RED__SUBGI = "red_.subgi";
+    public static final String BLUE_MAINS = "blue.mains";
+    public static final String LTBL_MAINS = "ltbl.mains";
+    public static final String WHIT_MAINS = "whit.mains";
+    public static final String PYEL_MAINS = "pyel.mains";
+    public static final String YELO_MAINS = "yelo.mains";
+    public static final String ORNG_MAINS = "orng.mains";
+    public static final String RED__MAINS = "red_.mains";
+    public static final String BLUE_SUBDW = "blue.subdw";
+    public static final String LTBL_SUBDW = "ltbl.subdw";
+    public static final String WHIT_SUBDW = "whit.subdw";
     
+                  
     public static final String [] starcolor={
     	BLUE_SG_II,
     	LTBL_SG_II,
     	WHIT_SG_II,
-                                       "pyel.sg.ii",
-                                       "yelo.sg.ii",
-                                       "orng.sg.ii",
-                                       "red_.sg.ii",
-                                       "blue.sg.i ",
-                                       "ltbl.sg.i ",
-                                       "whit.sg.i ",
-                                       "pyel.sg.i ",
-                                       "yelo.sg.i ",
-                                       "orng.sg.i ",
-                                       "red_.sg.i ",
-                                       "blue.gi.ii",
-                                       "ltbl.gi.ii",
-                                       "whit.gi.ii",
-                                       "pyel.gi.ii",
-                                       "yelo.gi.ii",
-                                       "orng.gi.ii",
-                                       "red_.gi.ii",
-                                       "blue.gi.i ",
-                                       "ltbl.gi.i ",
-                                       "whit.gi.i ",
-                                       "pyel.gi.i ",
-                                       "yelo.gi.i ",
-                                       "orng.gi.i ",
-                                       "red_.gi.i ",
-                                       "blue.subgi",
-                                       "ltbl.subgi",
-                                       "whit.subgi",
-                                       "pyel.subgi",
-                                       "yelo.subgi",
-                                       "orng.subgi",
-                                       "red_.subgi",
-                                       "blue.mains",
-                                       "ltbl.mains",
-                                       "whit.mains",
-                                       "pyel.mains",
-                                       "yelo.mains",
-                                       "orng.mains",
-                                       "red_.mains",
-                                       "blue.subdw",
-                                       "ltbl.subdw",
-                                       "whit.subdw",
+    	PYEL_SG_II,
+    	YELO_SG_II,
+    	ORNG_SG_II,
+    	RED_SG_II,
+    	BLUE_SG_I,
+    	LTBL_SG_I,
+    	WHIT_SG_I,
+    	PYEL_SG_I,
+    	YELO_SG_I,
+    	ORNG_SG_I,
+    	RED__SG_I,
+    	BLUE_GI_II,
+    	LTBL_GI_II,
+    	WHIT_GI_II,
+    	PYEL_GI_II,
+    	YELO_GI_II,
+    	ORNG_GI_II,
+    	RED__GI_II,
+    	BLUE_GI_I,
+    	LTBL_GI_I,
+    	WHIT_GI_I,
+    	PYEL_GI_I,
+    	YELO_GI_I,
+    	ORNG_GI_I,
+    	RED__GI_I,
+    	BLUE_SUBGI,
+    	LTBL_SUBGI,
+    	WHIT_SUBGI,
+    	PYEL_SUBGI,
+    	YELO_SUBGI,
+    	ORNG_SUBGI,
+    	RED__SUBGI,
+    	BLUE_MAINS,
+    	LTBL_MAINS,
+    	WHIT_MAINS,
+    	PYEL_MAINS,
+    	YELO_MAINS,
+    	ORNG_MAINS,
+    	RED__MAINS,
+    	BLUE_SUBDW,
+    	LTBL_SUBDW,
+    	WHIT_SUBDW,
                                        "pyel.subdw",
                                        "yelo.subdw",
                                        "orng.subdw",
