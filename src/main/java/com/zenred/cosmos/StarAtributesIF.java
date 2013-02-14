@@ -233,7 +233,18 @@ public interface StarAtributesIF {
     public static final String BLUE_SUBDW = "blue.subdw";
     public static final String LTBL_SUBDW = "ltbl.subdw";
     public static final String WHIT_SUBDW = "whit.subdw";
-    
+    public static final String PYEL_SUBDW = "pyel.subdw";
+    public static final String YELO_SUBDW = "yelo.subdw";
+    public static final String ORNG_SUBDW = "orng.subdw";
+    public static final String RED__SUBDW = "red_.subdw";
+    public static final String BLUE_DWARF = "blue.dwarf";
+    public static final String LTBL_DWARF = "ltbl.dwarf";
+    public static final String WHIT_DWARF = "whit.dwarf";
+    public static final String PYEL_DWARF = "pyel.dwarf";
+    public static final String YELO_DWARF = "yelo.dwarf";
+    public static final String ORNG_DWARF = "orng.dwarf";
+    public static final String RED__DWARF = "red_.dwarf";
+        
                   
     public static final String [] starcolor={
     	BLUE_SG_II,
@@ -281,17 +292,17 @@ public interface StarAtributesIF {
     	BLUE_SUBDW,
     	LTBL_SUBDW,
     	WHIT_SUBDW,
-                                       "pyel.subdw",
-                                       "yelo.subdw",
-                                       "orng.subdw",
-                                       "red_.subdw",
-                                       "blue.dwarf",
-                                       "ltbl.dwarf",
-                                       "whit.dwarf",
-                                       "pyel.dwarf",
-                                       "yelo.dwarf",
-                                       "orng.dwarf",
-                                       "red_.dwarf"};
+    	PYEL_SUBDW,
+    	YELO_SUBDW,
+    	ORNG_SUBDW,
+    	RED__SUBDW,
+    	LTBL_DWARF,
+    	LTBL_DWARF,
+    	WHIT_DWARF,
+    	PYEL_DWARF,
+    	YELO_DWARF,
+    	ORNG_DWARF,
+    	RED__DWARF};
     
     /*    */
     /* masterstartypeindex   */
