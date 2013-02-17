@@ -244,7 +244,9 @@ public interface StarAtributesIF {
     public static final String YELO_DWARF = "yelo.dwarf";
     public static final String ORNG_DWARF = "orng.dwarf";
     public static final String RED__DWARF = "red_.dwarf";
-        
+    public static final String PURPLE_RED = "purple_red";
+    public static final String BROWN_SUBS = "brown_subs";  
+    public static final String DRKBRN_SDW = "drkbrn_sdw";
                   
     public static final String [] starcolor={
     	BLUE_SG_II,
@@ -296,7 +298,7 @@ public interface StarAtributesIF {
     	YELO_SUBDW,
     	ORNG_SUBDW,
     	RED__SUBDW,
-    	LTBL_DWARF,
+    	BLUE_DWARF,
     	LTBL_DWARF,
     	WHIT_DWARF,
     	PYEL_DWARF,

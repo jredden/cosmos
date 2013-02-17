@@ -3,6 +3,11 @@ package com.zenred.service;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 import com.zenred.cosmos.Atmosphere;
 import com.zenred.cosmos.StarAtributesIF;
@@ -32,7 +37,131 @@ public class GenerateAtmosphere implements StarAtributesIF{
 	
 	private AtmosphereDTO atmosphereDTO;
 	private String effects; // like frozen, internally emitted ...
+	
+	
 
+	
+	static {
+		Map<String, List<StarToChemicalProfile>> atmosphereProfileMap = new HashMap<String, List<StarToChemicalProfile>>();
+		
+		List<StarToChemicalProfile> BLUE_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__SG_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__GI_II_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__GI_I_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__SUBGI_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__MAINS_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__SUBDW_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> BLUE_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> LTBL_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> WHIT_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PYEL_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> YELO_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> ORNG_DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> RED__DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();	
+		List<StarToChemicalProfile> PURPLE_RED_TypeProfile = new ArrayList<StarToChemicalProfile>();
+		List<StarToChemicalProfile> BROWN_SUBS_TypeProfile = new ArrayList<StarToChemicalProfile>();
+	
+		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
+		
+		StarToChemicalProfile starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
+		starToChemicalProfile.setUltraVioletReducingScale(66.0);  // for this one only
+		starToChemicalProfile.setWeightDuringAnalysis(3.0); // high rates more
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+		
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Carbon);
+		starToChemicalProfile.setUltraVioletReducingScale(47.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(13.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
+		starToChemicalProfile.setUltraVioletReducingScale(4.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(66.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
+		starToChemicalProfile.setUltraVioletReducingScale(1.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(98.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Neon);
+		starToChemicalProfile.setUltraVioletReducingScale(52.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(2.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Nitrogen);
+		starToChemicalProfile.setUltraVioletReducingScale(6.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(86.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Oxygen);
+		starToChemicalProfile.setUltraVioletReducingScale(20.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(12.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Silicon);
+		starToChemicalProfile.setUltraVioletReducingScale(34.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(12.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		starToChemicalProfile = new StarToChemicalProfile();
+		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
+		starToChemicalProfile.setUltraVioletReducingScale(33.0);  
+		starToChemicalProfile.setWeightDuringAnalysis(1.0);		
+		BLUE_SG_II_TypeProfile.add(starToChemicalProfile);
+
+		atmosphereProfileMap.put(BLUE_SG_II, BLUE_SG_II_TypeProfile);
+		}
+	
 	public AtmosphereDTO genAtmosphere(double star_luminosity,
 			double distance_primary_au_s, double planet_radius,
 			String star_color_type) {
