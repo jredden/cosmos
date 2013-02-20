@@ -194,7 +194,7 @@ public interface StarAtributesIF {
     public static final String PYEL_SG_II = "pyel.sg.ii";
     public static final String YELO_SG_II = "yelo.sg.ii";
     public static final String ORNG_SG_II = "orng.sg.ii";
-    public static final String RED_SG_II = "red_.sg.ii";
+    public static final String RED__SG_II = "red_.sg.ii";
     public static final String BLUE_SG_I = "blue.sg.i ";
     public static final String LTBL_SG_I = "ltbl.sg.i ";
     public static final String WHIT_SG_I = "whit.sg.i ";
@@ -255,7 +255,7 @@ public interface StarAtributesIF {
     	PYEL_SG_II,
     	YELO_SG_II,
     	ORNG_SG_II,
-    	RED_SG_II,
+    	RED__SG_II,
     	BLUE_SG_I,
     	LTBL_SG_I,
     	WHIT_SG_I,
