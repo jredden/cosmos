@@ -8,11 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zenred.cosmos.Atmosphere;
-import com.zenred.cosmos.StarAtributesIF;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.drools.RuleBase;
 import org.drools.RuleBaseFactory;
 import org.drools.StatefulSession;
@@ -21,6 +16,10 @@ import org.drools.compiler.PackageBuilder;
 import org.drools.event.DebugAgendaEventListener;
 import org.drools.event.DebugWorkingMemoryEventListener;
 import org.drools.rule.Package;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.zenred.cosmos.StarAtributesIF;
 
 public class GenerateAtmosphere implements StarAtributesIF {
 
@@ -36,7 +35,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	private AtmosphereDTO atmosphereDTO;
 	private String effects; // like frozen, internally emitted ...
 
-	static {
+	
 		Map<String, List<StarToChemicalProfile>> atmosphereProfileMap = new HashMap<String, List<StarToChemicalProfile>>();
 
 		List<StarToChemicalProfile> BLUE_SG_II_TypeProfile = new ArrayList<StarToChemicalProfile>();
@@ -99,7 +98,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		List<StarToChemicalProfile> BROWN_SUBS_TypeProfile = new ArrayList<StarToChemicalProfile>();
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		public GenerateAtmosphere(){
 		StarToChemicalProfile starToChemicalProfile = new StarToChemicalProfile();
 		
 		// BLUE_SG_II
@@ -3765,10 +3764,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(BROWN_SUBS,BROWN_SUBS_TypeProfile);
-
-	}
-
-	
+		}
+		
 	public AtmosphereDTO genAtmosphere(double star_luminosity,
 			double distance_primary_au_s, double planet_radius,
 			String star_color_type) {
@@ -3794,7 +3791,34 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		if (builder.hasErrors()) {
 			logger.error(builder.getErrors().toString());
 			String _fail = "Unable to compile \"" + ruleFile + "\".";
+			try {
+				throw new AtmosphereGenException(_fail);
+			} catch (AtmosphereGenException e0) {
+				e0.printStackTrace();
+			}
 		}
+
+		RuleBase ruleBase = RuleBaseFactory.newRuleBase();
+		Package pkg = builder.getPackage();
+		
+		try {
+			ruleBase.addPackage(pkg);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			try {
+				throw new AtmosphereGenException(
+						"Could not load rules file", e1);
+			} catch (AtmosphereGenException e2) {
+				e2.printStackTrace();	// bugger ...
+			}
+		}
+
+		final StatefulSession session = ruleBase.newStatefulSession();
+		
+		session.addEventListener(new DebugAgendaEventListener());
+		session.addEventListener(new DebugWorkingMemoryEventListener());
+		session.insert(this);
+		session.fireAllRules();
 
 		atmosphereDTO = new AtmosphereDTO();
 		return atmosphereDTO;
@@ -3843,5 +3867,21 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	public void setEffects(String effects) {
 		this.effects = effects;
 	}
+	
+	public List<StarToChemicalProfile> getAtmosphereProfileMap(String starColor){
+		return atmosphereProfileMap.get(starColor);
+	}
 
+	public void strictDraw(List<StarToChemicalProfile> profileList){
+		logger.info("in strict {}", profileList.getClass().getName());
+	}
+	
+	public void flexDraw(List<StarToChemicalProfile> profileList){
+		logger.info("in flex {}", profileList.getClass().getName());		
+	}
+	
+	public void goofyDraw(List<StarToChemicalProfile> profileList){
+		logger.info("in goofy {}", profileList.getClass().getName());
+
+	}
 }
