@@ -19,6 +19,7 @@ import org.drools.rule.Package;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.zenred.cosmos.DrawRolls;
 import com.zenred.cosmos.StarAtributesIF;
 
 public class GenerateAtmosphere implements StarAtributesIF {
@@ -3770,6 +3771,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 			double distance_primary_au_s, double planet_radius,
 			String star_color_type) {
 
+		logger.info("start genAtmosphere");
+		
 		this.starLuminosity = star_luminosity;
 		this.distancePrimaryInAUs = distance_primary_au_s;
 		this.planetRadius = planet_radius;
@@ -3800,7 +3803,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		RuleBase ruleBase = RuleBaseFactory.newRuleBase();
 		Package pkg = builder.getPackage();
-		
+		logger.info("add package next");
 		try {
 			ruleBase.addPackage(pkg);
 		} catch (Exception e1) {
@@ -3818,6 +3821,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		session.addEventListener(new DebugAgendaEventListener());
 		session.addEventListener(new DebugWorkingMemoryEventListener());
 		session.insert(this);
+		logger.info("firing all rules");
 		session.fireAllRules();
 
 		atmosphereDTO = new AtmosphereDTO();
@@ -3883,5 +3887,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	public void goofyDraw(List<StarToChemicalProfile> profileList){
 		logger.info("in goofy {}", profileList.getClass().getName());
 
+	}
+	
+	public int drawRandom10(){
+		return DrawRolls.Instance().get_D10();		
+	}
+	
+	public int drawRandom100(){
+		return DrawRolls.Instance().getD100();
 	}
 }

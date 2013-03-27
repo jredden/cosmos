@@ -2,21 +2,21 @@
 package com.zenred.cosmos.service
 
 
+
 //list any import classes here.
 import com.zenred.service.GenerateAtmosphere;
-import com.zenred.cosmos.DrawRolls;
+
 
 //declare any global variables here
 
 
 
-
 rule "StarColorStrictPass"
+	salience 10
 	dialect "mvel"
     when $generateAtmosphere : GenerateAtmosphere()
-    	$drawRolls : DrawRolls()
         //conditions  1-6 strict, 7-9 flex, 10 goofy
-        DrawRolls(eval($drawRolls.Instance().get_D10() < 6))
+        GenerateAtmosphere(eval($generateAtmosphere.drawRandom10() < 6))
     then
         //actions
         $generateAtmosphere.strictDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
@@ -24,11 +24,11 @@ rule "StarColorStrictPass"
 end
 
 rule "StarColorFlexPass"
+	salience 20
 	dialect "mvel"
     when $generateAtmosphere : GenerateAtmosphere()
-    	$drawRolls : DrawRolls()
         //conditions  1-6 strict, 7-9 flex, 10 goofy
-        DrawRolls(eval($drawRolls.Instance().get_D10() > 5))
+        GenerateAtmosphere(eval($generateAtmosphere.drawRandom10() > 5))
     then
         //actions
         $generateAtmosphere.flexDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
@@ -36,11 +36,11 @@ rule "StarColorFlexPass"
 end
 
 rule "StarColorGoofyPass"
+	salience 30
 	dialect "mvel"
     when $generateAtmosphere : GenerateAtmosphere()
-    	$drawRolls : DrawRolls()
-        //conditions  1-6 strict, 7-9 flex, 10 goofy
-        DrawRolls(eval($drawRolls.Instance().get_D10() > 9))
+       //conditions  1-6 strict, 7-9 flex, 10 goofy
+        GenerateAtmosphere(eval($generateAtmosphere.drawRandom10() > 9))
     then
         //actions
         $generateAtmosphere.goofyDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
