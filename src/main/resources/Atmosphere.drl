@@ -9,8 +9,6 @@ import com.zenred.service.GenerateAtmosphere;
 
 //declare any global variables here
 
-
-
 rule "StarColorStrictPass"
 	salience 10
 	dialect "mvel"
@@ -46,3 +44,4 @@ rule "StarColorGoofyPass"
         $generateAtmosphere.goofyDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
 
 end
+

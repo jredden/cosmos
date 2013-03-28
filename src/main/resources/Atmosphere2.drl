@@ -1,0 +1,22 @@
+//created on: Jan 27, 2013
+package com.zenred.cosmos.service
+
+
+
+//list any import classes here.
+import com.zenred.service.GenerateAtmosphere;
+
+
+//declare any global variables here
+
+rule "Default"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isDefaultState))
+    then
+        //actions
+        $generateAtmosphere.strictDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
+
+end

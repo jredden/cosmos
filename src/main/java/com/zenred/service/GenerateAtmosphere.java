@@ -26,12 +26,18 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 	Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
 	private String ruleFile;
+	private String ruleFile2;
 	private RuleBase ruleBase;
 	private Reader source;
+	private RuleBase ruleBase2;
+	private Reader source2;
 	private Double starLuminosity;
 	private Double distancePrimaryInAUs;
 	private Double planetRadius;
 	private String colorType;
+	private boolean strict;
+	private boolean flexible;
+	private boolean goofy;
 
 	private AtmosphereDTO atmosphereDTO;
 	private String effects; // like frozen, internally emitted ...
@@ -3765,6 +3771,10 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(BROWN_SUBS,BROWN_SUBS_TypeProfile);
+		
+		strict = false;
+		flexible = false;
+		goofy = false;
 		}
 		
 	public AtmosphereDTO genAtmosphere(double star_luminosity,
@@ -3824,12 +3834,61 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		logger.info("firing all rules");
 		session.fireAllRules();
 
+		if (ruleBase2 == null) {
+			source2 = new InputStreamReader(
+					GenerateAtmosphere.class.getResourceAsStream((ruleFile2)));
+		}
+
+		PackageBuilder builder2 = new PackageBuilder();
+		try {
+			builder2.addPackageFromDrl(source2);
+		} catch (DroolsParserException dpe) {
+			dpe.printStackTrace();
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
+		if (builder.hasErrors()) {
+			logger.error(builder.getErrors().toString());
+			String _fail = "Unable to compile \"" + ruleFile + "\".";
+			try {
+				throw new AtmosphereGenException(_fail);
+			} catch (AtmosphereGenException e0) {
+				e0.printStackTrace();
+			}
+		}
+
+		RuleBase ruleBase2 = RuleBaseFactory.newRuleBase();
+		Package pkg2 = builder2.getPackage();
+		logger.info("add package next 2");
+		try {
+			ruleBase2.addPackage(pkg2);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			try {
+				throw new AtmosphereGenException(
+						"Could not load rules file", e1);
+			} catch (AtmosphereGenException e2) {
+				e2.printStackTrace();	// bugger ...
+			}
+		}
+
+		final StatefulSession session2 = ruleBase2.newStatefulSession();
+		
+		session2.addEventListener(new DebugAgendaEventListener());
+		session2.addEventListener(new DebugWorkingMemoryEventListener());
+		session2.insert(this);
+		logger.info("firing all rules 2 ");
+		session2.fireAllRules();
+
 		atmosphereDTO = new AtmosphereDTO();
 		return atmosphereDTO;
 	}
 
 	public void setRuleFile(String ruleFile) {
 		this.ruleFile = ruleFile;
+	}
+	public void setRuleFile2(String ruleFile2) {
+		this.ruleFile2 = ruleFile2;
 	}
 
 	public Double getStarLuminosity() {
@@ -3877,16 +3936,27 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 
 	public void strictDraw(List<StarToChemicalProfile> profileList){
-		logger.info("in strict {}", profileList.getClass().getName());
+		logger.info("in strict {} ", profileList.getClass().getName());
+		strict = true;
 	}
 	
 	public void flexDraw(List<StarToChemicalProfile> profileList){
-		logger.info("in flex {}", profileList.getClass().getName());		
+		logger.info("in flex {} ", profileList.getClass().getName());
+		flexible = true;
 	}
 	
 	public void goofyDraw(List<StarToChemicalProfile> profileList){
-		logger.info("in goofy {}", profileList.getClass().getName());
-
+		logger.info("in goofy {} ", profileList.getClass().getName());
+		goofy = true;
+	}
+	
+	public Boolean isDefaultState(){
+		logger.info("test default");
+		if(!strict && !flexible && !goofy){
+			logger.info("default draw");
+			return Boolean.TRUE;
+		}
+		return Boolean.FALSE;
 	}
 	
 	public int drawRandom10(){
@@ -3895,5 +3965,328 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	
 	public int drawRandom100(){
 		return DrawRolls.Instance().getD100();
+	}
+
+	public void setLogger(Logger logger) {
+		this.logger = logger;
+	}
+
+	public void setRuleBase(RuleBase ruleBase) {
+		this.ruleBase = ruleBase;
+	}
+
+	public void setSource(Reader source) {
+		this.source = source;
+	}
+
+	public void setStrict(boolean strict) {
+		this.strict = strict;
+	}
+
+	public void setFlexible(boolean flexible) {
+		this.flexible = flexible;
+	}
+
+	public void setGoofy(boolean goofy) {
+		this.goofy = goofy;
+	}
+
+	public void setAtmosphereDTO(AtmosphereDTO atmosphereDTO) {
+		this.atmosphereDTO = atmosphereDTO;
+	}
+
+	public void setAtmosphereProfileMap(
+			Map<String, List<StarToChemicalProfile>> atmosphereProfileMap) {
+		this.atmosphereProfileMap = atmosphereProfileMap;
+	}
+
+	public void setBLUE_SG_II_TypeProfile(
+			List<StarToChemicalProfile> bLUE_SG_II_TypeProfile) {
+		BLUE_SG_II_TypeProfile = bLUE_SG_II_TypeProfile;
+	}
+
+	public void setLTBL_SG_II_TypeProfile(
+			List<StarToChemicalProfile> lTBL_SG_II_TypeProfile) {
+		LTBL_SG_II_TypeProfile = lTBL_SG_II_TypeProfile;
+	}
+
+	public void setWHIT_SG_II_TypeProfile(
+			List<StarToChemicalProfile> wHIT_SG_II_TypeProfile) {
+		WHIT_SG_II_TypeProfile = wHIT_SG_II_TypeProfile;
+	}
+
+	public void setPYEL_SG_II_TypeProfile(
+			List<StarToChemicalProfile> pYEL_SG_II_TypeProfile) {
+		PYEL_SG_II_TypeProfile = pYEL_SG_II_TypeProfile;
+	}
+
+	public void setYELO_SG_II_TypeProfile(
+			List<StarToChemicalProfile> yELO_SG_II_TypeProfile) {
+		YELO_SG_II_TypeProfile = yELO_SG_II_TypeProfile;
+	}
+
+	public void setORNG_SG_II_TypeProfile(
+			List<StarToChemicalProfile> oRNG_SG_II_TypeProfile) {
+		ORNG_SG_II_TypeProfile = oRNG_SG_II_TypeProfile;
+	}
+
+	public void setRED__SG_II_TypeProfile(
+			List<StarToChemicalProfile> rED__SG_II_TypeProfile) {
+		RED__SG_II_TypeProfile = rED__SG_II_TypeProfile;
+	}
+
+	public void setBLUE_SG_I_TypeProfile(
+			List<StarToChemicalProfile> bLUE_SG_I_TypeProfile) {
+		BLUE_SG_I_TypeProfile = bLUE_SG_I_TypeProfile;
+	}
+
+	public void setLTBL_SG_I_TypeProfile(
+			List<StarToChemicalProfile> lTBL_SG_I_TypeProfile) {
+		LTBL_SG_I_TypeProfile = lTBL_SG_I_TypeProfile;
+	}
+
+	public void setWHIT_SG_I_TypeProfile(
+			List<StarToChemicalProfile> wHIT_SG_I_TypeProfile) {
+		WHIT_SG_I_TypeProfile = wHIT_SG_I_TypeProfile;
+	}
+
+	public void setPYEL_SG_I_TypeProfile(
+			List<StarToChemicalProfile> pYEL_SG_I_TypeProfile) {
+		PYEL_SG_I_TypeProfile = pYEL_SG_I_TypeProfile;
+	}
+
+	public void setYELO_SG_I_TypeProfile(
+			List<StarToChemicalProfile> yELO_SG_I_TypeProfile) {
+		YELO_SG_I_TypeProfile = yELO_SG_I_TypeProfile;
+	}
+
+	public void setORNG_SG_I_TypeProfile(
+			List<StarToChemicalProfile> oRNG_SG_I_TypeProfile) {
+		ORNG_SG_I_TypeProfile = oRNG_SG_I_TypeProfile;
+	}
+
+	public void setRED__SG_I_TypeProfile(
+			List<StarToChemicalProfile> rED__SG_I_TypeProfile) {
+		RED__SG_I_TypeProfile = rED__SG_I_TypeProfile;
+	}
+
+	public void setBLUE_GI_II_TypeProfile(
+			List<StarToChemicalProfile> bLUE_GI_II_TypeProfile) {
+		BLUE_GI_II_TypeProfile = bLUE_GI_II_TypeProfile;
+	}
+
+	public void setLTBL_GI_II_TypeProfile(
+			List<StarToChemicalProfile> lTBL_GI_II_TypeProfile) {
+		LTBL_GI_II_TypeProfile = lTBL_GI_II_TypeProfile;
+	}
+
+	public void setWHIT_GI_II_TypeProfile(
+			List<StarToChemicalProfile> wHIT_GI_II_TypeProfile) {
+		WHIT_GI_II_TypeProfile = wHIT_GI_II_TypeProfile;
+	}
+
+	public void setPYEL_GI_II_TypeProfile(
+			List<StarToChemicalProfile> pYEL_GI_II_TypeProfile) {
+		PYEL_GI_II_TypeProfile = pYEL_GI_II_TypeProfile;
+	}
+
+	public void setYELO_GI_II_TypeProfile(
+			List<StarToChemicalProfile> yELO_GI_II_TypeProfile) {
+		YELO_GI_II_TypeProfile = yELO_GI_II_TypeProfile;
+	}
+
+	public void setORNG_GI_II_TypeProfile(
+			List<StarToChemicalProfile> oRNG_GI_II_TypeProfile) {
+		ORNG_GI_II_TypeProfile = oRNG_GI_II_TypeProfile;
+	}
+
+	public void setRED__GI_II_TypeProfile(
+			List<StarToChemicalProfile> rED__GI_II_TypeProfile) {
+		RED__GI_II_TypeProfile = rED__GI_II_TypeProfile;
+	}
+
+	public void setBLUE_GI_I_TypeProfile(
+			List<StarToChemicalProfile> bLUE_GI_I_TypeProfile) {
+		BLUE_GI_I_TypeProfile = bLUE_GI_I_TypeProfile;
+	}
+
+	public void setLTBL_GI_I_TypeProfile(
+			List<StarToChemicalProfile> lTBL_GI_I_TypeProfile) {
+		LTBL_GI_I_TypeProfile = lTBL_GI_I_TypeProfile;
+	}
+
+	public void setWHIT_GI_I_TypeProfile(
+			List<StarToChemicalProfile> wHIT_GI_I_TypeProfile) {
+		WHIT_GI_I_TypeProfile = wHIT_GI_I_TypeProfile;
+	}
+
+	public void setPYEL_GI_I_TypeProfile(
+			List<StarToChemicalProfile> pYEL_GI_I_TypeProfile) {
+		PYEL_GI_I_TypeProfile = pYEL_GI_I_TypeProfile;
+	}
+
+	public void setYELO_GI_I_TypeProfile(
+			List<StarToChemicalProfile> yELO_GI_I_TypeProfile) {
+		YELO_GI_I_TypeProfile = yELO_GI_I_TypeProfile;
+	}
+
+	public void setORNG_GI_I_TypeProfile(
+			List<StarToChemicalProfile> oRNG_GI_I_TypeProfile) {
+		ORNG_GI_I_TypeProfile = oRNG_GI_I_TypeProfile;
+	}
+
+	public void setRED__GI_I_TypeProfile(
+			List<StarToChemicalProfile> rED__GI_I_TypeProfile) {
+		RED__GI_I_TypeProfile = rED__GI_I_TypeProfile;
+	}
+
+	public void setBLUE_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> bLUE_SUBGI_TypeProfile) {
+		BLUE_SUBGI_TypeProfile = bLUE_SUBGI_TypeProfile;
+	}
+
+	public void setLTBL_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> lTBL_SUBGI_TypeProfile) {
+		LTBL_SUBGI_TypeProfile = lTBL_SUBGI_TypeProfile;
+	}
+
+	public void setWHIT_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> wHIT_SUBGI_TypeProfile) {
+		WHIT_SUBGI_TypeProfile = wHIT_SUBGI_TypeProfile;
+	}
+
+	public void setPYEL_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> pYEL_SUBGI_TypeProfile) {
+		PYEL_SUBGI_TypeProfile = pYEL_SUBGI_TypeProfile;
+	}
+
+	public void setYELO_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> yELO_SUBGI_TypeProfile) {
+		YELO_SUBGI_TypeProfile = yELO_SUBGI_TypeProfile;
+	}
+
+	public void setORNG_SUBGI_TypeProfile(
+			List<StarToChemicalProfile> oRNG_SUBGI_TypeProfile) {
+		ORNG_SUBGI_TypeProfile = oRNG_SUBGI_TypeProfile;
+	}
+
+	public void setRED__SUBGI_TypeProfile(
+			List<StarToChemicalProfile> rED__SUBGI_TypeProfile) {
+		RED__SUBGI_TypeProfile = rED__SUBGI_TypeProfile;
+	}
+
+	public void setBLUE_MAINS_TypeProfile(
+			List<StarToChemicalProfile> bLUE_MAINS_TypeProfile) {
+		BLUE_MAINS_TypeProfile = bLUE_MAINS_TypeProfile;
+	}
+
+	public void setLTBL_MAINS_TypeProfile(
+			List<StarToChemicalProfile> lTBL_MAINS_TypeProfile) {
+		LTBL_MAINS_TypeProfile = lTBL_MAINS_TypeProfile;
+	}
+
+	public void setWHIT_MAINS_TypeProfile(
+			List<StarToChemicalProfile> wHIT_MAINS_TypeProfile) {
+		WHIT_MAINS_TypeProfile = wHIT_MAINS_TypeProfile;
+	}
+
+	public void setPYEL_MAINS_TypeProfile(
+			List<StarToChemicalProfile> pYEL_MAINS_TypeProfile) {
+		PYEL_MAINS_TypeProfile = pYEL_MAINS_TypeProfile;
+	}
+
+	public void setYELO_MAINS_TypeProfile(
+			List<StarToChemicalProfile> yELO_MAINS_TypeProfile) {
+		YELO_MAINS_TypeProfile = yELO_MAINS_TypeProfile;
+	}
+
+	public void setORNG_MAINS_TypeProfile(
+			List<StarToChemicalProfile> oRNG_MAINS_TypeProfile) {
+		ORNG_MAINS_TypeProfile = oRNG_MAINS_TypeProfile;
+	}
+
+	public void setRED__MAINS_TypeProfile(
+			List<StarToChemicalProfile> rED__MAINS_TypeProfile) {
+		RED__MAINS_TypeProfile = rED__MAINS_TypeProfile;
+	}
+
+	public void setBLUE_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> bLUE_SUBDW_TypeProfile) {
+		BLUE_SUBDW_TypeProfile = bLUE_SUBDW_TypeProfile;
+	}
+
+	public void setLTBL_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> lTBL_SUBDW_TypeProfile) {
+		LTBL_SUBDW_TypeProfile = lTBL_SUBDW_TypeProfile;
+	}
+
+	public void setWHIT_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> wHIT_SUBDW_TypeProfile) {
+		WHIT_SUBDW_TypeProfile = wHIT_SUBDW_TypeProfile;
+	}
+
+	public void setPYEL_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> pYEL_SUBDW_TypeProfile) {
+		PYEL_SUBDW_TypeProfile = pYEL_SUBDW_TypeProfile;
+	}
+
+	public void setYELO_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> yELO_SUBDW_TypeProfile) {
+		YELO_SUBDW_TypeProfile = yELO_SUBDW_TypeProfile;
+	}
+
+	public void setORNG_SUBDW_TypeProfile(
+			List<StarToChemicalProfile> oRNG_SUBDW_TypeProfile) {
+		ORNG_SUBDW_TypeProfile = oRNG_SUBDW_TypeProfile;
+	}
+
+	public void setRED__SUBDW_TypeProfile(
+			List<StarToChemicalProfile> rED__SUBDW_TypeProfile) {
+		RED__SUBDW_TypeProfile = rED__SUBDW_TypeProfile;
+	}
+
+	public void setBLUE_DWARF_TypeProfile(
+			List<StarToChemicalProfile> bLUE_DWARF_TypeProfile) {
+		BLUE_DWARF_TypeProfile = bLUE_DWARF_TypeProfile;
+	}
+
+	public void setLTBL_DWARF_TypeProfile(
+			List<StarToChemicalProfile> lTBL_DWARF_TypeProfile) {
+		LTBL_DWARF_TypeProfile = lTBL_DWARF_TypeProfile;
+	}
+
+	public void setWHIT_DWARF_TypeProfile(
+			List<StarToChemicalProfile> wHIT_DWARF_TypeProfile) {
+		WHIT_DWARF_TypeProfile = wHIT_DWARF_TypeProfile;
+	}
+
+	public void setPYEL_DWARF_TypeProfile(
+			List<StarToChemicalProfile> pYEL_DWARF_TypeProfile) {
+		PYEL_DWARF_TypeProfile = pYEL_DWARF_TypeProfile;
+	}
+
+	public void setYELO_DWARF_TypeProfile(
+			List<StarToChemicalProfile> yELO_DWARF_TypeProfile) {
+		YELO_DWARF_TypeProfile = yELO_DWARF_TypeProfile;
+	}
+
+	public void setORNG_DWARF_TypeProfile(
+			List<StarToChemicalProfile> oRNG_DWARF_TypeProfile) {
+		ORNG_DWARF_TypeProfile = oRNG_DWARF_TypeProfile;
+	}
+
+	public void setRED__DWARF_TypeProfile(
+			List<StarToChemicalProfile> rED__DWARF_TypeProfile) {
+		RED__DWARF_TypeProfile = rED__DWARF_TypeProfile;
+	}
+
+	public void setPURPLE_RED_TypeProfile(
+			List<StarToChemicalProfile> pURPLE_RED_TypeProfile) {
+		PURPLE_RED_TypeProfile = pURPLE_RED_TypeProfile;
+	}
+
+	public void setBROWN_SUBS_TypeProfile(
+			List<StarToChemicalProfile> bROWN_SUBS_TypeProfile) {
+		BROWN_SUBS_TypeProfile = bROWN_SUBS_TypeProfile;
 	}
 }

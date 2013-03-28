@@ -119,5 +119,7 @@
 
 	<bean id="generateAtmosphere" lazy-init="false" class="com.zenred.service.GenerateAtmosphere">
 		<property name="ruleFile" value="/Atmosphere.drl"/>
+		<property name="ruleFile2" value="/Atmosphere2.drl"/>
 	</bean>
+
 </beans>
