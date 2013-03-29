@@ -29,8 +29,6 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	private String ruleFile2;
 	private RuleBase ruleBase;
 	private Reader source;
-	private RuleBase ruleBase2;
-	private Reader source2;
 	private Double starLuminosity;
 	private Double distancePrimaryInAUs;
 	private Double planetRadius;
@@ -41,6 +39,69 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 	private AtmosphereDTO atmosphereDTO;
 	private String effects; // like frozen, internally emitted ...
+	
+	// drools files for each type and their rules
+	static{
+		Map<String, String> drlFileMap = new HashMap<String, String>();
+		drlFileMap.put(BLUE_SG_II, "BLUE_SG_II.drl");
+		drlFileMap.put(LTBL_SG_II, "LTBL_SG_II.drl");
+		drlFileMap.put(WHIT_SG_II, "WHIT_SG_II.drl");
+		drlFileMap.put(PYEL_SG_II, "PYEL_SG_II.drl");
+		drlFileMap.put(YELO_SG_II, "YELO_SG_II.drl");
+		drlFileMap.put(ORNG_SG_II, "ORNG_SG_II.drl");
+		drlFileMap.put(RED__SG_II, "RED__SG_II.drl");
+		drlFileMap.put(BLUE_SG_I, "BLUE_SG_I.drl");
+		drlFileMap.put(LTBL_SG_I, "LTBL_SG_I.drl");
+		drlFileMap.put(WHIT_SG_I, "WHIT_SG_I.drl");
+		drlFileMap.put(PYEL_SG_I, "PYEL_SG_I.drl");
+		drlFileMap.put(YELO_SG_I, "YELO_SG_I.drl");
+		drlFileMap.put(ORNG_SG_I, "ORNG_SG_I.drl");
+		drlFileMap.put(RED__SG_I, "RED__SG_I.drl");
+		drlFileMap.put(BLUE_GI_II, "BLUE_GI_II.drl");
+		drlFileMap.put(LTBL_GI_II, "LTBL_GI_II.drl");
+		drlFileMap.put(WHIT_GI_II, "WHIT_GI_II.drl");
+		drlFileMap.put(PYEL_GI_II, "PYEL_GI_II.drl");
+		drlFileMap.put(YELO_GI_II, "YELO_GI_II.drl");
+		drlFileMap.put(ORNG_GI_II, "ORNG_GI_II.drl");
+		drlFileMap.put(RED__GI_II, "RED__GI_II.drl");
+		drlFileMap.put(BLUE_GI_I, "BLUE_GI_I.drl");
+		drlFileMap.put(LTBL_GI_I, "LTBL_GI_I.drl");
+		drlFileMap.put(WHIT_GI_I, "WHIT_GI_I.drl");
+		drlFileMap.put(PYEL_GI_I, "PYEL_GI_I.drl");
+		drlFileMap.put(YELO_GI_I, "YELO_GI_I.drl");
+		drlFileMap.put(ORNG_GI_I, "ORNG_GI_I.drl");
+		drlFileMap.put(RED__GI_I, "RED__GI_I.drl");
+		drlFileMap.put(BLUE_SUBGI, "BLUE_SUBGI.drl");
+		drlFileMap.put(LTBL_SUBGI, "LTBL_SUBGI.drl");
+		drlFileMap.put(WHIT_SUBGI, "WHIT_SUBGI.drl");
+		drlFileMap.put(PYEL_SUBGI, "PYEL_SUBGI.drl");
+		drlFileMap.put(YELO_SUBGI, "YELO_SUBGI.drl");
+		drlFileMap.put(ORNG_SUBGI, "ORNG_SUBGI.drl");
+		drlFileMap.put(RED__SUBGI, "RED__SUBGI.drl");
+		drlFileMap.put(BLUE_MAINS, "BLUE_MAINS.drl");
+		drlFileMap.put(LTBL_MAINS, "LTBL_MAINS.drl");
+		drlFileMap.put(WHIT_MAINS, "WHIT_MAINS.drl");
+		drlFileMap.put(PYEL_MAINS, "PYEL_MAINS.drl");
+		drlFileMap.put(YELO_MAINS, "YELO_MAINS.drl");
+		drlFileMap.put(ORNG_MAINS, "ORNG_MAINS.drl");
+		drlFileMap.put(RED__MAINS, "RED__MAINS.drl");
+		drlFileMap.put(BLUE_SUBDW, "BLUE_SUBDW.drl");
+		drlFileMap.put(LTBL_SUBDW, "LTBL_SUBDW.drl");
+		drlFileMap.put(WHIT_SUBDW, "WHIT_SUBDW.drl");
+		drlFileMap.put(PYEL_SUBDW, "PYEL_SUBDW.drl");
+		drlFileMap.put(YELO_SUBDW, "YELO_SUBDW.drl");
+		drlFileMap.put(ORNG_SUBDW, "ORNG_SUBDW.drl");
+		drlFileMap.put(RED__SUBDW, "RED__SUBDW.drl");
+		drlFileMap.put(BLUE_DWARF, "BLUE_DWARF.drl");
+		drlFileMap.put(LTBL_DWARF, "LTBL_DWARF.drl");
+		drlFileMap.put(WHIT_DWARF, "WHIT_DWARF.drl");
+		drlFileMap.put(PYEL_DWARF, "PYEL_DWARF.drl");
+		drlFileMap.put(YELO_DWARF, "YELO_DWARF.drl");
+		drlFileMap.put(ORNG_DWARF, "ORNG_DWARF.drl");
+		drlFileMap.put(RED__DWARF, "RED__DWARF.drl");
+		drlFileMap.put(PURPLE_RED, "PURPLE_RED.drl");
+		drlFileMap.put(BROWN_SUBS, "BROWN_SUBS.drl");		
+	}
 
 	
 		Map<String, List<StarToChemicalProfile>> atmosphereProfileMap = new HashMap<String, List<StarToChemicalProfile>>();
@@ -3788,6 +3849,19 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		this.planetRadius = planet_radius;
 		this.colorType = star_color_type;
 
+		nextRuleExecution(ruleFile);
+		nextRuleExecution(ruleFile2);
+
+		atmosphereDTO = new AtmosphereDTO();
+		return atmosphereDTO;
+	}
+
+	/**
+	 * rule files are executed in sequence
+	 * 
+	 * @param ruleFile
+	 */
+	private void nextRuleExecution(String ruleFile) {
 		if (ruleBase == null) {
 			source = new InputStreamReader(
 					GenerateAtmosphere.class.getResourceAsStream((ruleFile)));
@@ -3833,55 +3907,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		session.insert(this);
 		logger.info("firing all rules");
 		session.fireAllRules();
-
-		if (ruleBase2 == null) {
-			source2 = new InputStreamReader(
-					GenerateAtmosphere.class.getResourceAsStream((ruleFile2)));
-		}
-
-		PackageBuilder builder2 = new PackageBuilder();
-		try {
-			builder2.addPackageFromDrl(source2);
-		} catch (DroolsParserException dpe) {
-			dpe.printStackTrace();
-		} catch (IOException ioe) {
-			ioe.printStackTrace();
-		}
-		if (builder.hasErrors()) {
-			logger.error(builder.getErrors().toString());
-			String _fail = "Unable to compile \"" + ruleFile + "\".";
-			try {
-				throw new AtmosphereGenException(_fail);
-			} catch (AtmosphereGenException e0) {
-				e0.printStackTrace();
-			}
-		}
-
-		RuleBase ruleBase2 = RuleBaseFactory.newRuleBase();
-		Package pkg2 = builder2.getPackage();
-		logger.info("add package next 2");
-		try {
-			ruleBase2.addPackage(pkg2);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-			try {
-				throw new AtmosphereGenException(
-						"Could not load rules file", e1);
-			} catch (AtmosphereGenException e2) {
-				e2.printStackTrace();	// bugger ...
-			}
-		}
-
-		final StatefulSession session2 = ruleBase2.newStatefulSession();
 		
-		session2.addEventListener(new DebugAgendaEventListener());
-		session2.addEventListener(new DebugWorkingMemoryEventListener());
-		session2.insert(this);
-		logger.info("firing all rules 2 ");
-		session2.fireAllRules();
-
-		atmosphereDTO = new AtmosphereDTO();
-		return atmosphereDTO;
 	}
 
 	public void setRuleFile(String ruleFile) {
@@ -3960,7 +3986,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 	
 	public int drawRandom10(){
-		return DrawRolls.Instance().get_D10();		
+		int draw = DrawRolls.Instance().get_D10();
+		logger.info("D10 draw: {}", draw);
+		return draw;		
 	}
 	
 	public int drawRandom100(){

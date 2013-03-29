@@ -98,13 +98,13 @@ public class DrawRolls
     /**
      * numbers between 1 and n
      */
-    public int get_D3(){return getDraw(2.0) + 1;}
+    public int get_D3(){return getDraw(3.0) + 1;}
     public int get_D2(){return getCoinFlip() + 1;}
-    public int get_D4(){return getDraw(3.0) + 1;}
-    public int get_D6(){return getDraw(5.0) + 1;}
-    public int get_D8(){return getDraw(7.0) + 1;}
-    public int get_D10(){return getDraw(9.0) + 1;}
-    public int get_D18(){return getDraw(17.0) + 1;}
+    public int get_D4(){return getDraw(4.0) + 1;}
+    public int get_D6(){return getDraw(6.0) + 1;}
+    public int get_D8(){return getDraw(8.0) + 1;}
+    public int get_D10(){return getDraw(10.0) + 1;}
+    public int get_D18(){return getDraw(18.0) + 1;}
 
 
 }
