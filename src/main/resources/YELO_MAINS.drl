@@ -14,9 +14,74 @@ rule "strict_only"
 	dialect "mvel"
     when $generateAtmosphere : GenerateAtmosphere()
         // default action if no draws
-        GenerateAtmosphere(eval($generateAtmosphere.isDefaultState))
+        GenerateAtmosphere(eval($generateAtmosphere.isStrictOnly))
     then
         //actions
-        $generateAtmosphere.strictDraw($generateAtmosphere.getAtmosphereProfileMap($generateAtmosphere.getColorType()))
+        $generateAtmosphere.genStrictOnly();
+end
 
+rule "strict_and_flexible"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isStrictAndFlexible))
+    then
+        //actions
+        $generateAtmosphere.genStrictAndFlexible();
+end
+
+rule "strict_and_goofy"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isStrictAndGoofy))
+    then
+        //actions
+        $generateAtmosphere.genStrictAndGoofy();
+end
+
+rule "all_possible"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isAllPossible))
+    then
+        //actions
+        $generateAtmosphere.genAllPossible();
+end
+
+rule "felxible_and_goofy"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isFlexibleAndGoofy))
+    then
+        //actions
+        $generateAtmosphere.genFlexibleAndGoofy();
+end
+
+rule "felxible_only"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isFlexibleOnly))
+    then
+        //actions
+        $generateAtmosphere.genFlexibleOnly();
+end
+
+rule "goofy_only"
+	salience 5
+	dialect "mvel"
+    when $generateAtmosphere : GenerateAtmosphere()
+        // default action if no draws
+        GenerateAtmosphere(eval($generateAtmosphere.isGoofyOnly))
+    then
+        //actions
+        $generateAtmosphere.genGoofyOnly();
 end

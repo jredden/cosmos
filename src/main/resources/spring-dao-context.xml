@@ -120,6 +120,7 @@
 	<bean id="generateAtmosphere" lazy-init="false" class="com.zenred.service.GenerateAtmosphere">
 		<property name="ruleFile" value="/Atmosphere.drl"/>
 		<property name="ruleFile2" value="/Atmosphere2.drl"/>
+		<property name="YELO_MAINS_drl" value="/YELO_MAINS.drl"/>
 	</bean>
 
 </beans>
