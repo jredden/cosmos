@@ -354,7 +354,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// YELO_SG_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high rates more
@@ -3902,65 +3902,6 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		flexible = false;
 		goofy = false;
 
-		drlFileMap.put(BLUE_SG_II, BLUE_SG_II_drl);
-		drlFileMap.put(LTBL_SG_II, LTBL_SG_II_drl);
-		drlFileMap.put(WHIT_SG_II, WHIT_SG_II_drl);
-		drlFileMap.put(PYEL_SG_II, PYEL_SG_II_drl);
-		drlFileMap.put(YELO_SG_II, YELO_SG_II_drl);
-		drlFileMap.put(ORNG_SG_II, ORNG_SG_II_drl);
-		drlFileMap.put(RED__SG_II, RED__SG_II_drl);
-		drlFileMap.put(BLUE_SG_I, BLUE_SG_I_drl);
-		drlFileMap.put(LTBL_SG_I, LTBL_SG_I_drl);
-		drlFileMap.put(WHIT_SG_I, WHIT_SG_I_drl);
-		drlFileMap.put(PYEL_SG_I, PYEL_SG_I_drl);
-		drlFileMap.put(YELO_SG_I, YELO_SG_I_drl);
-		drlFileMap.put(ORNG_SG_I, ORNG_SG_I_drl);
-		drlFileMap.put(RED__SG_I, RED__SG_I_drl);
-		drlFileMap.put(BLUE_GI_II, BLUE_GI_II_drl);
-		drlFileMap.put(LTBL_GI_II, LTBL_GI_II_drl);
-		drlFileMap.put(WHIT_GI_II, WHIT_GI_II_drl);
-		drlFileMap.put(PYEL_GI_II, PYEL_GI_II_drl);
-		drlFileMap.put(YELO_GI_II, YELO_GI_II_drl);
-		drlFileMap.put(ORNG_GI_II, ORNG_GI_II_drl);
-		drlFileMap.put(RED__GI_II, RED__GI_II_drl);
-		drlFileMap.put(BLUE_GI_I, BLUE_GI_I_drl);
-		drlFileMap.put(LTBL_GI_I, LTBL_GI_I_drl);
-		drlFileMap.put(WHIT_GI_I, WHIT_GI_I_drl);
-		drlFileMap.put(PYEL_GI_I, PYEL_GI_I_drl);
-		drlFileMap.put(YELO_GI_I, YELO_GI_I_drl);
-		drlFileMap.put(ORNG_GI_I, ORNG_GI_I_drl);
-		drlFileMap.put(RED__GI_I, RED__GI_I_drl);
-		drlFileMap.put(BLUE_SUBGI, BLUE_SUBGI_drl);
-		drlFileMap.put(LTBL_SUBGI, LTBL_SUBGI_drl);
-		drlFileMap.put(WHIT_SUBGI, WHIT_SUBGI_drl);
-		drlFileMap.put(PYEL_SUBGI, PYEL_SUBGI_drl);
-		drlFileMap.put(YELO_SUBGI, YELO_SUBGI_drl);
-		drlFileMap.put(ORNG_SUBGI, ORNG_SUBGI_drl);
-		drlFileMap.put(RED__SUBGI, RED__SUBGI_drl);
-		drlFileMap.put(BLUE_MAINS, BLUE_MAINS_drl);
-		drlFileMap.put(LTBL_MAINS, LTBL_MAINS_drl);
-		drlFileMap.put(WHIT_MAINS, WHIT_MAINS_drl);
-		drlFileMap.put(PYEL_MAINS, PYEL_MAINS_drl);
-		drlFileMap.put(YELO_MAINS, YELO_MAINS_drl);
-		drlFileMap.put(ORNG_MAINS, ORNG_MAINS_drl);
-		drlFileMap.put(RED__MAINS, RED__MAINS_drl);
-		drlFileMap.put(BLUE_SUBDW, BLUE_SUBDW_drl);
-		drlFileMap.put(LTBL_SUBDW, LTBL_SUBDW_drl);
-		drlFileMap.put(WHIT_SUBDW, WHIT_SUBDW_drl);
-		drlFileMap.put(PYEL_SUBDW, PYEL_SUBDW_drl);
-		drlFileMap.put(YELO_SUBDW, YELO_SUBDW_drl);
-		drlFileMap.put(ORNG_SUBDW, ORNG_SUBDW_drl);
-		drlFileMap.put(RED__SUBDW, RED__SUBDW_drl);
-		drlFileMap.put(BLUE_DWARF, BLUE_DWARF_drl);
-		drlFileMap.put(LTBL_DWARF, LTBL_DWARF_drl);
-		drlFileMap.put(WHIT_DWARF, WHIT_DWARF_drl);
-		drlFileMap.put(PYEL_DWARF, PYEL_DWARF_drl);
-		drlFileMap.put(YELO_DWARF, YELO_DWARF_drl);
-		drlFileMap.put(ORNG_DWARF, ORNG_DWARF_drl);
-		drlFileMap.put(RED__DWARF, RED__DWARF_drl);
-		drlFileMap.put(PURPLE_RED, PURPLE_RED_drl);
-		drlFileMap.put(BROWN_SUBS, BROWN_SUBS_drl);
-
 	}
 
 	public AtmosphereDTO genAtmosphere(double star_luminosity,
@@ -3973,16 +3914,74 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		this.distancePrimaryInAUs = distance_primary_au_s;
 		this.planetRadius = planet_radius;
 		this.colorType = star_color_type;
+		
+		atmosphereDTO = new AtmosphereDTO();
+		atmosphereDTO.setAtmosphereCompenent(new ArrayList<AtmosphereComponent>());
 
 		nextRuleExecution(ruleFile);
 		nextRuleExecution(ruleFile2);
 		logger.info("star rule file: {} {}", colorType, drlFileMap.get(colorType));
 		nextRuleExecution(drlFileMap.get(colorType));
 
-		atmosphereDTO = new AtmosphereDTO();
+		
 		return atmosphereDTO;
 	}
 
+	/**
+	 * 
+	 * @param star_luminosity
+	 * @param distance_primary_au_s
+	 * @return
+	 */
+	private static double temperature(double star_luminosity,
+			double distance_primary_au_s) {
+		 double a_temperature = 295.0 * (Math.pow(star_luminosity
+				/ (distance_primary_au_s * distance_primary_au_s), .25));
+		 return a_temperature;
+	}
+
+	/**
+	 * common builder performs typical actions when generating a planetoids atmosphere
+	 */
+	private void commonBuilder() {
+		double a_temperture = temperature(starLuminosity, distancePrimaryInAUs);
+		logger.info("temperature: {} ", a_temperture);
+		List<StarToChemicalProfile> starToChemicalProfileList = atmosphereProfileMap
+				.get(colorType);
+		for (StarToChemicalProfile starToChemicalProfile : starToChemicalProfileList) {
+			Double gaseousState = starToChemicalProfile.getAtmosphereParts()
+					.getGas();
+			Double solidState = starToChemicalProfile.getAtmosphereParts()
+					.getSolid();
+			String symbol = starToChemicalProfile.getAtmosphereParts()
+					.getSymbol();
+			// logger.info("solidateState {} gaseousState {} ", solidState, gaseousState);
+			if (a_temperture > gaseousState) {
+				double draw = drawRandom100();
+				logger.info("draw {} scale {}", draw,  starToChemicalProfile
+						.getUltraVioletReducingScale());
+				
+				if (draw < starToChemicalProfile
+						.getUltraVioletReducingScale()) {
+					Double un_normalized_percent = starToChemicalProfile
+							.getWeightDuringAnalysis() * drawRandom100();
+					Double density = planetRadius * 95.0 + drawRandom10();
+					atmosphereDTO.setDensity(density);
+					AtmosphereComponent atmosphereComponent = new AtmosphereComponent();
+					atmosphereComponent.setSymbol(symbol);
+					atmosphereComponent.setUn_normalized_percent(un_normalized_percent);
+					if(a_temperture < solidState){
+						atmosphereComponent.setSolid(Boolean.TRUE);
+					}
+
+					atmosphereDTO.getAtmosphereCompenent().add(atmosphereComponent);
+					logger.info("adding {} atmosphere", atmosphereComponent);
+				}
+			}
+
+		}
+	}
+	
 	/**
 	 * rule files are executed in sequence
 	 * 
@@ -4176,22 +4175,27 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 
 	public void genStrictOnly() {
+		commonBuilder();
 		logger.info("gen strict for {} ", colorType);
 	}
 
 	public void genStrictAndFlexible() {
+		commonBuilder();
 		logger.info("gen strict and flexible for {} ", colorType);
 	}
 
 	public void genStrictAndGoofy() {
+		commonBuilder();
 		logger.info("gen strict and goofy for {} ", colorType);
 	}
 
 	public void genAllPossible() {
+		commonBuilder();
 		logger.info("gen all possible for {} ", colorType);
 	}
 
 	public void genFlexibleAndGoofy() {
+		commonBuilder();
 		logger.info("gen flexible and goofy for {} ", colorType);
 	}
 
@@ -4200,6 +4204,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 
 	public void genGoofyOnly() {
+		commonBuilder();
 		logger.info("gen goofy for {} ", colorType);
 	}
 
@@ -4212,13 +4217,300 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		this.atmosphereProfileMap = atmosphereProfileMap;
 	}
 
-	public String getYELO_MAINS_drl() {
-		return YELO_MAINS_drl;
-	}
-
 	public void setYELO_MAINS_drl(String YELO_MAINS_drl) {
 		this.YELO_MAINS_drl = YELO_MAINS_drl;
 		drlFileMap.put(YELO_MAINS, YELO_MAINS_drl);
 	}
+
+	public void setBLUE_SG_II_drl(String bLUE_SG_II_drl) {
+		this.BLUE_SG_II_drl = bLUE_SG_II_drl;
+		drlFileMap.put(BLUE_SG_II, BLUE_SG_II_drl);
+	}
+
+	public void setLTBL_SG_II_drl(String lTBL_SG_II_drl) {
+		this.LTBL_SG_II_drl = lTBL_SG_II_drl;
+		drlFileMap.put(LTBL_SG_II, LTBL_SG_II_drl);
+	}
+
+	public void setWHIT_SG_II_drl(String wHIT_SG_II_drl) {
+		this.WHIT_SG_II_drl = wHIT_SG_II_drl;
+		drlFileMap.put(WHIT_SG_II, WHIT_SG_II_drl);
+	}
+
+	public void setPYEL_SG_II_drl(String pYEL_SG_II_drl) {
+		this.PYEL_SG_II_drl = pYEL_SG_II_drl;
+		drlFileMap.put(PYEL_SG_II, PYEL_SG_II_drl);
+	}
+
+	public void setYELO_SG_II_drl(String yELO_SG_II_drl) {
+		this.YELO_SG_II_drl = yELO_SG_II_drl;
+		drlFileMap.put(YELO_SG_II, YELO_SG_II_drl);
+	}
+
+	public void setORNG_SG_II_drl(String oRNG_SG_II_drl) {
+		this.ORNG_SG_II_drl = oRNG_SG_II_drl;
+		drlFileMap.put(ORNG_SG_II, ORNG_SG_II_drl);
+	}
+
+	public void setRED__SG_II_drl(String rED__SG_II_drl) {
+		this.RED__SG_II_drl = rED__SG_II_drl;
+		drlFileMap.put(RED__SG_II, RED__SG_II_drl);
+	}
+
+	public void setBLUE_SG_I_drl(String bLUE_SG_I_drl) {
+		this.BLUE_SG_I_drl = bLUE_SG_I_drl;
+		drlFileMap.put(BLUE_SG_I, BLUE_SG_I_drl);
+	}
+
+	public void setLTBL_SG_I_drl(String lTBL_SG_I_drl) {
+		this.LTBL_SG_I_drl = lTBL_SG_I_drl;
+		drlFileMap.put(LTBL_SG_I, LTBL_SG_I_drl);
+	}
+
+	public void setWHIT_SG_I_drl(String wHIT_SG_I_drl) {
+		this.WHIT_SG_I_drl = wHIT_SG_I_drl;
+		drlFileMap.put(WHIT_SG_I, WHIT_SG_I_drl);
+	}
+
+	public void setPYEL_SG_I_drl(String pYEL_SG_I_drl) {
+		this.PYEL_SG_I_drl = pYEL_SG_I_drl;
+		drlFileMap.put(PYEL_SG_I, PYEL_SG_I_drl);
+	}
+
+	public void setYELO_SG_I_drl(String yELO_SG_I_drl) {
+		this.YELO_SG_I_drl = yELO_SG_I_drl;
+		drlFileMap.put(YELO_SG_I, YELO_SG_I_drl);
+	}
+
+	public void setORNG_SG_I_drl(String oRNG_SG_I_drl) {
+		this.ORNG_SG_I_drl = oRNG_SG_I_drl;
+		drlFileMap.put(ORNG_SG_I, ORNG_SG_I_drl);
+	}
+
+	public void setRED__SG_I_drl(String rED__SG_I_drl) {
+		this.RED__SG_I_drl = rED__SG_I_drl;
+		drlFileMap.put(RED__SG_I, RED__SG_I_drl);
+	}
+
+	public void setBLUE_GI_II_drl(String bLUE_GI_II_drl) {
+		this.BLUE_GI_II_drl = bLUE_GI_II_drl;
+		drlFileMap.put(BLUE_GI_II, BLUE_GI_II_drl);
+	}
+
+	public void setLTBL_GI_II_drl(String lTBL_GI_II_drl) {
+		this.LTBL_GI_II_drl = lTBL_GI_II_drl;
+		drlFileMap.put(LTBL_GI_II, LTBL_GI_II_drl);
+	}
+
+	public void setWHIT_GI_II_drl(String wHIT_GI_II_drl) {
+		this.WHIT_GI_II_drl = wHIT_GI_II_drl;
+		drlFileMap.put(WHIT_GI_II, WHIT_GI_II_drl);
+	}
+
+	public void setPYEL_GI_II_drl(String pYEL_GI_II_drl) {
+		this.PYEL_GI_II_drl = pYEL_GI_II_drl;
+		drlFileMap.put(PYEL_GI_II, PYEL_GI_II_drl);
+	}
+
+	public void setYELO_GI_II_drl(String yELO_GI_II_drl) {
+		this.YELO_GI_II_drl = yELO_GI_II_drl;
+		drlFileMap.put(YELO_GI_II, YELO_GI_II_drl);
+	}
+
+	public void setORNG_GI_II_drl(String oRNG_GI_II_drl) {
+		this.ORNG_GI_II_drl = oRNG_GI_II_drl;
+		drlFileMap.put(ORNG_GI_II, ORNG_GI_II_drl);
+	}
+
+	public void setRED__GI_II_drl(String rED__GI_II_drl) {
+		this.RED__GI_II_drl = rED__GI_II_drl;
+		drlFileMap.put(RED__GI_II, RED__GI_II_drl);
+	}
+
+	public void setBLUE_GI_I_drl(String bLUE_GI_I_drl) {
+		this.BLUE_GI_I_drl = bLUE_GI_I_drl;
+		drlFileMap.put(BLUE_GI_I, BLUE_GI_I_drl);
+	}
+
+	public void setLTBL_GI_I_drl(String lTBL_GI_I_drl) {
+		this.LTBL_GI_I_drl = lTBL_GI_I_drl;
+		drlFileMap.put(LTBL_GI_I, LTBL_GI_I_drl);
+	}
+
+	public void setWHIT_GI_I_drl(String wHIT_GI_I_drl) {
+		this.WHIT_GI_I_drl = wHIT_GI_I_drl;
+		drlFileMap.put(WHIT_GI_I, WHIT_GI_I_drl);
+	}
+
+	public void setPYEL_GI_I_drl(String pYEL_GI_I_drl) {
+		this.PYEL_GI_I_drl = pYEL_GI_I_drl;
+		drlFileMap.put(PYEL_GI_I, PYEL_GI_I_drl);
+	}
+
+	public void setYELO_GI_I_drl(String yELO_GI_I_drl) {
+		this.YELO_GI_I_drl = yELO_GI_I_drl;
+		drlFileMap.put(YELO_GI_I, YELO_GI_I_drl);
+	}
+
+	public void setORNG_GI_I_drl(String oRNG_GI_I_drl) {
+		this.ORNG_GI_I_drl = oRNG_GI_I_drl;
+		drlFileMap.put(ORNG_GI_I, ORNG_GI_I_drl);
+	}
+
+	public void setRED__GI_I_drl(String rED__GI_I_drl) {
+		this.RED__GI_I_drl = rED__GI_I_drl;
+		drlFileMap.put(RED__GI_I, RED__GI_I_drl);
+	}
+
+	public void setBLUE_SUBGI_drl(String bLUE_SUBGI_drl) {
+		this.BLUE_SUBGI_drl = bLUE_SUBGI_drl;
+		drlFileMap.put(BLUE_SUBGI, BLUE_SUBGI_drl);
+	}
+
+	public void setLTBL_SUBGI_drl(String lTBL_SUBGI_drl) {
+		this.LTBL_SUBGI_drl = lTBL_SUBGI_drl;
+		drlFileMap.put(LTBL_SUBGI, LTBL_SUBGI_drl);
+	}
+
+	public void setWHIT_SUBGI_drl(String wHIT_SUBGI_drl) {
+		this.WHIT_SUBGI_drl = wHIT_SUBGI_drl;
+		drlFileMap.put(WHIT_SUBGI, WHIT_SUBGI_drl);
+	}
+
+	public void setPYEL_SUBGI_drl(String pYEL_SUBGI_drl) {
+		this.PYEL_SUBGI_drl = pYEL_SUBGI_drl;
+		drlFileMap.put(PYEL_SUBGI, PYEL_SUBGI_drl);
+	}
+
+	public void setYELO_SUBGI_drl(String yELO_SUBGI_drl) {
+		this.YELO_SUBGI_drl = yELO_SUBGI_drl;
+		drlFileMap.put(YELO_SUBGI, YELO_SUBGI_drl);
+	}
+
+	public void setORNG_SUBGI_drl(String oRNG_SUBGI_drl) {
+		this.ORNG_SUBGI_drl = oRNG_SUBGI_drl;
+		drlFileMap.put(ORNG_SUBGI, ORNG_SUBGI_drl);
+	}
+
+	public void setRED__SUBGI_drl(String rED__SUBGI_drl) {
+		this.RED__SUBGI_drl = rED__SUBGI_drl;
+		drlFileMap.put(RED__SUBGI, RED__SUBGI_drl);
+	}
+
+	public void setBLUE_MAINS_drl(String bLUE_MAINS_drl) {
+		this.BLUE_MAINS_drl = bLUE_MAINS_drl;
+		drlFileMap.put(BLUE_MAINS, BLUE_MAINS_drl);
+	}
+
+	public void setLTBL_MAINS_drl(String lTBL_MAINS_drl) {
+		this.LTBL_MAINS_drl = lTBL_MAINS_drl;
+		drlFileMap.put(LTBL_MAINS, LTBL_MAINS_drl);
+	}
+
+	public void setWHIT_MAINS_drl(String wHIT_MAINS_drl) {
+		this.WHIT_MAINS_drl = wHIT_MAINS_drl;
+		drlFileMap.put(WHIT_MAINS, WHIT_MAINS_drl);
+	}
+
+	public void setPYEL_MAINS_drl(String pYEL_MAINS_drl) {
+		this.PYEL_MAINS_drl = pYEL_MAINS_drl;
+		drlFileMap.put(PYEL_MAINS, PYEL_MAINS_drl);
+	}
+
+	public void setORNG_MAINS_drl(String oRNG_MAINS_drl) {
+		this.ORNG_MAINS_drl = oRNG_MAINS_drl;
+		drlFileMap.put(ORNG_MAINS, ORNG_MAINS_drl);
+	}
+
+	public void setRED__MAINS_drl(String rED__MAINS_drl) {
+		this.RED__MAINS_drl = rED__MAINS_drl;
+		drlFileMap.put(RED__MAINS, RED__MAINS_drl);
+	}
+
+	public void setBLUE_SUBDW_drl(String bLUE_SUBDW_drl) {
+		this.BLUE_SUBDW_drl = bLUE_SUBDW_drl;
+		drlFileMap.put(BLUE_SUBDW, BLUE_SUBDW_drl);
+	}
+
+	public void setLTBL_SUBDW_drl(String lTBL_SUBDW_drl) {
+		this.LTBL_SUBDW_drl = lTBL_SUBDW_drl;
+		drlFileMap.put(LTBL_SUBDW, LTBL_SUBDW_drl);
+	}
+
+	public void setWHIT_SUBDW_drl(String wHIT_SUBDW_drl) {
+		this.WHIT_SUBDW_drl = wHIT_SUBDW_drl;
+		drlFileMap.put(WHIT_SUBDW, WHIT_SUBDW_drl);
+	}
+
+	public void setPYEL_SUBDW_drl(String pYEL_SUBDW_drl) {
+		this.PYEL_SUBDW_drl = pYEL_SUBDW_drl;
+		drlFileMap.put(PYEL_SUBDW, PYEL_SUBDW_drl);
+	}
+
+	public void setYELO_SUBDW_drl(String yELO_SUBDW_drl) {
+		this.YELO_SUBDW_drl = yELO_SUBDW_drl;
+		drlFileMap.put(YELO_SUBDW, YELO_SUBDW_drl);
+	}
+
+	public void setORNG_SUBDW_drl(String oRNG_SUBDW_drl) {
+		this.ORNG_SUBDW_drl = oRNG_SUBDW_drl;
+		drlFileMap.put(ORNG_SUBDW, ORNG_SUBDW_drl);
+	}
+
+	public void setRED__SUBDW_drl(String rED__SUBDW_drl) {
+		this.RED__SUBDW_drl = rED__SUBDW_drl;
+		drlFileMap.put(RED__SUBDW, RED__SUBDW_drl);
+	}
+
+	public void setBLUE_DWARF_drl(String bLUE_DWARF_drl) {
+		this.BLUE_DWARF_drl = bLUE_DWARF_drl;
+		drlFileMap.put(BLUE_DWARF, BLUE_DWARF_drl);
+	}
+
+	public void setLTBL_DWARF_drl(String lTBL_DWARF_drl) {
+		this.LTBL_DWARF_drl = lTBL_DWARF_drl;
+		drlFileMap.put(LTBL_DWARF, LTBL_DWARF_drl);
+	}
+
+	public void setWHIT_DWARF_drl(String wHIT_DWARF_drl) {
+		this.WHIT_DWARF_drl = wHIT_DWARF_drl;
+		drlFileMap.put(WHIT_DWARF, WHIT_DWARF_drl);
+	}
+
+	public void setPYEL_DWARF_drl(String pYEL_DWARF_drl) {
+		this.PYEL_DWARF_drl = pYEL_DWARF_drl;
+		drlFileMap.put(PYEL_DWARF, PYEL_DWARF_drl);
+	}
+
+	public void setYELO_DWARF_drl(String yELO_DWARF_drl) {
+		this.YELO_DWARF_drl = yELO_DWARF_drl;
+		drlFileMap.put(YELO_DWARF, YELO_DWARF_drl);
+	}
+
+	public void setORNG_DWARF_drl(String oRNG_DWARF_drl) {
+		this.ORNG_DWARF_drl = oRNG_DWARF_drl;
+		drlFileMap.put(ORNG_DWARF, ORNG_DWARF_drl);
+	}
+
+	public void setRED__DWARF_drl(String rED__DWARF_drl) {
+		this.RED__DWARF_drl = rED__DWARF_drl;
+		drlFileMap.put(RED__DWARF, RED__DWARF_drl);
+	}
+
+	public void setPURPLE_RED_drl(String pURPLE_RED_drl) {
+		this.PURPLE_RED_drl = pURPLE_RED_drl;
+		drlFileMap.put(PURPLE_RED, PURPLE_RED_drl);
+	}
+
+	public void setBROWN_SUBS_drl(String bROWN_SUBS_drl) {
+		this.BROWN_SUBS_drl = bROWN_SUBS_drl;
+		drlFileMap.put(BROWN_SUBS, BROWN_SUBS_drl);
+	}
+
+	public void setDrlFileMap(Map<String, String> drlFileMap) {
+		this.drlFileMap = drlFileMap;
+	}
+
+
 
 }

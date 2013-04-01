@@ -9,17 +9,17 @@ public class AtmosphereDTO {
 	
 	private List<AtmosphereComponent> atmosphereCompenent;
 	
-	private float density;
+	private Double density;
 	
 	public void stage(double starLuminosity, double distanceToPrimary, double planetRadius, String starClass){
 		atmosphereCompenent = new ArrayList<AtmosphereComponent>();
 	}
 
-	public float getDensity() {
+	public Double getDensity() {
 		return density;
 	}
 
-	public void setDensity(float density) {
+	public void setDensity(Double density) {
 		this.density = density;
 	}
 

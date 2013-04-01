@@ -117,10 +117,69 @@
 		</property>
 	</bean>
 
-	<bean id="generateAtmosphere" lazy-init="false" class="com.zenred.service.GenerateAtmosphere">
-		<property name="ruleFile" value="/Atmosphere.drl"/>
-		<property name="ruleFile2" value="/Atmosphere2.drl"/>
-		<property name="YELO_MAINS_drl" value="/YELO_MAINS.drl"/>
+	<bean id="generateAtmosphere" lazy-init="false"
+		class="com.zenred.service.GenerateAtmosphere">
+		<property name="ruleFile" value="/Atmosphere.drl" />
+		<property name="ruleFile2" value="/Atmosphere2.drl" />
+		<property name="YELO_MAINS_drl" value="/YELO_MAINS.drl" />
+		<property name="BLUE_SG_II_drl" value="/BLUE_SG_II.drl" />
+		<property name="LTBL_SG_II_drl" value="/LTBL_SG_II.drl" />
+		<property name="WHIT_SG_II_drl" value="/WHIT_SG_II.drl" />
+		<property name="PYEL_SG_II_drl" value="/PYEL_SG_II.drl" />
+		<property name="YELO_SG_II_drl" value="/YELO_SG_II.drl" />
+		<property name="ORNG_SG_II_drl" value="/ORNG_SG_II.drl" />
+		<property name="RED__SG_II_drl" value="/RED__SG_II.drl" />
+		<property name="BLUE_SG_I_drl" value="/BLUE_SG_I.drl" />
+		<property name="LTBL_SG_I_drl" value="/LTBL_SG_I.drl" />
+		<property name="WHIT_SG_I_drl" value="/WHIT_SG_I.drl" />
+		<property name="PYEL_SG_I_drl" value="/PYEL_SG_I.drl" />
+		<property name="YELO_SG_I_drl" value="/YELO_SG_I.drl" />
+		<property name="ORNG_SG_I_drl" value="/ORNG_SG_I.drl" />
+		<property name="RED__SG_I_drl" value="/RED__SG_I.drl" />
+		<property name="BLUE_GI_II_drl" value="/BLUE_GI_II.drl" />
+		<property name="LTBL_GI_II_drl" value="/LTBL_GI_II.drl" />
+		<property name="WHIT_GI_II_drl" value="/WHIT_GI_II.drl" />
+		<property name="PYEL_GI_II_drl" value="/PYEL_GI_II.drl" />
+		<property name="YELO_GI_II_drl" value="/YELO_GI_II.drl" />
+		<property name="ORNG_GI_II_drl" value="/ORNG_GI_II.drl" />
+		<property name="RED__GI_II_drl" value="/RED__GI_II.drl" />
+		<property name="BLUE_GI_I_drl" value="/BLUE_GI_I.drl" />
+		<property name="LTBL_GI_I_drl" value="/LTBL_GI_I.drl" />
+		<property name="WHIT_GI_I_drl" value="/WHIT_GI_I.drl" />
+		<property name="PYEL_GI_I_drl" value="/PYEL_GI_I.drl" />
+		<property name="YELO_GI_I_drl" value="/YELO_GI_I.drl" />
+		<property name="ORNG_GI_I_drl" value="/ORNG_GI_I.drl" />
+		<property name="RED__GI_I_drl" value="/RED__GI_I.drl" />
+		<property name="BLUE_SUBGI_drl" value="/BLUE_SUBGI.drl" />
+		<property name="LTBL_SUBGI_drl" value="/LTBL_SUBGI.drl" />
+		<property name="WHIT_SUBGI_drl" value="/WHIT_SUBGI.drl" />
+		<property name="PYEL_SUBGI_drl" value="/PYEL_SUBGI.drl" />
+		<property name="YELO_SUBGI_drl" value="/YELO_SUBGI.drl" />
+		<property name="ORNG_SUBGI_drl" value="/ORNG_SUBGI.drl" />
+		<property name="RED__SUBGI_drl" value="/RED__SUBGI.drl" />
+		<property name="BLUE_MAINS_drl" value="/BLUE_MAINS.drl" />
+		<property name="LTBL_MAINS_drl" value="/LTBL_MAINS.drl" />
+		<property name="WHIT_MAINS_drl" value="/WHIT_MAINS.drl" />
+		<property name="PYEL_MAINS_drl" value="/PYEL_MAINS.drl" />
+		<property name="ORNG_MAINS_drl" value="/ORNG_MAINS.drl" />
+		<property name="RED__MAINS_drl" value="/RED__MAINS.drl" />
+		<property name="BLUE_SUBDW_drl" value="/BLUE_SUBDW.drl" />
+		<property name="LTBL_SUBDW_drl" value="/LTBL_SUBDW.drl" />
+		<property name="WHIT_SUBDW_drl" value="/WHIT_SUBDW.drl" />
+		<property name="PYEL_SUBDW_drl" value="/PYEL_SUBDW.drl" />
+		<property name="YELO_SUBDW_drl" value="/YELO_SUBDW.drl" />
+		<property name="ORNG_SUBDW_drl" value="/ORNG_SUBDW.drl" />
+		<property name="RED__SUBDW_drl" value="/RED__SUBDW.drl" />
+		<property name="BLUE_DWARF_drl" value="/BLUE_DWARF.drl" />
+		<property name="LTBL_DWARF_drl" value="/LTBL_DWARF.drl" />
+		<property name="WHIT_DWARF_drl" value="/WHIT_DWARF.drl" />
+		<property name="PYEL_DWARF_drl" value="/PYEL_DWARF.drl" />
+		<property name="YELO_DWARF_drl" value="/YELO_DWARF.drl" />
+		<property name="ORNG_DWARF_drl" value="/ORNG_DWARF.drl" />
+		<property name="RED__DWARF_drl" value="/RED__DWARF.drl" />
+		<property name="PURPLE_RED_drl" value="/PURPLE_RED.drl" />
+		<property name="BROWN_SUBS_drl" value="/BROWN_SUBS.drl" />
+
 	</bean>
 
 </beans>

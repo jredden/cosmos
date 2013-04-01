@@ -44,6 +44,19 @@ public enum AtmosphereParts {
     private final String symbol;
 	private final Double solid;
 	private final Double gas;
+	
+	public String getText() {
+		return text;
+	}
+	public String getSymbol() {
+		return symbol;
+	}
+	public Double getSolid() {
+		return solid;
+	}
+	public Double getGas() {
+		return gas;
+	}
 			
 			
 		
