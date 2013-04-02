@@ -23,6 +23,8 @@ import com.zenred.cosmos.DrawRolls;
 import com.zenred.cosmos.StarAtributesIF;
 
 public class GenerateAtmosphere implements StarAtributesIF {
+	
+	private Double STRONG_ULTRA_VIOLET = 400.0;
 
 	Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
 	private String ruleFile;
@@ -2535,13 +2537,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(86.0);
 		starToChemicalProfile.setWeightDuringAnalysis(85.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(84.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
@@ -2553,7 +2555,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Nitrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(16.0);
 		starToChemicalProfile.setWeightDuringAnalysis(92.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
@@ -2571,7 +2573,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
-		starToChemicalProfile.setUltraVioletReducingScale(3.0);
+		starToChemicalProfile.setUltraVioletReducingScale(33.0);
 		starToChemicalProfile.setWeightDuringAnalysis(20.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
@@ -2607,13 +2609,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Methane);
-		starToChemicalProfile.setUltraVioletReducingScale(10.0);
+		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(80.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ethane);
-		starToChemicalProfile.setUltraVioletReducingScale(15.0);
+		starToChemicalProfile.setUltraVioletReducingScale(45.0);
 		starToChemicalProfile.setWeightDuringAnalysis(40.0);
 		RED__MAINS_TypeProfile.add(starToChemicalProfile);
 
@@ -2898,13 +2900,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(46.0);
 		starToChemicalProfile.setWeightDuringAnalysis(78.0);
 		YELO_SUBDW_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(5.0);
+		starToChemicalProfile.setUltraVioletReducingScale(75.0);
 		starToChemicalProfile.setWeightDuringAnalysis(98.0);
 		YELO_SUBDW_TypeProfile.add(starToChemicalProfile);
 
@@ -2990,13 +2992,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(10.0);
+		starToChemicalProfile.setUltraVioletReducingScale(40.0);
 		starToChemicalProfile.setWeightDuringAnalysis(85.0);
 		ORNG_SUBDW_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(8.0);
+		starToChemicalProfile.setUltraVioletReducingScale(68.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		ORNG_SUBDW_TypeProfile.add(starToChemicalProfile);
 
@@ -3081,13 +3083,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(84.0);
 		starToChemicalProfile.setWeightDuringAnalysis(90.0);
 		RED__SUBDW_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(3.0);
+		starToChemicalProfile.setUltraVioletReducingScale(73.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		RED__SUBDW_TypeProfile.add(starToChemicalProfile);
 
@@ -3117,7 +3119,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
-		starToChemicalProfile.setUltraVioletReducingScale(3.0);
+		starToChemicalProfile.setUltraVioletReducingScale(53.0);
 		starToChemicalProfile.setWeightDuringAnalysis(20.0);
 		RED__SUBDW_TypeProfile.add(starToChemicalProfile);
 
@@ -3153,7 +3155,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Methane);
-		starToChemicalProfile.setUltraVioletReducingScale(8.0);
+		starToChemicalProfile.setUltraVioletReducingScale(48.0);
 		starToChemicalProfile.setWeightDuringAnalysis(84.0);
 		RED__SUBDW_TypeProfile.add(starToChemicalProfile);
 
@@ -3444,13 +3446,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(84.0);
 		starToChemicalProfile.setWeightDuringAnalysis(78.0);
 		YELO_DWARF_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(84.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		YELO_DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3536,13 +3538,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(8.0);
+		starToChemicalProfile.setUltraVioletReducingScale(78.0);
 		starToChemicalProfile.setWeightDuringAnalysis(89.0);
 		ORNG_DWARF_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(76.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		ORNG_DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3627,13 +3629,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(3.0);
+		starToChemicalProfile.setUltraVioletReducingScale(93.0);
 		starToChemicalProfile.setWeightDuringAnalysis(92.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Hydrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(92.0);
 		starToChemicalProfile.setWeightDuringAnalysis(99.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3645,13 +3647,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Nitrogen);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(34.0);
 		starToChemicalProfile.setWeightDuringAnalysis(94.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Oxygen);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(26.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3663,7 +3665,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(52.0);
 		starToChemicalProfile.setWeightDuringAnalysis(28.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3699,7 +3701,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Methane);
-		starToChemicalProfile.setUltraVioletReducingScale(6.0);
+		starToChemicalProfile.setUltraVioletReducingScale(66.0);
 		starToChemicalProfile.setWeightDuringAnalysis(88.0);
 		RED__DWARF_TypeProfile.add(starToChemicalProfile);
 
@@ -3722,13 +3724,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Methane);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(82.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(1.0);
+		starToChemicalProfile.setUltraVioletReducingScale(81.0);
 		starToChemicalProfile.setWeightDuringAnalysis(50.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
@@ -3740,25 +3742,25 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Oxygen);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(44.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(72.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ammonia);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(52.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ethane);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(32.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
@@ -3771,25 +3773,25 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile
 				.setAtmosphereParts(AtmosphereParts.Methlacetylene);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ozone);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Sodium);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Sulfur);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(42.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
@@ -3802,7 +3804,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile
 				.setAtmosphereParts(AtmosphereParts.HydrogenSulfide);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(42.0);
 		starToChemicalProfile.setWeightDuringAnalysis(3.0);
 		PURPLE_RED_TypeProfile.add(starToChemicalProfile);
 
@@ -3812,49 +3814,49 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Methane);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(92.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Helium);
-		starToChemicalProfile.setUltraVioletReducingScale(1.0);
+		starToChemicalProfile.setUltraVioletReducingScale(91.0);
 		starToChemicalProfile.setWeightDuringAnalysis(50.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.CarbonDioxide);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(42.0);
 		starToChemicalProfile.setWeightDuringAnalysis(40.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Oxygen);
-		starToChemicalProfile.setUltraVioletReducingScale(4.0);
+		starToChemicalProfile.setUltraVioletReducingScale(84.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Water);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(92.0);
 		starToChemicalProfile.setWeightDuringAnalysis(30.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ammonia);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(92.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ethane);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(72.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Chlorine);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(42.0);
 		starToChemicalProfile.setWeightDuringAnalysis(20.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
@@ -3867,32 +3869,32 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Ozone);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(32.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Sodium);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Sulfur);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Potassium);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(3.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile
 				.setAtmosphereParts(AtmosphereParts.HydrogenSulfide);
-		starToChemicalProfile.setUltraVioletReducingScale(2.0);
+		starToChemicalProfile.setUltraVioletReducingScale(12.0);
 		starToChemicalProfile.setWeightDuringAnalysis(3.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
@@ -3961,6 +3963,14 @@ public class GenerateAtmosphere implements StarAtributesIF {
 				logger.info("draw {} scale {}", draw,  starToChemicalProfile
 						.getUltraVioletReducingScale());
 				
+				// in the hot range, reduce probability
+				if(a_temperture > STRONG_ULTRA_VIOLET){
+					Double uv_scale = (100.0 - starToChemicalProfile
+					.getUltraVioletReducingScale()) / drawRandom100();
+					Double newrv_value = starToChemicalProfile
+							.getUltraVioletReducingScale() - uv_scale;
+					starToChemicalProfile.setUltraVioletReducingScale(newrv_value);
+				}
 				if (draw < starToChemicalProfile
 						.getUltraVioletReducingScale()) {
 					Double un_normalized_percent = starToChemicalProfile
@@ -4511,6 +4521,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		this.drlFileMap = drlFileMap;
 	}
 
+	public void setStrongUV(Double strongUV){
+		STRONG_ULTRA_VIOLET = strongUV;
+	}
 
 
 }

@@ -31,5 +31,11 @@ public class AtmosphereDTO {
 		this.atmosphereCompenent = atmosphereCompenent;
 	}
 
+	@Override
+	public String toString() {
+		return "AtmosphereDTO [atmosphereCompenent=" + atmosphereCompenent
+				+ ", density=" + density + "]";
+	}
+
 
 }

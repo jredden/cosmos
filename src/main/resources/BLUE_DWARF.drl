@@ -28,6 +28,7 @@ rule "strict_and_flexible"
         GenerateAtmosphere(eval($generateAtmosphere.isStrictAndFlexible))
     then
         //actions
+        $generateAtmosphere.setStrongUV(310.0);
         $generateAtmosphere.genStrictAndFlexible();
 end
 
@@ -39,6 +40,7 @@ rule "strict_and_goofy"
         GenerateAtmosphere(eval($generateAtmosphere.isStrictAndGoofy))
     then
         //actions
+        $generateAtmosphere.setStrongUV(310.0);
         $generateAtmosphere.genStrictAndGoofy();
 end
 
@@ -50,6 +52,7 @@ rule "all_possible"
         GenerateAtmosphere(eval($generateAtmosphere.isAllPossible))
     then
         //actions
+        $generateAtmosphere.setStrongUV(310.0);
         $generateAtmosphere.genAllPossible();
 end
 
@@ -61,6 +64,7 @@ rule "felxible_and_goofy"
         GenerateAtmosphere(eval($generateAtmosphere.isFlexibleAndGoofy))
     then
         //actions
+        $generateAtmosphere.setStrongUV(310.0);
         $generateAtmosphere.genFlexibleAndGoofy();
 end
 
@@ -72,6 +76,7 @@ rule "felxible_only"
         GenerateAtmosphere(eval($generateAtmosphere.isFlexibleOnly))
     then
         //actions
+        $generateAtmosphere.setStrongUV(310.0);
         $generateAtmosphere.genFlexibleOnly();
 end
 
@@ -83,5 +88,6 @@ rule "goofy_only"
         GenerateAtmosphere(eval($generateAtmosphere.isGoofyOnly))
     then
         //actions
+        $generateAtmosphere.setStrongUV(300.0);
         $generateAtmosphere.genGoofyOnly();
 end
