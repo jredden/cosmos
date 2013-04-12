@@ -17,6 +17,7 @@ rule "strict_only"
         GenerateAtmosphere(eval($generateAtmosphere.isStrictOnly))
     then
         //actions
+        $generateAtmosphere.setStrongUV(325.0);
         $generateAtmosphere.genStrictOnly();
 end
 
