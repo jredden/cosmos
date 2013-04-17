@@ -88,6 +88,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	private String RED__DWARF_drl;
 	private String PURPLE_RED_drl;
 	private String BROWN_SUBS_drl;
+	private String DRKBRN_SDW_drl;
 	
 	private RuleBase ruleBase;
 	private Reader source;
@@ -166,6 +167,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	List<StarToChemicalProfile> RED__DWARF_TypeProfile = new ArrayList<StarToChemicalProfile>();
 	List<StarToChemicalProfile> PURPLE_RED_TypeProfile = new ArrayList<StarToChemicalProfile>();
 	List<StarToChemicalProfile> BROWN_SUBS_TypeProfile = new ArrayList<StarToChemicalProfile>();
+	List<StarToChemicalProfile> DRKBRN_SDW_TypeProfile = new ArrayList<StarToChemicalProfile>();
 
 	// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 	public GenerateAtmosphere() {
@@ -228,6 +230,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		atmosphereProfileMap.put(BLUE_SG_II, BLUE_SG_II_TypeProfile);
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		// LTBL_SG_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
@@ -290,7 +293,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// WHIT_SG_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0); // high rates more
@@ -447,7 +450,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// ORNG_SG_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(66.0);
 		starToChemicalProfile.setWeightDuringAnalysis(3.0); // high rates more
@@ -538,7 +541,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// RED__SG_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(66.0);
 		starToChemicalProfile.setWeightDuringAnalysis(3.0); // high means
@@ -648,7 +652,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
 		// BLUE_SG_I
-
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(68.0);
 		starToChemicalProfile.setWeightDuringAnalysis(4.0); // high means
@@ -708,7 +712,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// LTBL_SG_1
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(4.0); // high rates more
@@ -767,7 +772,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// WHIT_SG_I
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(7.0); // high rates more
@@ -833,7 +839,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// YELO_SG_I
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(58.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high rates more
@@ -924,7 +931,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// ORNG_SG_I
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0); // high rates more
@@ -1015,7 +1023,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// RED__SG_I
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(58.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high means
@@ -1125,7 +1134,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
 		// BLUE_GI_II
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(70.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high means
@@ -1181,11 +1191,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		BLUE_GI_II_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(BLUE_GI_II, BLUE_GI_II_TypeProfile);
+		atmosphereProfileMap.put(BLUE_GI_I, BLUE_GI_II_TypeProfile);
 
 		// LTBL_GI_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(58.0);
 		starToChemicalProfile.setWeightDuringAnalysis(4.0); // high rates more
@@ -1240,6 +1252,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		LTBL_GI_II_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(LTBL_GI_II, LTBL_GI_II_TypeProfile);
+		atmosphereProfileMap.put(LTBL_GI_I, LTBL_GI_II_TypeProfile);
 
 		// WHIT_GI_II
 
@@ -1307,6 +1320,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		WHIT_GI_II_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(WHIT_GI_II, WHIT_GI_II_TypeProfile);
+		atmosphereProfileMap.put(WHIT_GI_I, WHIT_GI_II_TypeProfile);
 
 		// YELO_GI_II
 
@@ -1399,6 +1413,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		atmosphereProfileMap.put(YELO_GI_II, YELO_GI_II_TypeProfile);
 		atmosphereProfileMap.put(PYEL_GI_II, YELO_SG_I_TypeProfile);
+		atmosphereProfileMap.put(YELO_GI_I, YELO_GI_II_TypeProfile);
+		atmosphereProfileMap.put(PYEL_GI_I, YELO_SG_I_TypeProfile);
 
 		// ORNG_GI_II
 
@@ -1491,11 +1507,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		ORNG_GI_II_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(ORNG_GI_II, ORNG_GI_II_TypeProfile);
+		atmosphereProfileMap.put(ORNG_GI_I, ORNG_GI_II_TypeProfile);
 
 		// RED__GI_II
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high means
@@ -1601,11 +1619,13 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		RED__GI_II_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(RED__GI_II, RED__GI_II_TypeProfile);
+		atmosphereProfileMap.put(RED__GI_I, RED__GI_II_TypeProfile);
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
 		// BLUE_SUBGI
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high means
@@ -1666,6 +1686,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high rates more
@@ -1976,6 +1997,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(72.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0); // high means
@@ -2086,6 +2108,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// BLUE_MAINS
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high means
@@ -2146,6 +2169,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(62.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high rates more
@@ -2521,7 +2545,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		// RED__MAINS
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
-
+		
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(74.0);
 		starToChemicalProfile.setWeightDuringAnalysis(12.0); // high means
@@ -2632,6 +2657,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// BLUE_SUBDW
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(58.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high means
@@ -2692,6 +2718,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(58.0);
 		starToChemicalProfile.setWeightDuringAnalysis(6.0); // high rates more
@@ -3068,6 +3095,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(74.0);
 		starToChemicalProfile.setWeightDuringAnalysis(14.0); // high means
@@ -3178,6 +3206,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// BLUE_DWARF
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(50.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high means
@@ -3238,6 +3267,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(53.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0); // high rates more
@@ -3614,6 +3644,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
+		starToChemicalProfile = new StarToChemicalProfile();
 		starToChemicalProfile.setAtmosphereParts(AtmosphereParts.Argon);
 		starToChemicalProfile.setUltraVioletReducingScale(60.0);
 		starToChemicalProfile.setWeightDuringAnalysis(14.0); // high means
@@ -3899,6 +3930,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
 		atmosphereProfileMap.put(BROWN_SUBS, BROWN_SUBS_TypeProfile);
+		atmosphereProfileMap.put(DRKBRN_SDW, BROWN_SUBS_TypeProfile);
 
 		strict = false;
 		flexible = false;
@@ -3957,7 +3989,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 					.getSolid();
 			String symbol = starToChemicalProfile.getAtmosphereParts()
 					.getSymbol();
-			// logger.info("solidateState {} gaseousState {} ", solidState, gaseousState);
+			logger.info("solidateState :: gaseousState {} temperature {} ", solidState + "::" + gaseousState, a_temperture);
 			if (a_temperture > gaseousState) {
 				double draw = drawRandom100();
 				logger.info("draw {} scale {}", draw,  starToChemicalProfile
@@ -4079,7 +4111,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 
 	public String getColorType() {
-		return colorType;
+		return this.colorType;
 	}
 
 	public void setColorType(String colorType) {
@@ -4095,6 +4127,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	}
 
 	public List<StarToChemicalProfile> getAtmosphereProfileMap(String starColor) {
+		logger.info("color: {}", starColor);
 		return atmosphereProfileMap.get(starColor);
 	}
 
@@ -4515,6 +4548,10 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	public void setBROWN_SUBS_drl(String bROWN_SUBS_drl) {
 		this.BROWN_SUBS_drl = bROWN_SUBS_drl;
 		drlFileMap.put(BROWN_SUBS, BROWN_SUBS_drl);
+	}
+	public void setDRKBRN_SDW_drl(String DRKBRN_SDW_drl) {
+		this.DRKBRN_SDW_drl = DRKBRN_SDW_drl;
+		drlFileMap.put(DRKBRN_SDW, DRKBRN_SDW_drl);
 	}
 
 	public void setDrlFileMap(Map<String, String> drlFileMap) {

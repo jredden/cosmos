@@ -179,6 +179,7 @@
 		<property name="RED__DWARF_drl" value="/RED__DWARF.drl" />
 		<property name="PURPLE_RED_drl" value="/PURPLE_RED.drl" />
 		<property name="BROWN_SUBS_drl" value="/BROWN_SUBS.drl" />
+		<property name="DRKBRN_SDW_drl" value="/DRKBRN_SDW.drl" />
 
 	</bean>
 

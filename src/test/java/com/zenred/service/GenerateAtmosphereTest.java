@@ -22,7 +22,7 @@ public class GenerateAtmosphereTest {
 		atmosphereDTO = generateAtmosphere.genAtmosphere(1.2, 1.5, 7000.0, StarAtributesIF.WHIT_SUBDW);
 		atmosphereDTO = generateAtmosphere.genAtmosphere(.8, 1.1, 5000.0, StarAtributesIF.WHIT_SUBDW);
 		atmosphereDTO = generateAtmosphere.genAtmosphere(1.2, 1.5, 17000.0, StarAtributesIF.RED__MAINS);
-		atmosphereDTO = generateAtmosphere.genAtmosphere(.8, 1.1, 5000.0, StarAtributesIF.RED__MAINS);
+		atmosphereDTO = generateAtmosphere.genAtmosphere(.8, 1.1, 5000.0, StarAtributesIF.YELO_GI_I);
 		assertNotNull(atmosphereDTO);
 	}
 
