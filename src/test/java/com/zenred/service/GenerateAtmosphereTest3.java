@@ -97,7 +97,7 @@ public class GenerateAtmosphereTest3 {
 			int index = DrawRolls.Instance().getDraw(range);
 			String color = listOfAttributes.get(index);
 			double lumens = DrawRolls.Instance().getDraw(3.0) + 1.0;
-			double distanceInAus = 0.3 +  DrawRolls.Instance().getDraw(17.0);
+			double distanceInAus = 0.3 +  DrawRolls.Instance().getDraw(25.0);
 			double size = 1000.0 + DrawRolls.Instance().getDraw(17.0)*1000.0;
 
 			logger.info("INPUT: {} {}", color, "lumens:" + lumens + " distance AUs:" + distanceInAus + " size:" + size );

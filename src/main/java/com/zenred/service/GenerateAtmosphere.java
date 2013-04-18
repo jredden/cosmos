@@ -25,6 +25,7 @@ import com.zenred.cosmos.StarAtributesIF;
 public class GenerateAtmosphere implements StarAtributesIF {
 	
 	private Double STRONG_ULTRA_VIOLET = 400.0;
+	private Double ONE_RADIUS = 3959.0;
 
 	Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
 	private String ruleFile;
@@ -3989,36 +3990,35 @@ public class GenerateAtmosphere implements StarAtributesIF {
 					.getSolid();
 			String symbol = starToChemicalProfile.getAtmosphereParts()
 					.getSymbol();
-			logger.info("solidateState :: gaseousState {} temperature {} ", solidState + "::" + gaseousState, a_temperture);
-			if (a_temperture > gaseousState) {
-				double draw = drawRandom100();
-				logger.info("draw {} scale {}", draw,  starToChemicalProfile
-						.getUltraVioletReducingScale());
-				
-				// in the hot range, reduce probability
-				if(a_temperture > STRONG_ULTRA_VIOLET){
-					Double uv_scale = (100.0 - starToChemicalProfile
-					.getUltraVioletReducingScale()) / drawRandom100();
-					Double newrv_value = starToChemicalProfile
-							.getUltraVioletReducingScale() - uv_scale;
-					starToChemicalProfile.setUltraVioletReducingScale(newrv_value);
-				}
-				if (draw < starToChemicalProfile
-						.getUltraVioletReducingScale()) {
-					Double un_normalized_percent = starToChemicalProfile
-							.getWeightDuringAnalysis() * drawRandom100();
-					Double density = planetRadius * 95.0 + drawRandom10();
-					atmosphereDTO.setDensity(density);
-					AtmosphereComponent atmosphereComponent = new AtmosphereComponent();
-					atmosphereComponent.setSymbol(symbol);
-					atmosphereComponent.setUn_normalized_percent(un_normalized_percent);
-					if(a_temperture < solidState){
-						atmosphereComponent.setSolid(Boolean.TRUE);
-					}
+			logger.info("solidState :: gaseousState {} temperature {} ", solidState + "::" + gaseousState, a_temperture);
+			Double running_scale = starToChemicalProfile
+					.getUltraVioletReducingScale();
+			double draw = drawRandom100();
+			logger.info("draw {} scale {}", draw, running_scale);
 
-					atmosphereDTO.getAtmosphereCompenent().add(atmosphereComponent);
-					logger.info("adding {} atmosphere", atmosphereComponent);
+			// in the hot range, reduce probability
+			if (a_temperture > STRONG_ULTRA_VIOLET) {
+				Double uv_scale = (100.0 - running_scale) / drawRandom100();
+				Double newrv_value = running_scale - uv_scale;
+				starToChemicalProfile.setUltraVioletReducingScale(newrv_value);
+			}
+
+			if (draw < running_scale) {
+				Double un_normalized_percent = starToChemicalProfile
+						.getWeightDuringAnalysis() * drawRandom100();
+				Double density = (planetRadius * 0.95 + drawRandom10())
+						/ ONE_RADIUS;
+				atmosphereDTO.setDensity(density);
+				AtmosphereComponent atmosphereComponent = new AtmosphereComponent();
+				atmosphereComponent.setSymbol(symbol);
+				atmosphereComponent
+						.setUn_normalized_percent(un_normalized_percent);
+				if (a_temperture < solidState) {
+					atmosphereComponent.setSolid(Boolean.TRUE);
 				}
+				
+				atmosphereDTO.getAtmosphereCompenent().add(atmosphereComponent);
+				logger.info("adding {}", atmosphereComponent);
 			}
 
 		}
