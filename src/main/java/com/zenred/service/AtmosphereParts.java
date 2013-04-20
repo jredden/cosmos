@@ -57,7 +57,4 @@ public enum AtmosphereParts {
 	public Double getGas() {
 		return gas;
 	}
-			
-			
-		
 }

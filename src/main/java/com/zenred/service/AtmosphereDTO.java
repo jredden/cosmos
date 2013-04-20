@@ -14,6 +14,10 @@ public class AtmosphereDTO {
 	public void stage(double starLuminosity, double distanceToPrimary, double planetRadius, String starClass){
 		atmosphereCompenent = new ArrayList<AtmosphereComponent>();
 	}
+	
+	public void stage(){
+		atmosphereCompenent = new ArrayList<AtmosphereComponent>();
+	}
 
 	public Double getDensity() {
 		return density;

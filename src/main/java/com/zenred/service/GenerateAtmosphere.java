@@ -21,6 +21,7 @@ import org.slf4j.LoggerFactory;
 
 import com.zenred.cosmos.DrawRolls;
 import com.zenred.cosmos.StarAtributesIF;
+import com.zenred.data_access.Planetoid_Atmosphere;
 
 public class GenerateAtmosphere implements StarAtributesIF {
 	
@@ -3961,6 +3962,30 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		
 		return atmosphereDTO;
 	}
+	/**
+	 * 
+	 * @param star_luminosity
+	 * @param distance_primary_au_s
+	 * @param planet_radius
+	 * @param star_color_type
+	 * @return normalized percentages
+	 */
+	public AtmosphereDTO genAtmosphereNormalized(double star_luminosity,
+			double distance_primary_au_s, double planet_radius,
+			String star_color_type) {
+		AtmosphereDTO atmosphereDTO = genAtmosphere(star_luminosity,
+				distance_primary_au_s, planet_radius, star_color_type);
+		List<AtmosphereComponent> atmosphereListComponent = atmosphereDTO.getAtmosphereCompenent();
+		Double runningDivisor = 0.0;
+		for(AtmosphereComponent atmosphereComponent : atmosphereListComponent){
+			runningDivisor += atmosphereComponent.getUn_normalized_percent();
+		}
+		for(AtmosphereComponent atmosphereComponent : atmosphereListComponent){
+			atmosphereComponent.setNormalized_percent(atmosphereComponent.getUn_normalized_percent()/runningDivisor * 100.0);
+		}
+		
+		return atmosphereDTO;
+	}
 
 	/**
 	 * 
@@ -4015,6 +4040,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 						.setUn_normalized_percent(un_normalized_percent);
 				if (a_temperture < solidState) {
 					atmosphereComponent.setSolid(Boolean.TRUE);
+				}
+				if (a_temperture > solidState && a_temperture < gaseousState) {
+					atmosphereComponent.setLiquid(Boolean.TRUE);
 				}
 				
 				atmosphereDTO.getAtmosphereCompenent().add(atmosphereComponent);
