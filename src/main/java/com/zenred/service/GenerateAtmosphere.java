@@ -28,7 +28,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	private Double STRONG_ULTRA_VIOLET = 400.0;
 	private Double ONE_RADIUS = 3959.0;
 
-	Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
+	private Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
 	private String ruleFile;
 	private String ruleFile2;
 	
@@ -4015,6 +4015,8 @@ public class GenerateAtmosphere implements StarAtributesIF {
 					.getSolid();
 			String symbol = starToChemicalProfile.getAtmosphereParts()
 					.getSymbol();
+			String viz_symbol = starToChemicalProfile.getAtmosphereParts()
+					.getText() + "_" + symbol;
 			logger.info("solidState :: gaseousState {} temperature {} ", solidState + "::" + gaseousState, a_temperture);
 			Double running_scale = starToChemicalProfile
 					.getUltraVioletReducingScale();
@@ -4036,6 +4038,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 				atmosphereDTO.setDensity(density);
 				AtmosphereComponent atmosphereComponent = new AtmosphereComponent();
 				atmosphereComponent.setSymbol(symbol);
+				atmosphereComponent.setVisulualized_symbol(viz_symbol);
 				atmosphereComponent
 						.setUn_normalized_percent(un_normalized_percent);
 				if (a_temperture < solidState) {

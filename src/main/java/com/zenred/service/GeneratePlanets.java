@@ -1,5 +1,6 @@
 package com.zenred.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -159,6 +160,9 @@ public class GeneratePlanets {
 	
 	public void generateSomePlanets(Constraint constraints, StarRep starRep,
 			int starCount, int clusterCount) {
+		AtmosphereDTO atmosphereDTO;
+		GenerateAtmosphere generateAtmosphere = new GenerateAtmosphere();
+		
 		System.out.println("getSystemId:"+starRep);
 		int numberStarsInSystem = marshallStars.getNumberStars(starRep
 				.getSystemId());
@@ -178,11 +182,32 @@ public class GeneratePlanets {
 			convertWritePlanetoidRep(planetoidrep);
 			Planetoid planetoid = generatePlanetoid(_idex, starRep, constraints, "_"+itsStar);
 			convertWritePlanetoid(planetoid);
+			/*
 			Atmosphere atmosphere = Atmosphere.genAtmosphere(starRep.getLuminosity()
 					.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(),
 					starRep.getStarType());
 			List<Planetoid_Atmosphere> planetoidAtmosphereList = Atmosphere.genList(atmosphere.getAtmophereProfile(), planetoidId);
 			convertWriteAtmosphere(planetoidAtmosphereList);
+			
+			To Do: convert DAO to use DTO
+			
+			*/
+			
+			atmosphereDTO = generateAtmosphere.genAtmosphereNormalized(starRep.getLuminosity()
+					.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarType());
+			List<Planetoid_Atmosphere> planetoidAtmosphereList = new ArrayList<Planetoid_Atmosphere>();
+			for(AtmosphereComponent atmosphereComponent : atmosphereDTO.getAtmosphereCompenent()){
+				Planetoid_Atmosphere planetoidAtmosphere = new Planetoid_Atmosphere();
+				planetoidAtmosphere.setChem_name(atmosphereComponent.getVisulualized_symbol());
+				planetoidAtmosphere.setPercentage(atmosphereComponent.getNormalized_percent());
+				planetoidAtmosphere.setPlanetoidId(planetoid.getPlanetoidId());
+				if(atmosphereComponent.getSymbol().equals(AtmosphereParts.Water.getSymbol())){
+					planetoid.setPercentwater(atmosphereComponent.getNormalized_percent());
+				}
+				planetoidAtmosphereList.add(planetoidAtmosphere);
+			}
+			convertWriteAtmosphere(planetoidAtmosphereList);
+			
 			int numberMoons = numberOfMoons(planetoid);
 			for(int _moonidex = 0; _moonidex < numberMoons; _moonidex++){
 				String planetoidletId = planetoidrep.getPlanetoidId() + '_' + _moonidex+"__PLANETOIDLET";
@@ -201,10 +226,26 @@ public class GeneratePlanets {
 				constraint.setNumberConstaint(planetoid.getRadius());
 				Planetoid planetoidlet = generatePlanetoid(_moonidex, starRep, constraint, planetoidrep.getPlanetoidId(), "__PLANETOIDLET");
 				convertWritePlanetoid(planetoidlet);
+				/*
 				atmosphere = Atmosphere.genAtmosphere(starRep.getLuminosity()
 						.doubleValue(), planetoidlet.getDistance_au(), planetoidlet.getRadius(),
 						starRep.getStarType());
 				List<Planetoid_Atmosphere> planetoidletAtmosphereList = Atmosphere.genList(atmosphere.getAtmophereProfile(), planetoidletId);
+				convertWriteAtmosphere(planetoidletAtmosphereList);
+				*/
+				atmosphereDTO = generateAtmosphere.genAtmosphereNormalized(starRep.getLuminosity()
+						.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarType());
+				List<Planetoid_Atmosphere> planetoidletAtmosphereList = new ArrayList<Planetoid_Atmosphere>();
+				for(AtmosphereComponent atmosphereComponent : atmosphereDTO.getAtmosphereCompenent()){
+					Planetoid_Atmosphere planetoidAtmosphere = new Planetoid_Atmosphere();
+					planetoidAtmosphere.setChem_name(atmosphereComponent.getVisulualized_symbol());
+					planetoidAtmosphere.setPercentage(atmosphereComponent.getNormalized_percent());
+					planetoidAtmosphere.setPlanetoidId(planetoid.getPlanetoidId());
+					if(atmosphereComponent.getSymbol().equals(AtmosphereParts.Water.getSymbol())){
+						planetoid.setPercentwater(atmosphereComponent.getNormalized_percent());
+					}
+					planetoidAtmosphereList.add(planetoidAtmosphere);
+				}
 				convertWriteAtmosphere(planetoidletAtmosphereList);
 			}
 		}

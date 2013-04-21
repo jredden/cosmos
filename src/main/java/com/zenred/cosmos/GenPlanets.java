@@ -8,7 +8,8 @@ package com.zenred.cosmos;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.zenred.data_access.ClusterRepDAO;
 import com.zenred.data_access.DBPlanetoidsDAO;
@@ -17,6 +18,10 @@ import com.zenred.data_access.NoClustersNearStarDAO;
 import com.zenred.data_access.Planetoid;
 import com.zenred.data_access.Planetoid_Atmosphere;
 import com.zenred.data_access.Planetoidrep;
+import com.zenred.service.AtmosphereComponent;
+import com.zenred.service.AtmosphereDTO;
+import com.zenred.service.AtmosphereParts;
+import com.zenred.service.GenerateAtmosphere;
 import com.zenred.util.VectToList;
 
 import cosmos.hibernate.StarRep;
@@ -26,8 +31,7 @@ import cosmos.hibernate.StarRep;
 
 public class GenPlanets {
 	
-	protected static final Logger logger = Logger
-	.getLogger(GenPlanets.class);
+	private Logger logger = LoggerFactory.getLogger(GenPlanets.class);
 	
 	private List<StarRep> starsystems_list;
 
@@ -190,6 +194,8 @@ public class GenPlanets {
 	public void generatePlanets(Object constraints) {
 		starsystems_list = marshall_stars.getStarsWithPlanets();
 		 List<Planetoid_Atmosphere> _planetoid_atmosphere_list = new ArrayList<Planetoid_Atmosphere>();
+		AtmosphereDTO atmosphereDTO;
+		GenerateAtmosphere generateAtmosphere = new GenerateAtmosphere();
 		 List<Planetoid> _planetoid_list = new ArrayList<Planetoid>();
 		 List<Planetoidrep> _planetoid_rep_list = new ArrayList<Planetoidrep>();
 		 Planetoidrep _planetoid_rep = null;
@@ -225,14 +231,31 @@ public class GenPlanets {
 				_planetoid.setRadius(planet_radius);
 				_planetoid.setTemperature(temperature);
 				_planetoid.setPercentwater(0.0);
-				
+/*				
 				atmosphere = Atmosphere.genAtmosphere(_starrep.getLuminosity()
 						.doubleValue(), distance_in_aus, planet_radius,
 						_starrep.getStarType());
 				List<Planetoid_Atmosphere> _list = Atmosphere.genList(atmosphere.getAtmophereProfile(), _planetoid_id);
 //				System.out.println("Atmosphere:"+ atmosphere);
 				_planetoid_atmosphere_list.addAll(_list);
+				
+				To Do: refactor so DAO uses DTO object
+*/
+				atmosphereDTO = generateAtmosphere.genAtmosphereNormalized(_starrep.getLuminosity()
+						.doubleValue(), distance_in_aus, planet_radius, _starrep.getStarType());
 				_planetoid_list.add(_planetoid);
+				List<Planetoid_Atmosphere> _list = new ArrayList<Planetoid_Atmosphere>();
+				for(AtmosphereComponent atmosphereComponent : atmosphereDTO.getAtmosphereCompenent()){
+					Planetoid_Atmosphere planetoidAtmosphere = new Planetoid_Atmosphere();
+					planetoidAtmosphere.setChem_name(atmosphereComponent.getSymbol());
+					planetoidAtmosphere.setPercentage(atmosphereComponent.getNormalized_percent());
+					planetoidAtmosphere.setPlanetoidId(_planetoid_id);
+					if(atmosphereComponent.getSymbol().equals(AtmosphereParts.Water.getSymbol())){
+						_planetoid.setPercentwater(atmosphereComponent.getNormalized_percent());
+					}
+				}
+				logger.info("Atmosphere: {}", atmosphere);
+				_planetoid_atmosphere_list.addAll(_list);
 				_planetoid_rep_list.add(_planetoid_rep);
 			}
 			// do it
