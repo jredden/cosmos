@@ -194,7 +194,7 @@ public class GeneratePlanets {
 			*/
 			
 			atmosphereDTO = generateAtmosphere.genAtmosphereNormalized(starRep.getLuminosity()
-					.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarType());
+					.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarColor());
 			List<Planetoid_Atmosphere> planetoidAtmosphereList = new ArrayList<Planetoid_Atmosphere>();
 			for(AtmosphereComponent atmosphereComponent : atmosphereDTO.getAtmosphereCompenent()){
 				Planetoid_Atmosphere planetoidAtmosphere = new Planetoid_Atmosphere();
@@ -234,7 +234,7 @@ public class GeneratePlanets {
 				convertWriteAtmosphere(planetoidletAtmosphereList);
 				*/
 				atmosphereDTO = generateAtmosphere.genAtmosphereNormalized(starRep.getLuminosity()
-						.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarType());
+						.doubleValue(), planetoid.getDistance_au(), planetoid.getRadius(), starRep.getStarColor());
 				List<Planetoid_Atmosphere> planetoidletAtmosphereList = new ArrayList<Planetoid_Atmosphere>();
 				for(AtmosphereComponent atmosphereComponent : atmosphereDTO.getAtmosphereCompenent()){
 					Planetoid_Atmosphere planetoidAtmosphere = new Planetoid_Atmosphere();

@@ -21,7 +21,6 @@ import org.slf4j.LoggerFactory;
 
 import com.zenred.cosmos.DrawRolls;
 import com.zenred.cosmos.StarAtributesIF;
-import com.zenred.data_access.Planetoid_Atmosphere;
 
 public class GenerateAtmosphere implements StarAtributesIF {
 	
@@ -29,68 +28,69 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	private Double ONE_RADIUS = 3959.0;
 
 	private Logger logger = LoggerFactory.getLogger(GenerateAtmosphere.class);
-	private String ruleFile;
-	private String ruleFile2;
+	private String ruleFile = "/Atmosphere.drl";
+	private String ruleFile2 = "/Atmosphere2.drl";
 	
-	private String BLUE_SG_II_drl;
-	private String LTBL_SG_II_drl;
-	private String WHIT_SG_II_drl;
-	private String PYEL_SG_II_drl;
-	private String YELO_SG_II_drl;
-	private String ORNG_SG_II_drl;
-	private String RED__SG_II_drl;
-	private String BLUE_SG_I_drl;
-	private String LTBL_SG_I_drl;
-	private String WHIT_SG_I_drl;
-	private String PYEL_SG_I_drl;
-	private String YELO_SG_I_drl;
-	private String ORNG_SG_I_drl;
-	private String RED__SG_I_drl;
-	private String BLUE_GI_II_drl;
-	private String LTBL_GI_II_drl;
-	private String WHIT_GI_II_drl;
-	private String PYEL_GI_II_drl;
-	private String YELO_GI_II_drl;
-	private String ORNG_GI_II_drl;
-	private String RED__GI_II_drl;
-	private String BLUE_GI_I_drl;
-	private String LTBL_GI_I_drl;
-	private String WHIT_GI_I_drl;
-	private String PYEL_GI_I_drl;
-	private String YELO_GI_I_drl;
-	private String ORNG_GI_I_drl;
-	private String RED__GI_I_drl;
-	private String BLUE_SUBGI_drl;
-	private String LTBL_SUBGI_drl;
-	private String WHIT_SUBGI_drl;
-	private String PYEL_SUBGI_drl;
-	private String YELO_SUBGI_drl;
-	private String ORNG_SUBGI_drl;
-	private String RED__SUBGI_drl;
-	private String BLUE_MAINS_drl;
-	private String LTBL_MAINS_drl;
-	private String WHIT_MAINS_drl;
-	private String PYEL_MAINS_drl;
-	private String YELO_MAINS_drl;
-	private String ORNG_MAINS_drl;
-	private String RED__MAINS_drl;
-	private String BLUE_SUBDW_drl;
-	private String LTBL_SUBDW_drl;
-	private String WHIT_SUBDW_drl;
-	private String PYEL_SUBDW_drl;
-	private String YELO_SUBDW_drl;
-	private String ORNG_SUBDW_drl;
-	private String RED__SUBDW_drl;
-	private String BLUE_DWARF_drl;
-	private String LTBL_DWARF_drl;
-	private String WHIT_DWARF_drl;
-	private String PYEL_DWARF_drl;
-	private String YELO_DWARF_drl;
-	private String ORNG_DWARF_drl;
-	private String RED__DWARF_drl;
-	private String PURPLE_RED_drl;
-	private String BROWN_SUBS_drl;
-	private String DRKBRN_SDW_drl;
+	private String BLUE_SG_II_drl ="/BLUE_SG_II.drl";
+	private String LTBL_SG_II_drl ="/LTBL_SG_II.drl";
+	private String WHIT_SG_II_drl ="/WHIT_SG_II.drl";
+	private String PYEL_SG_II_drl ="/PYEL_SG_II.drl";
+	private String YELO_SG_II_drl ="/YELO_SG_II.drl";
+	private String ORNG_SG_II_drl ="/ORNG_SG_II.drl";
+	private String RED__SG_II_drl ="/RED__SG_II.drl";
+	private String BLUE_SG_I_drl ="/BLUE_SG_I.drl";
+	private String LTBL_SG_I_drl ="/LTBL_SG_I.drl";
+	private String WHIT_SG_I_drl ="/WHIT_SG_I.drl";
+	private String PYEL_SG_I_drl ="/PYEL_SG_I.drl";
+	private String YELO_SG_I_drl ="/YELO_SG_I.drl";
+	private String ORNG_SG_I_drl ="/ORNG_SG_I.drl";
+	private String RED__SG_I_drl ="/RED__SG_I.drl";
+	private String BLUE_GI_II_drl ="/BLUE_GI_II.drl";
+	private String LTBL_GI_II_drl ="/LTBL_GI_II.drl";
+	private String WHIT_GI_II_drl ="/WHIT_GI_II.drl";
+	private String PYEL_GI_II_drl ="/PYEL_GI_II.drl";
+	private String YELO_GI_II_drl ="/YELO_GI_II.drl";
+	private String ORNG_GI_II_drl ="/ORNG_GI_II.drl";
+	private String RED__GI_II_drl ="/RED__GI_II.drl";
+	private String BLUE_GI_I_drl ="/BLUE_GI_I.drl";
+	private String LTBL_GI_I_drl ="/LTBL_GI_I.drl";
+	private String WHIT_GI_I_drl ="/WHIT_GI_I.drl";
+	private String PYEL_GI_I_drl ="/PYEL_GI_I.drl";
+	private String YELO_GI_I_drl ="/YELO_GI_I.drl";
+	private String ORNG_GI_I_drl ="/ORNG_GI_I.drl";
+	private String RED__GI_I_drl ="/RED__GI_I.drl";
+	private String BLUE_SUBGI_drl ="/BLUE_SUBGI.drl";
+	private String LTBL_SUBGI_drl ="/LTBL_SUBGI.drl";
+	private String WHIT_SUBGI_drl ="/WHIT_SUBGI.drl";
+	private String PYEL_SUBGI_drl ="/PYEL_SUBGI.drl";
+	private String YELO_SUBGI_drl ="/YELO_SUBGI.drl";
+	private String ORNG_SUBGI_drl ="/ORNG_SUBGI.drl";
+	private String RED__SUBGI_drl ="/RED__SUBGI.drl";
+	private String BLUE_MAINS_drl ="/BLUE_MAINS.drl";
+	private String LTBL_MAINS_drl ="/LTBL_MAINS.drl";
+	private String WHIT_MAINS_drl ="/WHIT_MAINS.drl";
+	private String PYEL_MAINS_drl ="/PYEL_MAINS.drl";
+	private String YELO_MAINS_drl ="/YELO_MAINS.drl";
+	private String ORNG_MAINS_drl ="/ORNG_MAINS.drl";
+	private String RED__MAINS_drl ="/RED__MAINS.drl";
+	private String BLUE_SUBDW_drl ="/BLUE_SUBDW.drl";
+	private String LTBL_SUBDW_drl ="/LTBL_SUBDW.drl";
+	private String WHIT_SUBDW_drl ="/WHIT_SUBDW.drl";
+	private String PYEL_SUBDW_drl ="/PYEL_SUBDW.drl";
+	private String YELO_SUBDW_drl ="/YELO_SUBDW.drl";
+	private String ORNG_SUBDW_drl ="/ORNG_SUBDW.drl";
+	private String RED__SUBDW_drl ="/RED__SUBDW.drl";
+	private String BLUE_DWARF_drl ="/BLUE_DWARF.drl";
+	private String LTBL_DWARF_drl ="/LTBL_DWARF.drl";
+	private String WHIT_DWARF_drl ="/WHIT_DWARF.drl";
+	private String PYEL_DWARF_drl ="/PYEL_DWARF.drl";
+	private String YELO_DWARF_drl ="/YELO_DWARF.drl";
+	private String ORNG_DWARF_drl ="/ORNG_DWARF.drl";
+	private String RED__DWARF_drl ="/RED__DWARF.drl";
+	private String PURPLE_RED_drl ="/PURPLE_RED.drl";
+	private String BROWN_SUBS_drl ="/BROWN_SUBS.drl";
+	private String DRKBRN_SDW_drl ="/DRKBRN_SDW.drl";
+
 	
 	private RuleBase ruleBase;
 	private Reader source;
@@ -3937,6 +3937,67 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		strict = false;
 		flexible = false;
 		goofy = false;
+		
+		drlFileMap.put(YELO_MAINS, YELO_MAINS_drl);
+		drlFileMap.put(BLUE_SG_II, BLUE_SG_II_drl);
+		drlFileMap.put(LTBL_SG_II, LTBL_SG_II_drl);
+		drlFileMap.put(WHIT_SG_II, WHIT_SG_II_drl);
+		drlFileMap.put(PYEL_SG_II, PYEL_SG_II_drl);
+		drlFileMap.put(YELO_SG_II, YELO_SG_II_drl);
+		drlFileMap.put(ORNG_SG_II, ORNG_SG_II_drl);
+		drlFileMap.put(RED__SG_II, RED__SG_II_drl);
+		drlFileMap.put(BLUE_SG_I, BLUE_SG_I_drl);
+		drlFileMap.put(LTBL_SG_I, LTBL_SG_I_drl);
+		drlFileMap.put(WHIT_SG_I, WHIT_SG_I_drl);
+		drlFileMap.put(PYEL_SG_I, PYEL_SG_I_drl);
+		drlFileMap.put(YELO_SG_I, YELO_SG_I_drl);
+		drlFileMap.put(ORNG_SG_I, ORNG_SG_I_drl);
+		drlFileMap.put(RED__SG_I, RED__SG_I_drl);
+		drlFileMap.put(BLUE_GI_II, BLUE_GI_II_drl);
+		drlFileMap.put(LTBL_GI_II, LTBL_GI_II_drl);
+		drlFileMap.put(WHIT_GI_II, WHIT_GI_II_drl);
+		drlFileMap.put(PYEL_GI_II, PYEL_GI_II_drl);
+		drlFileMap.put(YELO_GI_II, YELO_GI_II_drl);
+		drlFileMap.put(ORNG_GI_II, ORNG_GI_II_drl);
+		drlFileMap.put(RED__GI_II, RED__GI_II_drl);
+		drlFileMap.put(BLUE_GI_I, BLUE_GI_I_drl);
+		drlFileMap.put(LTBL_GI_I, LTBL_GI_I_drl);
+		drlFileMap.put(WHIT_GI_I, WHIT_GI_I_drl);
+		drlFileMap.put(PYEL_GI_I, PYEL_GI_I_drl);
+		drlFileMap.put(YELO_GI_I, YELO_GI_I_drl);
+		drlFileMap.put(ORNG_GI_I, ORNG_GI_I_drl);
+		drlFileMap.put(RED__GI_I, RED__GI_I_drl);
+		drlFileMap.put(BLUE_SUBGI, BLUE_SUBGI_drl);
+		drlFileMap.put(LTBL_SUBGI, LTBL_SUBGI_drl);
+		drlFileMap.put(WHIT_SUBGI, WHIT_SUBGI_drl);
+		drlFileMap.put(PYEL_SUBGI, PYEL_SUBGI_drl);
+		drlFileMap.put(YELO_SUBGI, YELO_SUBGI_drl);
+		drlFileMap.put(ORNG_SUBGI, ORNG_SUBGI_drl);
+		drlFileMap.put(RED__SUBGI, RED__SUBGI_drl);
+		drlFileMap.put(BLUE_MAINS, BLUE_MAINS_drl);
+		drlFileMap.put(LTBL_MAINS, LTBL_MAINS_drl);
+		drlFileMap.put(WHIT_MAINS, WHIT_MAINS_drl);
+		drlFileMap.put(PYEL_MAINS, PYEL_MAINS_drl);
+		drlFileMap.put(ORNG_MAINS, ORNG_MAINS_drl);
+		drlFileMap.put(RED__MAINS, RED__MAINS_drl);
+		drlFileMap.put(BLUE_SUBDW, BLUE_SUBDW_drl);
+		drlFileMap.put(LTBL_SUBDW, LTBL_SUBDW_drl);
+		drlFileMap.put(WHIT_SUBDW, WHIT_SUBDW_drl);
+		drlFileMap.put(PYEL_SUBDW, PYEL_SUBDW_drl);
+		drlFileMap.put(YELO_SUBDW, YELO_SUBDW_drl);
+		drlFileMap.put(ORNG_SUBDW, ORNG_SUBDW_drl);
+		drlFileMap.put(RED__SUBDW, RED__SUBDW_drl);
+		drlFileMap.put(BLUE_DWARF, BLUE_DWARF_drl);
+		drlFileMap.put(LTBL_DWARF, LTBL_DWARF_drl);
+		drlFileMap.put(WHIT_DWARF, WHIT_DWARF_drl);
+		drlFileMap.put(PYEL_DWARF, PYEL_DWARF_drl);
+		drlFileMap.put(YELO_DWARF, YELO_DWARF_drl);
+		drlFileMap.put(ORNG_DWARF, ORNG_DWARF_drl);
+		drlFileMap.put(RED__DWARF, RED__DWARF_drl);
+		drlFileMap.put(PURPLE_RED, PURPLE_RED_drl);
+		drlFileMap.put(BROWN_SUBS, BROWN_SUBS_drl);
+		drlFileMap.put(DRKBRN_SDW, DRKBRN_SDW_drl);
+
 
 	}
 
@@ -4061,6 +4122,7 @@ public class GenerateAtmosphere implements StarAtributesIF {
 	 * @param ruleFile
 	 */
 	private void nextRuleExecution(String ruleFile) {
+		logger.info("RULE FILE: {}", ruleFile);
 		if (ruleBase == null) {
 			source = new InputStreamReader(
 					GenerateAtmosphere.class.getResourceAsStream((ruleFile)));
@@ -4593,5 +4655,5 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		STRONG_ULTRA_VIOLET = strongUV;
 	}
 
-
+	
 }
