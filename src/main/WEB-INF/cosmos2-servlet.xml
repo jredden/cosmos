@@ -11,7 +11,8 @@
            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
            "
 	default-dependency-check="none">
-	
+
+<!--  	
 		<bean id="generateAtmosphere" 
 		class="com.zenred.service.GenerateAtmosphere" scope="singleton">
 		<property name="ruleFile" value="/Atmosphere.drl" />
@@ -77,6 +78,7 @@
 		<property name="DRKBRN_SDW_drl" value="/DRKBRN_SDW.drl" />
 
 	</bean>
+-->
 	
 	<bean id="genPlanets" class="com.zenred.cosmos.GenPlanets"/>
 	<bean id="starsFundDAO" class="com.zenred.data_access.StarsFundDAO"/>

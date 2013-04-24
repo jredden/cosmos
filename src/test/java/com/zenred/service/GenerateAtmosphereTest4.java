@@ -9,10 +9,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.zenred.RunTimeLikeSetup;
+// import com.zenred.RunTimeLikeSetup;
 import com.zenred.cosmos.DrawRolls;
 import com.zenred.cosmos.StarAtributesIF;
-import com.zenred.util.DrawRandomAlphaNumeric;
 
 public class GenerateAtmosphereTest4 {
 	
@@ -87,8 +86,9 @@ public class GenerateAtmosphereTest4 {
 	
 	@Test
 	public void testGenAtmosphere() {
-		RunTimeLikeSetup runTimeLikeSetup = RunTimeLikeSetup.instance();
-		generateAtmosphere = (GenerateAtmosphere) runTimeLikeSetup.getBean("generateAtmosphere");
+//		RunTimeLikeSetup runTimeLikeSetup = RunTimeLikeSetup.instance();
+//		generateAtmosphere = (GenerateAtmosphere) runTimeLikeSetup.getBean("generateAtmosphere");
+		generateAtmosphere = new GenerateAtmosphere();
 		
 		int range = listOfAttributes.size() - 1;
 		

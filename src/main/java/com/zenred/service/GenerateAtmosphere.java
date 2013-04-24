@@ -4045,6 +4045,17 @@ public class GenerateAtmosphere implements StarAtributesIF {
 			atmosphereComponent.setNormalized_percent(atmosphereComponent.getUn_normalized_percent()/runningDivisor * 100.0);
 		}
 		
+		if(atmosphereListComponent.size() == 0){
+			AtmosphereComponent atmosphereComponent = new AtmosphereComponent();
+			atmosphereComponent.setLiquid(Boolean.FALSE);
+			atmosphereComponent.setSolid(Boolean.FALSE);
+			atmosphereComponent.setNormalized_percent(100.0);
+			atmosphereComponent.setUn_normalized_percent(100.0);
+			atmosphereComponent.setSymbol("residue");
+			atmosphereComponent.setVisulualized_symbol("residue");
+			atmosphereDTO.getAtmosphereCompenent().add(atmosphereComponent);
+		}
+		
 		return atmosphereDTO;
 	}
 
