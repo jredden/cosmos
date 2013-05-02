@@ -19,6 +19,14 @@ public class MarshallSystems extends AbstractDataAccess {
 		return _system_rep_list;
 	}
 
+	public List<SystemRep> getSystemSegments(String udim1, String vdim1,
+			String udim2, String vdim2) {
+		SystemRepDAO _system_rep_dao = (SystemRepDAO) ctx
+				.getBean("systemRepDAO");
+		List<SystemRep> _system_rep_list = _system_rep_dao.findExtent(udim1, vdim1, udim2, vdim2);
+		return _system_rep_list;
+	}
+
 	public String getSystemRep(String udim, String vdim) {
 		SystemRepDAO systemRepDao = (SystemRepDAO) ctx.getBean("systemRepDAO");
 		String systemRepId = systemRepDao.findSystemRep(udim, vdim);
