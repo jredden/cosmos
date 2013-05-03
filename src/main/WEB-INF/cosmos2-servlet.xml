@@ -108,6 +108,7 @@
 		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
 	</bean>	
 	
+	
 	<bean id="nillController"
 		class="com.zenred.servlet.NillController"/>	
 	<bean id="turnUVToNextController"
@@ -162,6 +163,9 @@
 	<bean id="createSystemController2" class="com.zenred.cosmos.controller.json.CreateSystemController2">
 		<property name="generateOneSystem" ref="generateOneSystem"/>
 	</bean>
+	<bean id="pageSystemController" class="com.zenred.cosmos.controller.json.PageSystemController">
+		<property name="generateOneSystem" ref="generateOneSystem"/>
+	</bean>
 
 	<bean id="urlMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
@@ -190,6 +194,7 @@
 				<prop key="/planet_detail.htm">planetDetailController</prop>
 				<prop key="/planet_detail2.htm">planetDetailController2</prop>
 				<prop key="/planet_detail_builder.htm">planetDetailBuilderController</prop>
+				<prop key="/pageSystem.htm">pageSystemController</prop>
 			</props>
 		</property>
 	</bean>

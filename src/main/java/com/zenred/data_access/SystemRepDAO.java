@@ -40,7 +40,7 @@ public class SystemRepDAO
 	@SuppressWarnings("unchecked")
 	public List<SystemRep> findExtent(String udim1, String vdim1, String udim2, String vdim2) {
 		Object[] params = {new Double(udim1), new Double(vdim1),new Double(udim2), new Double(vdim2)};
-		return this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep WHERE ucoordinate >= ? AND vcoordinate >= ? ucoordinate <= ? AND vcoordinate <= ?", params );
+		return this.hibernateTemplate.find("from cosmos.hibernate.SystemRep system_rep WHERE ucoordinate >= ? AND vcoordinate >= ? AND  ucoordinate <= ? AND vcoordinate <= ?", params );
 	}
 
 	

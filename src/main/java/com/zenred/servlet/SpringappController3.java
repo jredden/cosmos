@@ -42,7 +42,7 @@ public class SpringappController3 extends MultiActionController {
 			Integer istartv = new Integer(startv);
 			Integer iendu = istartu + EXTENT_SIZE;
 			Integer iendv = istartv + EXTENT_SIZE;
-			systemExtents(startu.toString(), startv.toString(),
+			map = systemExtents(startu.toString(), startv.toString(),
 					iendu.toString(), iendv.toString());
 		} else {
 			map = allSystems();
