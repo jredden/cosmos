@@ -110,4 +110,13 @@ public class SystemPlusSomeDetails {
 	public void setTheMessage(String theMessage) {
 		this.theMessage = theMessage;
 	}
+
+	@Override
+	public String toString() {
+		return "SystemPlusSomeDetails [theMessage=" + theMessage
+				+ ", _systemId=" + _systemId + ", _distanceToGalaxyCentre="
+				+ _distanceToGalaxyCentre + ", _ucoordinate=" + _ucoordinate
+				+ ", _vcoordinate=" + _vcoordinate + ", clusterRepList="
+				+ clusterRepList + ", starRepList=" + starRepList + "]";
+	}
 }

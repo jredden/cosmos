@@ -12,14 +12,15 @@
 <script src="http://www.cosmos.com/js/RequestVariables.js" type="text/javascript"></script>
 <body>
 <div id="container">
+<section>
 <div id="site">
 <h1>Cosmos Star Systems</h1>
-
+<nav>
   <button id="pozV">Positive Shift V Dimension</button>
   <button id="negV">Negative Shift V Dimension</button>
   <button id="pozU">Positive Shift U Dimension</button>
   <button id="negU">Negative Shift U Dimension</button>
-
+</nav>
 
 <script>
 
@@ -106,6 +107,16 @@ var systemPlusModule = (function () {
     	
     	numberStars: function(){
     		return numStars;
+    	},
+    	isSystemInCache: function(id){
+    		var answer = false;
+    		for(scounter in systems){
+    			if(systems[scounter].systemId = id){
+    				answer = true;
+    				break;
+    			}
+    		}
+    		return answer;
     	}
 	};
 }());
@@ -124,6 +135,9 @@ var pageSpace = (function () {
 	
 	var graphics = new Object();
 	var numGraphics = 0;
+	
+	var uextent;
+	var vextent
 	
 	// public
 	
@@ -199,7 +213,19 @@ var pageSpace = (function () {
 		},
 		setV: function(v_val){
 			current_v = v_val;
-		}
+		},
+		setUextent: function(u_x){
+			uextent = parseInt(u_x);
+		},
+		setVextent: function(v_x){
+			vextent = parseInt(v_x);
+		},
+		getUextent: function(){
+			return uextent;
+		},
+		getVextent: function(){
+			return vextent;
+		}							
 		
 	};
 	
@@ -394,6 +420,8 @@ var drawSystems = (function(){
 
 </script> 
 </div>  <!-- site -->
+</section>
+<section>
 <div id="region">
 <c:forEach var="systemPlusSomeDetails" items="${systems_list}" >
 <script>
@@ -450,6 +478,12 @@ var drawSystems = (function(){
 				
 		var lastU = $.getUrlVar('startu');
 		var lastV = $.getUrlVar('startv');
+		var uextent = $.getUrlVar('uextent');
+		var vextent = $.getUrlVar('vextent');
+		
+		pageSpace.setUextent(uextent);
+		pageSpace.setVextent(vextent);
+		
 		if(lastU != undefined){
 			pageSpace.setU(lastU);
 		}
@@ -550,21 +584,27 @@ var drawSystems = (function(){
 		});
 		$("#pozV").click(function () { 
        		pageSpace.incrementCurrentV();
-       		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
+       		var curV = pageSpace.currentV() + pageSpace.getVextent();
+       		console.log("currentU:" + pageSpace.currentU() + " curV:" + curV);
+       		addToCache.jsonCall(pageSpace.currentU(), curV);
        		drawSystems.scanSystems();
 	    });
     	$("#negV").click(function () { 
        		pageSpace.decrementCurrentV();
+       		console.log("currentU:" + pageSpace.currentU() + " currentV:" + pageSpace.currentV());
        		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
        		drawSystems.scanSystems();
     	});
     	$("#pozU").click(function () { 
        		pageSpace.incrementCurrentU();
-       		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
+       		var curU = pageSpace.currentU() + pageSpace.getUextent();
+       		console.log("curU:" + curU + " currentV:" +  pageSpace.currentV());
+       		addToCache.jsonCall(curU, pageSpace.currentV());
        		drawSystems.scanSystems();
     	});
     	$("#negU").click(function () { 
        		pageSpace.decrementCurrentU();
+       		console.log("currentU:" + pageSpace.currentU() + " currentV:" + pageSpace.currentV());
        		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
        		drawSystems.scanSystems();
     	});    	
@@ -588,6 +628,7 @@ var drawSystems = (function(){
 			jsonCall: function(ucoord, vcoord){
 				$.getJSON("/pageSystem.htm?udim="+ucoord+"&vdim="+vcoord,
 				function(json){           // callback
+					console.log("MESSAGE:"+json.someDetails.theMessage);
 					if(json.someDetails.theMessage.indexOf("already exists") != -1){
 						addToCache.aSystem(json);
 					return;
@@ -596,7 +637,7 @@ var drawSystems = (function(){
 				});
 			},
 			aSystem: function(json){
-							console.log("json0:" + json.someDetails.theMessage);
+				console.log("json0:" + json.someDetails.theMessage);
 				console.log("json1:" + json.someDetails._systemId);
 				console.log("json2:" + json.someDetails._distanceToGalaxyCentre);
 				console.log("json3:" + json.someDetails._ucoordinate);
@@ -604,11 +645,11 @@ var drawSystems = (function(){
 				console.log("json5:" + json.someDetails.clusterRepList);
 				console.log("json6:" + json.someDetails.starRepList);
 				
-				// cannot re-create a system already 
-				if(json.someDetails.theMessage.indexOf("already exists") != -1){
-					alert(json.someDetails.theMessage);
+				if(systemPlusModule.isSystemInCache(json.someDetails._systemId)){
+					//  done, it's already in the cache
 					return;
 				}
+				
 				systemPlusModule.addSystem({
 							ucoord: json.someDetails._ucoordinate,
 							vcoord: json.someDetails._vcoordinate,
@@ -653,6 +694,7 @@ var drawSystems = (function(){
 </script>
 
 </div> <!-- region -->  
+</section>
 </div>  <!-- container -->
 </body>
 </html>

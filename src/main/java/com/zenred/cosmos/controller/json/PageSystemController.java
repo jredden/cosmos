@@ -49,7 +49,7 @@ public class PageSystemController implements Controller {
 			_system_rep_list.add(systemRep);
 			systemPlusSomeDetailsList = new MarshalSystemDetails()
 			.addClustersAndStars(_system_rep_list);
-			logger.info("systemPlusSomeDetailsList: "+ systemPlusSomeDetailsList );
+			logger.info("systemPlusSomeDetails: "+ systemPlusSomeDetailsList.get(0) + ":::" + systemPlusSomeDetailsList.size() );
 			systemPlusSomeDetailsList.get(0).setTheMessage(udim+":"+vdim+" already exists");
 		}
 		else{
@@ -57,8 +57,10 @@ public class PageSystemController implements Controller {
 			systemPlusSomeDetailsList.get(0).setTheMessage(udim+":"+vdim+" DOES NOT exist");
 		}
 		ModelAndView modelAndView = new ModelAndView(new SystemDetailView());
-		
-		modelAndView.addObject(SystemDetailView.JSON_ROOT,SystemSimpleArray.genSimpleArray(systemPlusSomeDetailsList.get(0)));
+		SystemPlusSomeDetails systemPlusSomeDetails = systemPlusSomeDetailsList
+				.get(0);
+		modelAndView.addObject(SystemDetailView.JSON_ROOT,
+				SystemSimpleArray.genSimpleArray(systemPlusSomeDetails));
 		return modelAndView;
 	}
 
