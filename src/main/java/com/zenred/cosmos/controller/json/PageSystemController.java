@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.Controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.zenred.data_access.MarshallClustersAndStarsAndPlanetsInOneSystem;
 import com.zenred.data_access.MarshallSystems;
 import com.zenred.service.GenerateOneSystem;
 import com.zenred.service.MarshalSystemDetails;
@@ -19,18 +20,28 @@ import com.zenred.visualization.EmptySystem;
 import com.zenred.visualization.SystemPlusSomeDetails;
 import com.zenred.visualization.SystemSimpleArray;
 
+import cosmos.hibernate.ClusterRep;
+import cosmos.hibernate.StarRep;
 import cosmos.hibernate.SystemRep;
 
 public class PageSystemController implements Controller {
-	
+
 	static private Logger logger = LoggerFactory
 			.getLogger(PageSystemController.class);
-	
+
 	/**
 	 * pages in one system on client event if it exists.
 	 */
-	
+
+	private MarshallClustersAndStarsAndPlanetsInOneSystem marshallClustersAndStarsAndPlanetsInOneSystem;
+
+	public void setMarshallClustersAndStarsAndPlanetsInOneSystem(
+			MarshallClustersAndStarsAndPlanetsInOneSystem marshallClustersAndStarsAndPlanetsInOneSystem) {
+		this.marshallClustersAndStarsAndPlanetsInOneSystem = marshallClustersAndStarsAndPlanetsInOneSystem;
+	}
+
 	private GenerateOneSystem generateOneSystem;
+
 	public void setGenerateOneSystem(GenerateOneSystem generateOneSystem) {
 		this.generateOneSystem = generateOneSystem;
 	}
@@ -41,24 +52,27 @@ public class PageSystemController implements Controller {
 		String vdim = request.getParameter("vdim");
 		boolean result = generateOneSystem.doesSystemAllReadyExist(udim, vdim);
 		List<SystemPlusSomeDetails> systemPlusSomeDetailsList = null;
+		SystemPlusSomeDetails systemPlusSomeDetails = null;
 
-		if(result){
-			MarshallSystems marshallSytems = new MarshallSystems();
-			SystemRep systemRep = marshallSytems.getOneSystemRep(udim, vdim);
-			List<SystemRep> _system_rep_list  = new ArrayList<SystemRep>();
-			_system_rep_list.add(systemRep);
-			systemPlusSomeDetailsList = new MarshalSystemDetails()
-			.addClustersAndStars(_system_rep_list);
-			logger.info("systemPlusSomeDetails: "+ systemPlusSomeDetailsList.get(0) + ":::" + systemPlusSomeDetailsList.size() );
-			systemPlusSomeDetailsList.get(0).setTheMessage(udim+":"+vdim+" already exists");
-		}
-		else{
+		if (result) {
+			SystemRep systemsRep = new MarshallSystems().getOneSystemRep(udim,
+					vdim);
+			List<ClusterRep> clusterRepList = marshallClustersAndStarsAndPlanetsInOneSystem
+					.getClusters(systemsRep.getSystemId());
+			List<StarRep> starRepList = marshallClustersAndStarsAndPlanetsInOneSystem
+					.getStars(systemsRep.getSystemId());
+			systemPlusSomeDetails = new SystemPlusSomeDetails(systemsRep,
+					clusterRepList, starRepList);
+			logger.info("systemPlusSomeDetails: " + systemPlusSomeDetails
+					+ ":::");
+		} else {
 			systemPlusSomeDetailsList = EmptySystem.one();
-			systemPlusSomeDetailsList.get(0).setTheMessage(udim+":"+vdim+" DOES NOT exist");
+			systemPlusSomeDetails = systemPlusSomeDetailsList.get(0);
+			systemPlusSomeDetails.setTheMessage(udim + ":" + vdim
+					+ " DOES NOT exist");
 		}
 		ModelAndView modelAndView = new ModelAndView(new SystemDetailView());
-		SystemPlusSomeDetails systemPlusSomeDetails = systemPlusSomeDetailsList
-				.get(0);
+
 		modelAndView.addObject(SystemDetailView.JSON_ROOT,
 				SystemSimpleArray.genSimpleArray(systemPlusSomeDetails));
 		return modelAndView;

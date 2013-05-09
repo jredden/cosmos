@@ -23,6 +23,23 @@
 </nav>
 
 <script>
+			const SYSTEM_ID = 0;
+			const CLUSTER_DESCRIPTION = 1;
+			const DISTANCE_VIRTUAL_CENTRE = 2;
+			const NUMBER_STARS_IN_CLUSTER = 3;
+			const PLANETS_ALLOWED = 4;
+			const ANGLE_IN_RADIANS = 5;
+			
+			const STAR_ID = 0;
+			const PARENT_SYSTEM_ID = 1;
+			const CLUSTER_ID = 2;
+			const DISTANCE_TO_CLUSTER_VIRT_CENTRE = 3;
+			const LUMINOSITY_ID = 4;
+			const NO_PLANETS_ALLOWED = 5;
+			const STAR_ANGLE_IN_RADIANS = 6;
+			const STAR_COLOR = 7;
+			const STAR_TYPE = 8;
+			const STAR_SIZE = 9;
 
 var systemPlusModule = (function () {
 	// private
@@ -112,7 +129,7 @@ var systemPlusModule = (function () {
     		var answer = false;
     		for(scounter in systems){
     			if(systems[scounter].systemId = id){
-    				answer = true;
+    				answer == true;
     				break;
     			}
     		}
@@ -493,23 +510,6 @@ var drawSystems = (function(){
 	
 		$(document).dblclick(function(event){
 		
-			const SYSTEM_ID = 0;
-			const CLUSTER_DESCRIPTION = 1;
-			const DISTANCE_VIRTUAL_CENTRE = 2;
-			const NUMBER_STARS_IN_CLUSTER = 3;
-			const PLANETS_ALLOWED = 4;
-			const ANGLE_IN_RADIANS = 5;
-			
-			const STAR_ID = 0;
-			const PARENT_SYSTEM_ID = 1;
-			const CLUSTER_ID = 2;
-			const DISTANCE_TO_CLUSTER_VIRT_CENTRE = 3;
-			const LUMINOSITY_ID = 4;
-			const NO_PLANETS_ALLOWED = 5;
-			const STAR_ANGLE_IN_RADIANS = 6;
-			const STAR_COLOR = 7;
-			const STAR_TYPE = 8;
-			const STAR_SIZE = 9;
 		
 			console.log("pageX:"+event.pageX +" pageY:"+event.pageY);
 			var currentU = parseInt(pageSpace.currentU());
@@ -585,27 +585,39 @@ var drawSystems = (function(){
 		$("#pozV").click(function () { 
        		pageSpace.incrementCurrentV();
        		var curV = pageSpace.currentV() + pageSpace.getVextent();
-       		console.log("currentU:" + pageSpace.currentU() + " curV:" + curV);
-       		addToCache.jsonCall(pageSpace.currentU(), curV);
+       		for(var count = 0; count <= pageSpace.getUextent(); count++){
+     			var curU = parseInt(pageSpace.currentU()) + count;
+       			console.log("curU:" + curU + " curV:" + curV);
+       			addToCache.jsonCall(curU, curV);
+       		}
        		drawSystems.scanSystems();
 	    });
     	$("#negV").click(function () { 
        		pageSpace.decrementCurrentV();
-       		console.log("currentU:" + pageSpace.currentU() + " currentV:" + pageSpace.currentV());
-       		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
+       		for(var count = 0;  count <= pageSpace.getUextent();count++){
+     			var curU = parseInt(pageSpace.currentU()) + count;
+       			console.log("curU:" + curU + " currentV:" + pageSpace.currentV());
+       			addToCache.jsonCall(curU, pageSpace.currentV());
+       		}
        		drawSystems.scanSystems();
     	});
     	$("#pozU").click(function () { 
        		pageSpace.incrementCurrentU();
        		var curU = pageSpace.currentU() + pageSpace.getUextent();
-       		console.log("curU:" + curU + " currentV:" +  pageSpace.currentV());
-       		addToCache.jsonCall(curU, pageSpace.currentV());
+       		for(var count = 0; count <= pageSpace.getVextent(); count++ ){
+     			var curV = parseInt(pageSpace.currentV()) + count;
+       			console.log("curU:" + curU + " curV:" + curV);
+       			addToCache.jsonCall(curU, curV);
+       		}
        		drawSystems.scanSystems();
     	});
     	$("#negU").click(function () { 
        		pageSpace.decrementCurrentU();
-       		console.log("currentU:" + pageSpace.currentU() + " currentV:" + pageSpace.currentV());
-       		addToCache.jsonCall(pageSpace.currentU(), pageSpace.currentV());
+       		for(var count = 0; count <= pageSpace.getVextent(); count++){
+       			var curV = parseInt(pageSpace.currentV()) + count;
+       			console.log("currentU:" + pageSpace.currentU() + " curV:" + curV);
+       			addToCache.jsonCall(pageSpace.currentU(), curV);
+       		}
        		drawSystems.scanSystems();
     	});    	
     	
@@ -615,6 +627,8 @@ var drawSystems = (function(){
 		pageSpace.numberStarsSystemsY();
 		console.log("number star systems x:" + pageSpace.getNumberStarSystemsX());
 		console.log("number star systems y:" + pageSpace.getNumberStarSystemsY());
+		console.log("current u:" + pageSpace.currentU());
+		console.log("current v:" + pageSpace.currentV());
 		drawSystems.scanSystems();
 		console.log("number graphic contexts:" + pageSpace.getNumberGraphics());
 		
@@ -629,7 +643,7 @@ var drawSystems = (function(){
 				$.getJSON("/pageSystem.htm?udim="+ucoord+"&vdim="+vcoord,
 				function(json){           // callback
 					console.log("MESSAGE:"+json.someDetails.theMessage);
-					if(json.someDetails.theMessage.indexOf("already exists") != -1){
+					if(json.someDetails.theMessage.indexOf("cons") != -1){
 						addToCache.aSystem(json);
 					return;
 					}
@@ -647,6 +661,7 @@ var drawSystems = (function(){
 				
 				if(systemPlusModule.isSystemInCache(json.someDetails._systemId)){
 					//  done, it's already in the cache
+					console.log("System " + json.someDetails._systemId + " is already in the cache");
 					return;
 				}
 				

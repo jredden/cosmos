@@ -164,6 +164,8 @@
 		<property name="generateOneSystem" ref="generateOneSystem"/>
 	</bean>
 	<bean id="pageSystemController" class="com.zenred.cosmos.controller.json.PageSystemController">
+		<property name="marshallClustersAndStarsAndPlanetsInOneSystem" 
+			ref="marshallClustersAndStarsAndPlanetsInOneSystem"/>
 		<property name="generateOneSystem" ref="generateOneSystem"/>
 	</bean>
 
