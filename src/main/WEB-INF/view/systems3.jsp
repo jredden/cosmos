@@ -430,6 +430,19 @@ var drawSystems = (function(){
 					drawSystem(systemObject, systemObject.ucoord, systemObject.vcoord);
 				}
 			}
+		},
+		scanVisualSystems: function(){
+			pageSpace.graphicsInvisible();
+			flipFlop = 0;
+			for (var index = 0; index < systemPlusModule.numberSystems(); index++ ){
+				var systemObject = systemPlusModule.getSystems(index);
+				var extentU = pageSpace.currentU() + pageSpace.getUextent();
+				var extentV = pageSpace.currentV() + pageSpace.getVextent();
+				if(systemObject.ucoord >= pageSpace.currentU() && systemObject.ucoord <= extentU
+					&& systemObject.vcoord >= pageSpace.currentV() && systemObject.vcoord  <= extentV){
+					drawSystem(systemObject, systemObject.ucoord, systemObject.vcoord);
+				}
+			}
 		}
 	};
 
@@ -590,8 +603,8 @@ var drawSystems = (function(){
        			console.log("curU:" + curU + " curV:" + curV);
        			addToCache.jsonCall(curU, curV);
        		}
-       		drawSystems.scanSystems();
-	    });
+       		drawSystems.scanVisualSystems();
+ 	    });
     	$("#negV").click(function () { 
        		pageSpace.decrementCurrentV();
        		for(var count = 0;  count <= pageSpace.getUextent();count++){
@@ -599,8 +612,8 @@ var drawSystems = (function(){
        			console.log("curU:" + curU + " currentV:" + pageSpace.currentV());
        			addToCache.jsonCall(curU, pageSpace.currentV());
        		}
-       		drawSystems.scanSystems();
-    	});
+       		drawSystems.scanVisualSystems();
+     	});
     	$("#pozU").click(function () { 
        		pageSpace.incrementCurrentU();
        		var curU = pageSpace.currentU() + pageSpace.getUextent();
@@ -609,7 +622,7 @@ var drawSystems = (function(){
        			console.log("curU:" + curU + " curV:" + curV);
        			addToCache.jsonCall(curU, curV);
        		}
-       		drawSystems.scanSystems();
+       		drawSystems.scanVisualSystems();
     	});
     	$("#negU").click(function () { 
        		pageSpace.decrementCurrentU();
@@ -618,7 +631,7 @@ var drawSystems = (function(){
        			console.log("currentU:" + pageSpace.currentU() + " curV:" + curV);
        			addToCache.jsonCall(pageSpace.currentU(), curV);
        		}
-       		drawSystems.scanSystems();
+       		drawSystems.scanVisualSystems();
     	});    	
     	
 	
@@ -671,6 +684,8 @@ var drawSystems = (function(){
 							systemId: json.someDetails._systemId,
 							galacticCentre: json.someDetails._distanceToGalaxyCentre
 							});
+				pageSpace.addGraphic(json.someDetails._systemId);	
+				
 				$(json.someDetails.clusterRepList).each(function() {
 					$(this.list).each(function(){
 						console.log("cluster:" + this.string);
@@ -702,6 +717,10 @@ var drawSystems = (function(){
 								});
 					});
 				});
+				var systemObject = systemPlusModule.getSystems(systemPlusModule.numberSystems()-1);
+				// last system just added
+				pageSpace.addGraphic(json.someDetails._systemId);
+				drawSystems.drawOneSystem(systemObject);
 			}
 		};
 	}());
