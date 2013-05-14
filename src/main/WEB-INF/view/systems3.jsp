@@ -511,6 +511,19 @@ var drawSystems = (function(){
 		var uextent = $.getUrlVar('uextent');
 		var vextent = $.getUrlVar('vextent');
 		
+		if(uextent == undefined){
+			uextent = localStorage.uextent;
+		}
+		else{
+			localStorage.uextent = uextent;
+		}
+		if(vextent == undefined){
+			vextent = localStorage.vextent;
+		}
+		else{
+			localStorage.vextent = vextent;
+		}
+		
 		pageSpace.setUextent(uextent);
 		pageSpace.setVextent(vextent);
 		
