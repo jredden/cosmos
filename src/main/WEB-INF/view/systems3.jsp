@@ -12,6 +12,7 @@
 <script src="http://www.cosmos.com/js/RequestVariables.js" type="text/javascript"></script>
 <body>
 <div id="container">
+
 <section>
 <div id="site">
 <h1>Cosmos Star Systems</h1>
@@ -21,6 +22,9 @@
   <button id="pozU">Positive Shift U Dimension</button>
   <button id="negU">Negative Shift U Dimension</button>
 </nav>
+</div>  <!-- site -->
+</div>  <!-- container -->
+</section>
 
 <script>
 			const SYSTEM_ID = 0;
@@ -449,8 +453,7 @@ var drawSystems = (function(){
 }());
 
 </script> 
-</div>  <!-- site -->
-</section>
+
 <section>
 <div id="region">
 <c:forEach var="systemPlusSomeDetails" items="${systems_list}" >
@@ -741,7 +744,6 @@ var drawSystems = (function(){
 </script>
 
 </div> <!-- region -->  
-</section>
-</div>  <!-- container -->
+
 </body>
 </html>

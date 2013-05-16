@@ -19,7 +19,7 @@ public class GenerateAtmosphereTest_0x {
 //		RunTimeLikeSetup runTimeLikeSetup = RunTimeLikeSetup.instance();
 //		generateAtmosphere = (GenerateAtmosphere) runTimeLikeSetup.getBean("generateAtmosphere");
 		generateAtmosphere = new GenerateAtmosphere();
-		AtmosphereDTO atmosphereDTO = generateAtmosphere.genAtmosphere(.8, 1.1, 5000.0, StarAtributesIF.DRKBRN_SDW);
+		AtmosphereDTO atmosphereDTO = generateAtmosphere.genAtmosphere(.8, 1.1, 5000.0, StarAtributesIF.PYEL_GI_I);
 		logger.info("DTO: {}", atmosphereDTO);
 		assertNotNull(atmosphereDTO);
 	}
