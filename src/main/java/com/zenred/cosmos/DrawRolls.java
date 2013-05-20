@@ -89,6 +89,10 @@ public class DrawRolls
     public int getD4500(){
         return getDraw(4500.0);
     }
+    
+    public int getD100000(){
+    	return getDraw(100000.0);
+    }
 
     /**
      * @return - integer between 0 an 3

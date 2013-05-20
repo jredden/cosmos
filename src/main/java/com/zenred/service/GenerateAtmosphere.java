@@ -926,9 +926,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setUltraVioletReducingScale(2.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		YELO_SG_I_TypeProfile.add(starToChemicalProfile);
-
+		PYEL_GI_I_TypeProfile.addAll(YELO_SG_I_TypeProfile);
 		atmosphereProfileMap.put(YELO_SG_I, YELO_SG_I_TypeProfile);
-		atmosphereProfileMap.put(PYEL_SG_I, YELO_SG_I_TypeProfile);
+		atmosphereProfileMap.put(PYEL_SG_I, PYEL_GI_I_TypeProfile);
 
 		// ORNG_SG_I
 
@@ -1252,9 +1252,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setUltraVioletReducingScale(33.0);
 		starToChemicalProfile.setWeightDuringAnalysis(4.0);
 		LTBL_GI_II_TypeProfile.add(starToChemicalProfile);
-
+		LTBL_GI_I_TypeProfile.addAll(BLUE_SG_II_TypeProfile);
 		atmosphereProfileMap.put(LTBL_GI_II, LTBL_GI_II_TypeProfile);
-		atmosphereProfileMap.put(LTBL_GI_I, LTBL_GI_II_TypeProfile);
+		atmosphereProfileMap.put(LTBL_GI_I, LTBL_GI_I_TypeProfile);
 
 		// WHIT_GI_II
 
@@ -1320,9 +1320,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setUltraVioletReducingScale(4.0);
 		starToChemicalProfile.setWeightDuringAnalysis(5.0);
 		WHIT_GI_II_TypeProfile.add(starToChemicalProfile);
-
+		WHIT_GI_I_TypeProfile.addAll(WHIT_GI_II_TypeProfile);
 		atmosphereProfileMap.put(WHIT_GI_II, WHIT_GI_II_TypeProfile);
-		atmosphereProfileMap.put(WHIT_GI_I, WHIT_GI_II_TypeProfile);
+		atmosphereProfileMap.put(WHIT_GI_I, WHIT_GI_I_TypeProfile);
 
 		// YELO_GI_II
 
@@ -1507,9 +1507,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setUltraVioletReducingScale(10.0);
 		starToChemicalProfile.setWeightDuringAnalysis(10.0);
 		ORNG_GI_II_TypeProfile.add(starToChemicalProfile);
-
+		ORNG_GI_I_TypeProfile.addAll(ORNG_GI_II_TypeProfile);
 		atmosphereProfileMap.put(ORNG_GI_II, ORNG_GI_II_TypeProfile);
-		atmosphereProfileMap.put(ORNG_GI_I, ORNG_GI_II_TypeProfile);
+		atmosphereProfileMap.put(ORNG_GI_I, ORNG_GI_I_TypeProfile);
 
 		// RED__GI_II
 
@@ -1619,9 +1619,10 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setUltraVioletReducingScale(42.0);
 		starToChemicalProfile.setWeightDuringAnalysis(8.0);
 		RED__GI_II_TypeProfile.add(starToChemicalProfile);
-
+		
+		RED__GI_I_TypeProfile.addAll(RED__GI_II_TypeProfile);
 		atmosphereProfileMap.put(RED__GI_II, RED__GI_II_TypeProfile);
-		atmosphereProfileMap.put(RED__GI_I, RED__GI_II_TypeProfile);
+		atmosphereProfileMap.put(RED__GI_I, RED__GI_I_TypeProfile);
 
 		// uv and reducing: 01 is extreme UV and 99 is extreme reducing
 
@@ -1900,8 +1901,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setWeightDuringAnalysis(19.0);
 		YELO_SUBGI_TypeProfile.add(starToChemicalProfile);
 
+		PYEL_SUBGI_TypeProfile.addAll(YELO_SUBGI_TypeProfile);
 		atmosphereProfileMap.put(YELO_SUBGI, YELO_SUBGI_TypeProfile);
-		atmosphereProfileMap.put(PYEL_SUBGI, YELO_SG_I_TypeProfile);
+		atmosphereProfileMap.put(PYEL_SUBGI, PYEL_SUBGI_TypeProfile);
 
 		// ORNG_SUBGI
 
@@ -3931,8 +3933,9 @@ public class GenerateAtmosphere implements StarAtributesIF {
 		starToChemicalProfile.setWeightDuringAnalysis(3.0);
 		BROWN_SUBS_TypeProfile.add(starToChemicalProfile);
 
+		DRKBRN_SDW_TypeProfile.addAll(BROWN_SUBS_TypeProfile);
 		atmosphereProfileMap.put(BROWN_SUBS, BROWN_SUBS_TypeProfile);
-		atmosphereProfileMap.put(DRKBRN_SDW, BROWN_SUBS_TypeProfile);
+		atmosphereProfileMap.put(DRKBRN_SDW, DRKBRN_SDW_TypeProfile);
 
 		strict = false;
 		flexible = false;

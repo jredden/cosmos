@@ -304,7 +304,10 @@ public interface StarAtributesIF {
     	PYEL_DWARF,
     	YELO_DWARF,
     	ORNG_DWARF,
-    	RED__DWARF};
+    	RED__DWARF,
+    	PURPLE_RED,
+    	BROWN_SUBS,
+    	DRKBRN_SDW};
     
     /*    */
     /* masterstartypeindex   */
@@ -423,7 +426,12 @@ public interface StarAtributesIF {
      /*  k dwarf */
      4050,4100,4150,4200,4250,4300,4350,4400,4450,4500,
      /*  m dwarf */
-     9999};
+     9999,
+     /* purple red sub dwarf */
+     99500,
+     /* brown sub star */
+     99999};
+    /* dark brown sub star*/
     /*
       starmassbystartype
     */ 
